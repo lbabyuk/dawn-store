@@ -1,0 +1,137 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_RkE6zF": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_4kxEaU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/slide-one.webp",
+            "image_overlay_opacity": 0,
+            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
+            "heading_size": "h1",
+            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
+            "button_label": "Shop the Collection",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "slide_dJXPhE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/slide-two.webp",
+            "image_overlay_opacity": 0,
+            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
+            "heading_size": "h1",
+            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
+            "button_label": "Shop the Collection",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "slide_Xr3qWi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/slide-three.webp",
+            "image_overlay_opacity": 0,
+            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
+            "heading_size": "h1",
+            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
+            "button_label": "Shop the Collection",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-4"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4kxEaU",
+        "slide_dJXPhE",
+        "slide_Xr3qWi"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "video_WVtCym": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=rgZU5pDf6mw",
+        "cover_image": "shopify://shop_images/hands-holds-a-cell-phone-showing-the-shopify-logo.jpg",
+        "description": "Video telling our Shopify store story, from first designs to customer deliveries",
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow_RkE6zF",
+    "video_WVtCym",
+    "featured_collection"
+  ]
+}
