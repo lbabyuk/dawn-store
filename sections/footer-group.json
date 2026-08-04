@@ -53,7 +53,6 @@
       "settings": {
         "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
         "footer_image": "shopify://shop_images/Screenshot_4.png",
-        "footer_image_width": 1000,
         "newsletter_enable": true,
         "newsletter_heading": "Join our newsletter to stay up to date on features and releases.",
         "newsletter_placeholder_text": "Your email...",
