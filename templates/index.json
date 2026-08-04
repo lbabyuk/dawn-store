@@ -15,28 +15,29 @@
         "slide_4kxEaU": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/slide-one.webp",
+            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
             "image_overlay_opacity": 0,
-            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
+            "heading": "<strong>Discover flavors that transform your table into an experience.</strong>",
             "heading_size": "h1",
-            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
-            "button_label": "Shop the Collection",
+            "subheading": "Savor the finest flavors crafted with care. From farm to table, every bite tells a story of quality and passion. Explore our collection and taste the difference.",
+            "button_label": "Shop All",
             "link": "shopify://collections",
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "middle-left",
             "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-4"
+            "color_scheme": "scheme-73c8dc1e-e3c9-45d5-b8de-7254c8df9e5a"
           }
         },
         "slide_dJXPhE": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/slide-two.webp",
             "image_overlay_opacity": 0,
             "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
-            "heading_size": "h1",
+            "heading_size": "h0",
             "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
             "button_label": "Shop the Collection",
             "link": "shopify://collections",
@@ -45,16 +46,17 @@
             "box_align": "middle-left",
             "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-4"
+            "color_scheme": "scheme-73c8dc1e-e3c9-45d5-b8de-7254c8df9e5a"
           }
         },
         "slide_Xr3qWi": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/slide-three.webp",
             "image_overlay_opacity": 0,
             "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
-            "heading_size": "h1",
+            "heading_size": "h0",
             "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
             "button_label": "Shop the Collection",
             "link": "shopify://collections",
@@ -63,7 +65,7 @@
             "box_align": "middle-left",
             "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-4"
+            "color_scheme": "scheme-73c8dc1e-e3c9-45d5-b8de-7254c8df9e5a"
           }
         }
       },
@@ -75,7 +77,7 @@
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "adapt_image",
+        "slide_height": "large",
         "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -84,27 +86,12 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
-    "video_WVtCym": {
-      "type": "video",
-      "name": "t:sections.video.presets.name",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=rgZU5pDf6mw",
-        "cover_image": "shopify://shop_images/hands-holds-a-cell-phone-showing-the-shopify-logo.jpg",
-        "description": "Video telling our Shopify store story, from first designs to customer deliveries",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 6,
         "title": "Featured products",
         "heading_size": "h2",
         "description": "",
@@ -131,7 +118,6 @@
   },
   "order": [
     "slideshow_RkE6zF",
-    "video_WVtCym",
     "featured_collection"
   ]
 }
