@@ -14,6 +14,13 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_d9iktk": {
+          "type": "announcement",
+          "settings": {
+            "text": "Subscribe & Save 10%",
+            "link": ""
+          }
+        },
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
@@ -23,12 +30,13 @@
         }
       },
       "block_order": [
+        "announcement_d9iktk",
         "announcement-bar-0"
       ],
       "settings": {
-        "auto_rotate": false,
+        "auto_rotate": true,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
