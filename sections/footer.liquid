@@ -191,11 +191,11 @@
                       {% elsif form.posted_successfully? %}
                         aria-describedby="ContactFooter-success"
                       {% endif %}
-                      placeholder="{{ 'newsletter.label' | t }}"
+                      placeholder="{{ section.settings.newsletter_placeholder_text }}"
                       required
                     >
                     <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                      {{ 'newsletter.label' | t }}
+                      {{ section.settings.newsletter_placeholder_text }}
                     </label>
                     <button
                       type="submit"
@@ -204,9 +204,7 @@
                       id="Subscribe"
                       aria-label="{{ 'newsletter.button_label' | t }}"
                     >
-                      <span class="svg-wrapper">
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      </span>
+                    {{ section.settings.newsletter_button_label | escape }}
                     </button>
                   </div>
                   {%- if form.errors -%}
@@ -444,8 +442,20 @@
     {
       "type": "inline_richtext",
       "id": "newsletter_heading",
-      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "default": "Join our newsletter to stay up to date on features and releases.",
       "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+     {
+      "type": "text",
+      "id": "newsletter_placeholder_text",
+      "default": "Your email...",
+      "label": "Newsletter placeholder text"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "default": "Sign up",
+      "label": "Newsletter button label"
     },
     {
       "type": "header",
