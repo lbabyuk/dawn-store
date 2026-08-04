@@ -13,10 +13,51 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_ymCAUn": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "link_list_DCJz8w": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "link_list_wG8Qj7": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "image_R699qL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Image_4_._2026_._10_31_44.png",
+            "image_width": 550,
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_ymCAUn",
+        "link_list_DCJz8w",
+        "link_list_wG8Qj7",
+        "image_R699qL"
+      ],
       "settings": {
         "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
+        "footer_image": "shopify://shop_images/Screenshot_4.png",
+        "footer_image_width": 1000,
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Join our newsletter to stay up to date on features and releases.",
+        "newsletter_placeholder_text": "Your email...",
+        "newsletter_button_label": "Sign up",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,

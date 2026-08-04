@@ -8,7 +8,11 @@
 
 .footer__content-top {
   padding-bottom: 5rem;
-  display: block;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 80px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 749px) {
@@ -28,8 +32,9 @@
 
   .footer__content-top {
     padding-bottom: 3rem;
-    padding-left: calc(4rem / var(--font-body-scale));
-    padding-right: calc(4rem / var(--font-body-scale));
+    padding: 0 1.5rem;
+    flex-direction: column-reverse;
+    gap: 40px;
   }
 }
 
@@ -40,11 +45,6 @@
   }
 }
 
-.footer__content-bottom {
-  border-top: solid 0.1rem rgba(var(--color-foreground), 0.08);
-  padding-top: 3rem;
-}
-
 .footer__content-bottom:only-child {
   border-top: 0;
 }
@@ -52,6 +52,8 @@
 .footer__content-bottom-wrapper {
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 749px) {
@@ -128,8 +130,7 @@
 .footer-block--newsletter {
   display: flex;
   flex-direction: column;
-  align-items: flex-start ;
-  margin-top: 3rem;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -151,14 +152,22 @@
 }
 
 .footer-block__heading {
-  margin-bottom: 2rem;
+  margin-bottom: 2.4rem;
   margin-top: 0;
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  font-size: calc(var(--font-heading-scale) * 3.2rem);
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 @media screen and (min-width: 990px) {
   .footer-block__heading {
-    font-size: calc(var(--font-heading-scale) * 1.8rem);
+    font-size: calc(var(--font-heading-scale) * 4rem);
+    font-weight: 400;
+    line-height: 120%;
+    text-transform: uppercase;
+    letter-spacing: 0;
   }
 }
 
@@ -181,10 +190,6 @@
   flex-grow: 1;
 }
 
-.newsletter-form__field-wrapper {
-  max-width: 36rem;
-}
-
 @media screen and (min-width: 750px) {
   /* Pushes other components to the right of the flexbox */
   .footer-block__newsletter:not(:only-child) {
@@ -197,7 +202,8 @@
     margin: 0;
   }
 
-  .footer-block__newsletter:not(:only-child) .newsletter-form__message--success {
+  .footer-block__newsletter:not(:only-child)
+    .newsletter-form__message--success {
     left: auto;
   }
 
@@ -230,8 +236,8 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 100%;
-    align-items: center;
-    gap: 3rem;
+    align-items: flex-start;
+    gap: 2.4rem;
   }
 
   .footer__list-social.list-social,
@@ -297,7 +303,8 @@
 }
 
 @media screen and (min-width: 750px) {
-  .footer__content-bottom-wrapper:not(.footer__content-bottom-wrapper--center) .footer__copyright {
+  .footer__content-bottom-wrapper:not(.footer__content-bottom-wrapper--center)
+    .footer__copyright {
     text-align: right;
   }
 }
@@ -361,8 +368,8 @@
 
 @media screen and (max-width: 989px) {
   .footer-block__details-content .list-menu__item--link {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -379,6 +386,8 @@
 
 .footer-block-image {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-block-image.left {
@@ -403,7 +412,6 @@
 }
 
 .footer-block__image-wrapper {
-  margin-bottom: 2rem;
   overflow: hidden !important;
 }
 
@@ -421,7 +429,9 @@
   text-align: center;
 }
 
-.footer-block:only-child > .footer-block__brand-info > .footer-block__image-wrapper {
+.footer-block:only-child
+  > .footer-block__brand-info
+  > .footer-block__image-wrapper {
   margin-left: auto;
   margin-right: auto;
 }
@@ -431,7 +441,9 @@
   height: auto;
 }
 
-.footer-block:only-child .footer-block__brand-info .footer__list-social.list-social {
+.footer-block:only-child
+  .footer-block__brand-info
+  .footer__list-social.list-social {
   justify-content: center;
 }
 
@@ -444,7 +456,7 @@
 }
 
 .copyright__content {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
 }
 
 .copyright__content a {
@@ -463,7 +475,7 @@
 }
 
 .policies li::before {
-  content: '\00B7';
+  content: "\00B7";
   padding: 0 0.8rem;
 }
 
@@ -507,3 +519,14 @@
     }
   }
 }
+
+.footer-block--newsletter {
+  max-width: 635px;
+}
+
+@media screen and (min-width: 749px) {
+  .footer__blocks-wrapper.grid {
+    column-gap: 6rem;
+  }
+}
+

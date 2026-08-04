@@ -11,7 +11,6 @@
   .newsletter-form {
     align-items: flex-start;
     margin: 0 auto;
-    max-width: 36rem;
   }
 }
 
@@ -77,6 +76,7 @@
 
 .newsletter-form__field-wrapper .field {
   width: 100%;
+  gap: 10px;
 }
 
 .newsletter-form__field-wrapper .newsletter-form__button {
@@ -89,26 +89,40 @@
 
 .newsletter-form__field-wrapper input[type="email"] {
   border-radius: 360px;
-  border: 4px solid #fff;
-  background: #fff;
+  border: 4px solid rgba(var(--color-foreground, #FFFFFF));
+  background: rgba(var(--color-foreground, #FFFFFF));
   display: flex;
-  height: auto;
   padding: 12px 16px;
   align-items: center;
-  gap: 10px;
   font-variant-numeric: stacked-fractions;
   outline: none;
+  flex: 1;
+  color: rgb(var(--color-background));
+  
+    font-size: 16px;
+    
+    font-weight: 400;
+    line-height: 140%;
 }
 
 .newsletter-form__field-wrapper .field__label {
-  font-family: 'ASM', sans-serif;
-  color: #ec1107;
+  font-family: "ASM", sans-serif;
+  color: rgb(var(--color-background));
   font-size: 16px;
   font-weight: 400;
   line-height: 140%;
-  top: 15px;
 }
 
-.newsletter-form__field-wrapper .button:after, .button:not([disabled]):hover:after {
+.newsletter-form__field-wrapper .button:after,
+.button:not([disabled]):hover:after {
   box-shadow: none;
+  border: none;
+}
+
+.newsletter-form__field-wrapper .newsletter-form__button {
+  border: 2px solid rgba(var(--color-foreground, #FFFFFF));
+    background-color: #0000;
+    color: rgba(var(--color-foreground, #FFFFFF));
+    border-radius: 50px;
+    flex: 1;
 }

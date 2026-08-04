@@ -25,6 +25,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+   .footer .svg-wrapper {
+    width: 24px;
+    height: 24px;
+
+  }
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
@@ -76,7 +82,7 @@
                 {% endif %}
               >
                 {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                  <h2 class="footer-block__heading menu--heading inline-richtext">{{- block.settings.heading -}}</h2>
                 {%- endif -%}
 
                 {%- case block.type -%}
@@ -86,6 +92,7 @@
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
                     </div>
+
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
                       <ul class="footer-block__details-content list-unstyled">
@@ -101,6 +108,7 @@
                         {%- endfor -%}
                       </ul>
                     {%- endif -%}
+
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_image != blank -%}
@@ -130,27 +138,6 @@
                       {%- endif -%}
                       {%- if block.settings.show_social and has_social_icons -%}
                         {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
-                    </div>
-                  {%- when 'image' -%}
-                    <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
-                      {%- if block.settings.image != blank -%}
-                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
-                        <div
-                          class="footer-block__image-wrapper"
-                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
-                        >
-                          <img
-                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
-                            src="{{ block.settings.image | image_url: width: 760 }}"
-                            alt="{{ block.settings.image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ block.settings.image.width }}"
-                            height="{{ block.settings.image.height }}"
-                          >
-                        </div>
-                      {%- else -%}
-                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
                 {%- endcase -%}
@@ -197,16 +184,16 @@
                     <label class="field__label" for="NewsletterForm--{{ section.id }}">
                       {{ section.settings.newsletter_placeholder_text }}
                     </label>
-                    <button
-                      type="submit"
-                      class="newsletter-form__button field__button"
-                      name="commit"
-                      id="Subscribe"
-                      aria-label="{{ 'newsletter.button_label' | t }}"
-                    >
-                    {{ section.settings.newsletter_button_label | escape }}
-                    </button>
                   </div>
+                  <button
+                    type="submit"
+                    class="newsletter-form__button field__button button"
+                    name="commit"
+                    id="Subscribe"
+                    aria-label="{{ 'newsletter.button_label' | t }}"
+                  >
+                    {{ section.settings.newsletter_button_label | escape }}
+                  </button>
                   {%- if form.errors -%}
                     <small class="newsletter-form__message form__message" id="ContactFooter-error">
                       <span class="svg-wrapper">
@@ -247,6 +234,28 @@
       </div>
     {%- endunless -%}
   {%- endif -%}
+
+  <div class="footer-block-image page-width">
+    {%- if section.settings.footer_image != blank -%}
+      <div
+        class="footer-block__image-wrapper"
+      >
+        {{-
+          section.settings.footer_image
+          | image_url: width: 3840
+          | image_tag:
+            loading: 'lazy',
+            class: 'water_mark_image',
+            width: section.settings.footer_image.width,
+            sizes: '100vw',
+            widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+            alt: section.settings.footer_image.alt
+        -}}
+      </div>
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+    {%- endif -%}
+  </div>
 
   <div
     class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -429,6 +438,11 @@
       "default": "scheme-1"
     },
     {
+      "type": "image_picker",
+      "id": "footer_image",
+      "label": "Image"
+    },
+    {
       "type": "header",
       "content": "t:sections.footer.settings.header__1.content",
       "info": "t:sections.footer.settings.header__1.info"
@@ -445,7 +459,7 @@
       "default": "Join our newsletter to stay up to date on features and releases.",
       "label": "t:sections.footer.settings.newsletter_heading.label"
     },
-     {
+    {
       "type": "text",
       "id": "newsletter_placeholder_text",
       "default": "Your email...",
