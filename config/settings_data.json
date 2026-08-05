@@ -148,10 +148,10 @@
           "background": "#ffffff",
           "background_gradient": "",
           "text": "#ec1107",
-          "button": "#121212",
+          "button": "#FFFFFF",
           "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "secondary_button_label": "#EC1107",
+          "shadow": "#EC1107"
         }
       },
       "scheme-2": {
