@@ -245,6 +245,7 @@ slider-component.slider-component-full-width {
   display: flex;
   justify-content: center;
   min-width: 4.4rem;
+  display: none;
 }
 
 @media screen and (min-width: 750px) {
@@ -374,4 +375,27 @@ slider-component.slider-component-full-width {
 
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
+}
+
+  
+.featured__collection .slider-button {
+  color: rgba(var(--color-foreground), 0.75);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border: 2px solid rgba(var(--color-foreground));
+}
+
+.featured__collection .slider-buttons {
+  gap: 8px;
 }

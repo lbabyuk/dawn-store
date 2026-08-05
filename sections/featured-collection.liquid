@@ -68,7 +68,7 @@
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
   <div
-    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %} featured__collection"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -173,7 +173,8 @@
             aria-controls="Slider-{{ section.id }}"
           >
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {% comment %} {{- 'icon-caret.svg' | inline_asset_content -}} {% endcomment %}
+               {{- 'icon-arrow-left.svg' | inline_asset_content -}}
             </span>
           </button>
           <div class="slider-counter caption">
@@ -190,7 +191,8 @@
             aria-controls="Slider-{{ section.id }}"
           >
             <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
+              {% comment %} {{- 'icon-caret.svg' | inline_asset_content -}} {% endcomment %}
+               {{- 'icon-arrow-right.svg' | inline_asset_content -}}
             </span>
           </button>
         </div>

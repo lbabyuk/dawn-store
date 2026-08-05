@@ -1,0 +1,106 @@
+.custom-collage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+@media screen and (min-width: 990px) {
+  .custom-collage-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, minmax(280px, auto));
+  }
+
+  .custom-collage-card--large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .custom-collage-card--small {
+    grid-column: span 1;
+  }
+}
+
+.custom-collage-card {
+  background-color: var(--card-bg, #ffffff);
+  border: 2px solid var(--card-border, #e0e0e0);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.custom-collage-card:hover {
+  transform: translateY(-3px);
+}
+
+.custom-collage-card__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.custom-collage-card__media {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  aspect-ratio: 464 / 337;
+  flex-shrink: 0;
+}
+
+.custom-collage-card--large .custom-collage-card__media {
+  min-height: 200px;
+}
+
+.custom-collage-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.custom-collage-card__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.custom-collage-card__title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.custom-collage-card--large .custom-collage-card__title {
+  font-size: 3rem;
+}
+
+.custom-collage-card__text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  margin: 0;
+}
+
+.custom-collage-card__button {
+  color: var(--btn-text, #ffffff) !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0.04em;
+}
+
+.custom-collage-card__button::after,
+.custom-collage-card__button::before {
+  display: none;
+}

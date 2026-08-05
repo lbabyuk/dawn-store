@@ -17,8 +17,8 @@
           "settings": {
             "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
             "image_overlay_opacity": 0,
-            "heading": "<strong>Discover flavors that transform your table into an experience.</strong>",
-            "heading_size": "h1",
+            "heading": "DISCOVER FLAVORS THAT TRANSFORM YOUR TABLE INTO AN EXPERIENCE.",
+            "heading_size": "h0",
             "subheading": "Savor the finest flavors crafted with care. From farm to table, every bite tells a story of quality and passion. Explore our collection and taste the difference.",
             "button_label": "Shop All",
             "link": "shopify://collections",
@@ -98,7 +98,7 @@
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": true,
-        "full_width": false,
+        "full_width": true,
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-1",
@@ -113,10 +113,292 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "image_banner_wqqtad": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_9tQbYN": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_dWQnUi": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_t3PGBR": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_9tQbYN",
+        "text_dWQnUi",
+        "buttons_t3PGBR"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/two-red-cocktails-on-a-tray.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "fixed",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_with_text_fBrPYf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_cmiNbJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>OUR SWEETS</strong>",
+            "heading_size": "hxxl"
+          }
+        },
+        "text_ixqBy3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover our handcrafted sweets collection, made with premium ingredients and timeless recipes. From classic chocolates to artisanal candies, each treat is carefully prepared to bring joy to every moment.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_DUY4F9": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_cmiNbJ",
+        "text_ixqBy3",
+        "button_DUY4F9"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/berry-cheesecake.jpg",
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "zoom-in",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "custom_collage_Pa9Kw4": {
+      "type": "custom-collage",
+      "blocks": {
+        "card_Ycg9Ki": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/a-papaya-is-surrounded-by-fruit-on-yellow-background.jpg",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "bg_color": "#ffffff",
+            "border_color": "#e53935",
+            "text_color": "#e53935",
+            "btn_text_color": "#ec1107"
+          }
+        },
+        "card_KH38hb": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/healthy-beet-juice.jpg",
+            "title": "",
+            "text": "Explore bold flavors, smooth finishes, and unforgettable taste experiences.",
+            "button_label": "Read More",
+            "button_link": "shopify://collections/all",
+            "bg_color": "#ffffff",
+            "border_color": "#e53935",
+            "text_color": "#e53935",
+            "btn_text_color": "#ec1107"
+          }
+        },
+        "card_jdgqw3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/ripe-red-strawberries-against-pink.jpg",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "bg_color": "#ffffff",
+            "border_color": "#e53935",
+            "text_color": "#e53935",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_QetACw": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/colorful-fruit-and-custard-tart.jpg",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "bg_color": "#ffffff",
+            "border_color": "#e53935",
+            "text_color": "#e53935",
+            "btn_text_color": "#ffffff"
+          }
+        },
+        "card_fkn6ci": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/chocolate-cake-with-toffee-sauced-drizzled-over.jpg",
+            "title": "",
+            "text": "Indulge in our handcrafted cakes, baked fresh daily with premium ingredients.",
+            "button_label": "Read More",
+            "button_link": "shopify://collections/all",
+            "bg_color": "#ffffff",
+            "border_color": "#e53935",
+            "text_color": "#e53935",
+            "btn_text_color": "#ec1107"
+          }
+        }
+      },
+      "block_order": [
+        "card_Ycg9Ki",
+        "card_KH38hb",
+        "card_jdgqw3",
+        "card_QetACw",
+        "card_fkn6ci"
+      ],
+      "name": "Custom Collage Grid",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_CTcrww": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_rkPRXf": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_WWbdYH": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_XEHfKq": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rkPRXf",
+        "text_WWbdYH",
+        "buttons_XEHfKq"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/summer-cocktials.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "marquee_section_fdqD9j": {
+      "type": "marquee-section",
+      "blocks": {
+        "image_block_6iWbwj": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo_86e6bde2-e40e-4709-a84a-74f7c7b18bd2.png",
+            "link": "shopify://collections/boho"
+          }
+        },
+        "image_block_bQ8DdG": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo_86e6bde2-e40e-4709-a84a-74f7c7b18bd2.png",
+            "link": "shopify://collections/kids"
+          }
+        },
+        "image_block_iwUgmc": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo_86e6bde2-e40e-4709-a84a-74f7c7b18bd2.png",
+            "link": "shopify://collections/summer"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_6iWbwj",
+        "image_block_bQ8DdG",
+        "image_block_iwUgmc"
+      ],
+      "name": "Image marquee",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_height": 40,
+        "speed": 60,
+        "gap": 100,
+        "grayscale": false,
+        "pause_on_hover": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
     "slideshow_RkE6zF",
-    "featured_collection"
+    "featured_collection",
+    "image_banner_wqqtad",
+    "image_with_text_fBrPYf",
+    "custom_collage_Pa9Kw4",
+    "image_banner_CTcrww",
+    "marquee_section_fdqD9j"
   ]
 }
