@@ -64,6 +64,18 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "icon_with_text_tjFh3F": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "box",
+            "heading_1": "Free U.S. Shipping Over $150",
+            "icon_2": "return",
+            "heading_2": "Heading",
+            "icon_3": "truck",
+            "heading_3": "Heading"
+          }
         }
       },
       "block_order": [
@@ -75,7 +87,8 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "share"
+        "share",
+        "icon_with_text_tjFh3F"
       ],
       "settings": {
         "enable_sticky_info": true,
