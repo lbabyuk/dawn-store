@@ -104,6 +104,7 @@
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
@@ -122,6 +123,7 @@
     },
     "quick_order_list_nfPY3a": {
       "type": "quick-order-list",
+      "disabled": true,
       "name": "t:sections.quick-order-list.presets.name",
       "settings": {
         "variants_per_page": 50,
@@ -134,6 +136,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "<strong>RELATED PRODUCTS</strong>",
         "heading_size": "h0",
