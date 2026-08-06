@@ -106,6 +106,18 @@
         "padding_bottom": 12
       }
     },
+    "quick_order_list_nfPY3a": {
+      "type": "quick-order-list",
+      "name": "t:sections.quick-order-list.presets.name",
+      "settings": {
+        "variants_per_page": 50,
+        "show_image": true,
+        "show_sku": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -127,6 +139,7 @@
   },
   "order": [
     "main",
+    "quick_order_list_nfPY3a",
     "related-products"
   ]
 }
