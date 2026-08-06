@@ -76,6 +76,19 @@
             "icon_3": "clipboard",
             "heading_3": "Afterpay available at checkout"
           }
+        },
+        "complementary_GR7LTY": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs well with",
+            "make_collapsible_row": false,
+            "icon": "price_tag",
+            "product_list_limit": 1,
+            "products_per_page": 1,
+            "pagination_style": "dots",
+            "image_ratio": "square",
+            "enable_quick_add": true
+          }
         }
       },
       "block_order": [
@@ -88,7 +101,8 @@
         "quantity_selector",
         "buy_buttons",
         "share",
-        "icon_with_text_tjFh3F"
+        "icon_with_text_tjFh3F",
+        "complementary_GR7LTY"
       ],
       "settings": {
         "enable_sticky_info": true,
