@@ -149,11 +149,69 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "multicolumn_JzicmM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rzwYp8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/colorful-fruit-and-custard-tart.jpg",
+            "title": "<strong> HOLIDAY RECIPES</strong>",
+            "text": "<p>Discover our favorite holiday recipes crafted to inspire your seasonal cooking. From traditional favorites to modern twists, each recipe is designed to bring warmth and joy to your table. Explore step-by-step instructions, ingredient lists, and expert tips to make your holiday gatherings unforgettable.</p>",
+            "link_label": "READ MORE",
+            "link": ""
+          }
+        },
+        "column_ABFmiF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/summer-cocktials.jpg",
+            "title": "<strong>COCTAILES</strong>",
+            "text": "<p>Discover our curated selection of premium cocktail ingredients and bar essentials. From classic spirits to artisanal mixers, we stock everything you need to craft exceptional drinks at home. Explore detailed tasting notes, serving suggestions, and expert recommendations to elevate your cocktail experience.</p>",
+            "link_label": "READ MORE",
+            "link": ""
+          }
+        },
+        "column_CbFqRJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/berry-cheesecake.jpg",
+            "title": "<strong>CLASSIC CAKES</strong>",
+            "text": "<p>Handcrafted cakes made fresh to order. Each creation combines premium ingredients with time-honored baking techniques. From elegant layer cakes to custom designs, our classic collection celebrates timeless flavors and beautiful presentation. Perfect for celebrations, gatherings, or whenever you crave something truly special.</p>",
+            "link_label": "READ MORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rzwYp8",
+        "column_ABFmiF",
+        "column_CbFqRJ"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "quick_order_list_nfPY3a",
-    "related-products"
+    "related-products",
+    "multicolumn_JzicmM"
   ]
 }
