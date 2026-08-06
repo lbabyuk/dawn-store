@@ -68,13 +68,13 @@
         "icon_with_text_tjFh3F": {
           "type": "icon-with-text",
           "settings": {
-            "layout": "horizontal",
-            "icon_1": "box",
+            "layout": "vertical",
+            "icon_1": "truck",
             "heading_1": "Free U.S. Shipping Over $150",
-            "icon_2": "return",
-            "heading_2": "Heading",
-            "icon_3": "truck",
-            "heading_3": "Heading"
+            "icon_2": "star",
+            "heading_2": "Safe & Secure Checkout",
+            "icon_3": "clipboard",
+            "heading_3": "Afterpay available at checkout"
           }
         }
       },
