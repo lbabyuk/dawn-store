@@ -1,0 +1,248 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .aromaInsert-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aromaInsert__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .aromaInsert__wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4rem;
+    }
+  }
+
+  .aromaInsert__left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 600px;
+  }
+
+  .aromaInsert__left h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: {{ section.settings.text_color }};
+  }
+
+  .aromaInsert__left p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    color: {{ section.settings.text_color }};
+    opacity: 0.9;
+  }
+
+  .aromaInsert__link {
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: {{ section.settings.text_color }};
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .aromaInsert__link:hover {
+    opacity: 0.7;
+  }
+
+  .aromaInsert__right {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .aromaInsert__right img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  @media screen and (min-width: 750px) {
+    .aromaInsert__right img {
+      max-width: 110%;
+      margin-right: -5%;
+      margin-bottom: -5%;
+    }
+  }
+
+  .aromaInsert__quote {
+    margin: 0 0 2.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid {{ section.settings.text_color }};
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: {{ section.settings.text_color }};
+    opacity: 0.9;
+  }
+{%- endstyle -%}
+
+<div class="aromaInsert aromaInsert-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="aromaInsert__wrapper page-width">
+    <div class="aromaInsert__left">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.text != blank -%}
+        <blockquote class="aromaInsert__quote">{{ section.settings.text }}</blockquote>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a 
+          {% if section.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.button_link }}"{% endif %} 
+          class="aromaInsert__link"
+        >
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="aromaInsert__right">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1000 | image_tag: 
+          loading: 'lazy',
+          alt: section.settings.heading | default: 'Aroma Insert'
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Aroma Insert",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Better days smell like oranges.",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "default": "In every jar, you will find an insert releasing a fresh scent derived from orange essential oils. Because daily rituals should be enjoyable.",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "LEARN MORE",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ECF166"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#4A2C2A"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aroma Insert"
+    }
+  ]
+}
+{% endschema %}

@@ -171,14 +171,14 @@
           "type": "heading",
           "settings": {
             "heading": "<strong>OUR SWEETS</strong>",
-            "heading_size": "hxxl"
+            "heading_size": "hxl"
           }
         },
         "text_ixqBy3": {
           "type": "text",
           "settings": {
             "text": "<p>Discover our handcrafted sweets collection, made with premium ingredients and timeless recipes. From classic chocolates to artisanal candies, each treat is carefully prepared to bring joy to every moment.</p>",
-            "text_style": "body"
+            "text_style": "subtitle"
           }
         },
         "button_DUY4F9": {
@@ -512,6 +512,85 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "aroma_insert_R8f4ai": {
+      "type": "aroma-insert",
+      "name": "Aroma Insert",
+      "settings": {
+        "heading": "<strong>BETTER DAYS SMELL LIKE ORANGES.</strong>",
+        "heading_size": "h0",
+        "text": "<em>“ </em>Every bite brings a touch of fresh orange — vibrant, zesty, and naturally sweet. Because everyday moments deserve a little sweetness.\"",
+        "button_label": "LEARN MORE",
+        "button_link": "",
+        "image": "shopify://shop_images/citrus-fruit-bunch.png",
+        "background_color": "#ECF166",
+        "text_color": "#4A2C2A",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_x9LdAm": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_eMEmhN": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "OUR INGREDIENTS",
+            "icon": "apple",
+            "row_content": "<p>We use carefully selected ingredients to create sweets with a bright, natural citrus flavor.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_AecJUm": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "OUR SWEETS",
+            "icon": "apple",
+            "row_content": "<p>From soft cakes to delicate pastries, every treat is made to bring a little more sweetness to your day.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_RGUpU6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "OUR FLAVORS",
+            "icon": "apple",
+            "row_content": "<p>Bright, fresh, and naturally delicious.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_mTyYWQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "OUR PHILOSOPHY",
+            "icon": "apple",
+            "row_content": "<ul><li><strong>SWEETNESS MAKES EVERY DAY BETTER.</strong></li><li><strong>GOOD MOMENTS START WITH SOMETHING SWEET.</strong></li><li><strong>LITTLE TREATS, BIG JOY.</strong></li><li><strong>MADE TO BRIGHTEN YOUR DAY.</strong></li><li><strong>EVERY BITE SHOULD FEEL SPECIAL.</strong></li><li><strong>SIMPLE INGREDIENTS. DELICIOUS MOMENTS.</strong></li></ul>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_eMEmhN",
+        "collapsible_row_AecJUm",
+        "collapsible_row_RGUpU6",
+        "collapsible_row_mTyYWQ"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "FIND JOY IN EVERY BITE",
+        "heading": "A LITTLE SWEETNESS GOES A LONG WAY",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "section",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "image": "shopify://shop_images/waffles-for-breakfast.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -522,6 +601,8 @@
     "custom_collage_Pa9Kw4",
     "image_banner_CTcrww",
     "marquee_section_fdqD9j",
-    "video_testimonials_slider_UhUtkQ"
+    "video_testimonials_slider_UhUtkQ",
+    "aroma_insert_R8f4ai",
+    "collapsible_content_x9LdAm"
   ]
 }
