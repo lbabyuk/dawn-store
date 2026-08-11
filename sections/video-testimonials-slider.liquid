@@ -1,0 +1,797 @@
+{%- comment -%}
+  Custom Video Testimonial Slider with Swiper v12 (Sweet & Cake Shop Edition)
+  File: sections/video-testimonials-slider.liquid
+{%- endcomment -%}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --vts-bg: {{ section.settings.bg_color }};
+    --vts-heading-color: {{ section.settings.heading_color }};
+    --vts-card-bg: {{ section.settings.card_bg }};
+    --vts-header-bg: {{ section.settings.card_header_bg }};
+    --vts-author-title-color: {{ section.settings.author_title_color }};
+    --vts-author-subtitle-color: {{ section.settings.author_subtitle_color }};
+    --vts-bottom-bg: {{ section.settings.quote_bg }};
+    --vts-quote-color: {{ section.settings.quote_color }};
+    --vts-nav-bg: {{ section.settings.nav_bg }};
+    --vts-nav-color: {{ section.settings.nav_color }};
+    --vts-bullet-color: {{ section.settings.bullet_color }};
+    --vts-bullet-active: {{ section.settings.bullet_active_color }};
+
+    background-color: var(--vts-bg);
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .vts-container {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+  }
+
+  .vts-heading {
+    text-align: center;
+    color: var(--vts-heading-color);
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .vts-heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+      margin-bottom: 48px;
+    }
+  }
+
+  .vts-swiper-wrapper {
+    position: relative;
+    padding-bottom: 40px;
+  }
+
+  .vts-card {
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+    background-color: var(--vts-card-bg);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  /* Header inside Card */
+  .vts-card-header {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFFFFF80;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+  }
+
+  .vts-author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .vts-avatar-placeholder {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    flex-shrink: 0;
+  }
+
+  .vts-author-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .vts-author-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--vts-author-title-color);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .vts-author-role {
+    font-size: 13px;
+    color: var(--vts-author-subtitle-color);
+    margin-top: 2px;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+
+  /* Video Thumbnail Container */
+  .vts-media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 12;
+    background-color: #000;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .vts-poster-img,
+  .vts-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vts-play-btn {
+    position: absolute;
+    top: 66px;
+    left: 16px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .vts-play-btn:hover svg {
+    transform: scale(1.1);
+    color: var(--vts-bottom-bg);
+  }
+
+  .vts-play-btn svg {
+    color: #fff;
+    margin-left: 2px;
+  }
+
+  /* Bottom Product Quote Accent Box */
+  .vts-quote-box {
+    background-color: var(--vts-bottom-bg);
+    /* padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    min-height: 90px; */
+        align-items: center;
+    gap: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    backdrop-filter: blur(10px);
+    display: flex;
+    padding: 0 14px 16px 14px;
+    gap: 8px;
+  }
+
+  .vts-product-thumb {
+    /* width: 48px;
+    height: 64px; */
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: -47px;
+        width: 100%;
+        max-width: 83px;
+        height: auto;
+        display: block;
+  }
+
+  .vts-quote-text {
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--vts-quote-color);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 13px;
+  }
+
+  /* Swiper Controls */
+  .vts-btn-next,
+  .vts-btn-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--vts-nav-bg);
+    color: var(--vts-nav-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .vts-btn-next { right: -20px; }
+  .vts-btn-prev { left: -20px; }
+
+  .vts-btn-next.swiper-button-disabled,
+  .vts-btn-prev.swiper-button-disabled {
+    opacity: 0;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .vts-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .vts-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: var(--vts-bullet-color);
+    opacity: 0.5;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+  }
+
+  .vts-pagination .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: var(--vts-bullet-active);
+    width: 20px;
+    border-radius: 4px;
+  }
+
+  /* Modal Video Player */
+  .vts-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .vts-modal.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .vts-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 420px;
+    aspect-ratio: 9/16;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .vts-modal-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .vts-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+{%- endstyle -%}
+
+<div class="vts-section">
+  <div class="vts-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="vts-heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="vts-swiper-wrapper">
+      <div class="swiper vts-swiper-{{ section.id }}">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="swiper-slide" {{ block.shopify_attributes }}>
+              <div class="vts-card">
+                {%- comment -%} Card Header {%- endcomment -%}
+                <div class="vts-card-header">
+                  {%- if block.settings.avatar_image != blank -%}
+                    {{
+                      block.settings.avatar_image
+                      | image_url: width: 100
+                      | image_tag: class: 'vts-author-avatar', loading: 'lazy', alt: block.settings.author_name
+                    }}
+                  {%- else -%}
+                    <div class="vts-avatar-placeholder"></div>
+                  {%- endif -%}
+
+                  <div class="vts-author-info">
+                    {%- if block.settings.author_name != blank -%}
+                      <p class="vts-author-name">{{ block.settings.author_name | escape }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.author_subtitle != blank -%}
+                      <p class="vts-author-role">{{ block.settings.author_subtitle | escape }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+                {%- comment -%} Card Media Container {%- endcomment -%}
+                <div
+                  class="vts-media-wrapper"
+                  data-video-url="{% if block.settings.video != blank %}{{ block.settings.video.sources[1].url | default: block.settings.video.sources[0].url }}{% elsif block.settings.external_video_url != blank %}{{ block.settings.external_video_url }}{% endif %}"
+                >
+                  <button class="vts-play-btn" aria-label="Play Video">
+                    <svg
+                      width="40"
+                      height="41"
+                      viewBox="0 0 40 41"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M29 19.1141C30.3333 19.8839 30.3333 21.8084 29 22.5782L17 29.5064C15.6667 30.2762 14 29.314 14 27.7744L14 13.918C14 12.3784 15.6667 11.4161 17 12.1859L29 19.1141Z" fill="currentColor" fill-opacity="0.9"></path>
+                    </svg>
+                  </button>
+
+                  {%- if block.settings.cover_image != blank -%}
+                    {{
+                      block.settings.cover_image
+                      | image_url: width: 600
+                      | image_tag: class: 'vts-poster-img', loading: 'lazy', alt: block.settings.author_name
+                    }}
+                  {%- elsif block.settings.video != blank -%}
+                    {{
+                      block.settings.video.preview_image
+                      | image_url: width: 600
+                      | image_tag: class: 'vts-poster-img', loading: 'lazy'
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'vts-poster-img' }}
+                  {%- endif -%}
+                </div>
+
+                {%- comment -%} Card Bottom Quote Section {%- endcomment -%}
+                {%- if block.settings.quote_text != blank
+                  or block.settings.product_image != blank
+                  or block.settings.product != blank
+                -%}
+                  <div class="vts-quote-box">
+                    {%- if block.settings.product_image != blank -%}
+                      {{
+                        block.settings.product_image
+                        | image_url: width: 120
+                        | image_tag: class: 'vts-product-thumb', loading: 'lazy'
+                      }}
+                    {%- elsif block.settings.product != blank and block.settings.product.featured_image != blank -%}
+                      {{
+                        block.settings.product.featured_image
+                        | image_url: width: 120
+                        | image_tag: class: 'vts-product-thumb', loading: 'lazy'
+                      }}
+                    {%- endif -%}
+
+                    {%- if block.settings.quote_text != blank -%}
+                      <p class="vts-quote-text">"{{ block.settings.quote_text | escape }}"</p>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} Controls {%- endcomment -%}
+      {%- if section.settings.show_navigation -%}
+        <div class="vts-btn-prev vts-prev-{{ section.id }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </div>
+        <div class="vts-btn-next vts-next-{{ section.id }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_pagination -%}
+        <div class="vts-pagination vts-pag-{{ section.id }}"></div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Global Video Modal Container {%- endcomment -%}
+<div class="vts-modal" id="vts-modal-{{ section.id }}" aria-hidden="true">
+  <div class="vts-modal-content">
+    <button class="vts-modal-close" aria-label="Close">&times;</button>
+    <video class="vts-modal-video" controls playsinline></video>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function initVideoSlider() {
+      if (typeof Swiper === 'undefined') {
+        setTimeout(initVideoSlider, 50);
+        return;
+      }
+
+      const container = document.querySelector('.vts-swiper-{{ section.id }}');
+      if (!container) return;
+
+      new Swiper(container, {
+        slidesPerView: 1.2,
+        spaceBetween: 16,
+        grabCursor: true,
+        navigation: {
+          nextEl: '.vts-next-{{ section.id }}',
+          prevEl: '.vts-prev-{{ section.id }}',
+        },
+        pagination: {
+          el: '.vts-pag-{{ section.id }}',
+          clickable: true,
+        },
+        breakpoints: {
+          576: { slidesPerView: 2.2, spaceBetween: 20 },
+          768: { slidesPerView: 3.2, spaceBetween: 24 },
+          1024: { slidesPerView: {{ section.settings.desktop_columns }}, spaceBetween: 24 }
+        }
+      });
+
+      // Video Modal logic
+      const modal = document.getElementById('vts-modal-{{ section.id }}');
+      const modalVideo = modal ? modal.querySelector('.vts-modal-video') : null;
+      const modalClose = modal ? modal.querySelector('.vts-modal-close') : null;
+
+      document.querySelectorAll('#shopify-section-{{ section.id }} .vts-media-wrapper').forEach(wrapper => {
+        wrapper.addEventListener('click', function() {
+          const videoSrc = this.dataset.videoUrl;
+          if (videoSrc && modal && modalVideo) {
+            modalVideo.src = videoSrc;
+            modal.classList.add('is-open');
+            modalVideo.play();
+          }
+        });
+      });
+
+      if (modalClose) {
+        const closeModal = () => {
+          modal.classList.remove('is-open');
+          if (modalVideo) {
+            modalVideo.pause();
+            modalVideo.src = '';
+          }
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+    }
+
+    initVideoSlider();
+
+    // Support Shopify Theme Customizer Live Preview updates
+    if (window.Shopify && Shopify.designMode) {
+      document.addEventListener('shopify:section:load', function(e) {
+        if (e.detail.sectionId === '{{ section.id }}') {
+          initVideoSlider();
+        }
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Sweet Reviews Slider",
+  "tag": "section",
+  "class": "section-video-testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by Cake & Sweet Lovers"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 18,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Desktop visible columns",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum container width",
+      "default": 1300
+    },
+    {
+      "type": "header",
+      "content": "Controls Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show Navigation Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show Pagination Dots",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#fffaf6"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#4a2c2a"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_header_bg",
+      "label": "Card Header Background",
+      "default": "#f8ece8"
+    },
+    {
+      "type": "color",
+      "id": "author_title_color",
+      "label": "Author Name Color",
+      "default": "#4a2c2a"
+    },
+    {
+      "type": "color",
+      "id": "author_subtitle_color",
+      "label": "Author Role Color",
+      "default": "#8c6b68"
+    },
+    {
+      "type": "color",
+      "id": "quote_bg",
+      "label": "Bottom Quote Box Background",
+      "default": "#fde0e0"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Text Color",
+      "default": "#4a2c2a"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg",
+      "label": "Navigation Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_color",
+      "label": "Navigation Icon Color",
+      "default": "#4a2c2a"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Pagination Dot Color",
+      "default": "#8c6b68"
+    },
+    {
+      "type": "color",
+      "id": "bullet_active_color",
+      "label": "Active Dot Color",
+      "default": "#4a2c2a"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Corner Radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Bakery Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar_image",
+          "label": "Customer Avatar"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Customer Name",
+          "default": "Sophie Laurent"
+        },
+        {
+          "type": "text",
+          "id": "author_subtitle",
+          "label": "Customer Tag/Role",
+          "default": "Pastry Lover, Verified Buyer"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify Hosted Video"
+        },
+        {
+          "type": "text",
+          "id": "external_video_url",
+          "label": "Direct MP4 URL (Fallback)"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Video Poster / Custom Cover Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Custom Product/Sweet Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (Fallback for image)"
+        },
+        {
+          "type": "textarea",
+          "id": "quote_text",
+          "label": "Review Quote",
+          "default": "The chocolate velvet cake was so moist and rich! Hands down the best cake I've ordered online."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sweet Reviews Slider",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Emma Watson",
+            "author_subtitle": "Wedding Planner",
+            "quote_text": "...the tiered vanilla berry cake stole the show at our wedding! Soft, fresh, and beautifully decorated..."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Marcus Vance",
+            "author_subtitle": "Dessert Blogger",
+            "quote_text": "...these French macarons have the perfect chewy shell and rich ganache filling. Absolute perfection!"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "Clara Higgins",
+            "author_subtitle": "Birthday Host",
+            "quote_text": "...ordered the custom salted caramel cake. Every bite was heavenly, not overly sweet—just right..."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "David Miller",
+            "author_subtitle": "Verified Customer",
+            "quote_text": "...the artisan chocolate truffles melt right in your mouth. Shipped super fast and arrived fresh..."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
