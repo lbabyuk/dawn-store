@@ -523,73 +523,65 @@
         "button_label": "LEARN MORE",
         "button_link": "",
         "image": "shopify://shop_images/citrus-fruit-bunch.png",
-        "background_color": "#ECF166",
-        "text_color": "#4A2C2A",
+        "background_color": "#ecf166",
+        "text_color": "#4a2c2a",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "collapsible_content_x9LdAm": {
-      "type": "collapsible-content",
+    "custom_faq_image_ymBRKi": {
+      "type": "custom-faq-image",
       "blocks": {
-        "collapsible_row_eMEmhN": {
-          "type": "collapsible_row",
+        "faq_item_3VUH6N": {
+          "type": "faq_item",
           "settings": {
-            "heading": "OUR INGREDIENTS",
-            "icon": "apple",
-            "row_content": "<p>We use carefully selected ingredients to create sweets with a bright, natural citrus flavor.</p>",
-            "page": ""
+            "title": "<p>OUR INGREDIENTS</p>",
+            "answer": "<p>We use carefully selected ingredients to create sweets with a bright, natural citrus flavor.</p>",
+            "item_icon": "shopify://shop_images/citrus-fruit-bunch.png"
           }
         },
-        "collapsible_row_AecJUm": {
-          "type": "collapsible_row",
+        "faq_item_En3whj": {
+          "type": "faq_item",
           "settings": {
-            "heading": "OUR SWEETS",
-            "icon": "apple",
-            "row_content": "<p>From soft cakes to delicate pastries, every treat is made to bring a little more sweetness to your day.</p>",
-            "page": ""
+            "title": "<p>OUR FLAVORS</p>",
+            "answer": "<p>Bright, balanced, and unforgettable. Our flavors bring a burst of sunshine to every bite.</p>",
+            "item_icon": "shopify://shop_images/citrus-fruit-bunch.png"
           }
         },
-        "collapsible_row_RGUpU6": {
-          "type": "collapsible_row",
+        "faq_item_DwrHdb": {
+          "type": "faq_item",
           "settings": {
-            "heading": "OUR FLAVORS",
-            "icon": "apple",
-            "row_content": "<p>Bright, fresh, and naturally delicious.</p>",
-            "page": ""
-          }
-        },
-        "collapsible_row_mTyYWQ": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "OUR PHILOSOPHY",
-            "icon": "apple",
-            "row_content": "<ul><li><strong>SWEETNESS MAKES EVERY DAY BETTER.</strong></li><li><strong>GOOD MOMENTS START WITH SOMETHING SWEET.</strong></li><li><strong>LITTLE TREATS, BIG JOY.</strong></li><li><strong>MADE TO BRIGHTEN YOUR DAY.</strong></li><li><strong>EVERY BITE SHOULD FEEL SPECIAL.</strong></li><li><strong>SIMPLE INGREDIENTS. DELICIOUS MOMENTS.</strong></li></ul>",
-            "page": ""
+            "title": "<p>OUR PHILOSOPHY</p>",
+            "answer": "<p>Crafted with patience and love, ensuring every piece delivers the ultimate delight.</p>",
+            "item_icon": "shopify://shop_images/citrus-fruit-bunch.png"
           }
         }
       },
       "block_order": [
-        "collapsible_row_eMEmhN",
-        "collapsible_row_AecJUm",
-        "collapsible_row_RGUpU6",
-        "collapsible_row_mTyYWQ"
+        "faq_item_3VUH6N",
+        "faq_item_En3whj",
+        "faq_item_DwrHdb"
       ],
-      "name": "t:sections.collapsible_content.presets.name",
+      "name": "Custom FAQ with Image",
       "settings": {
-        "caption": "FIND JOY IN EVERY BITE",
-        "heading": "A LITTLE SWEETNESS GOES A LONG WAY",
+        "subheading": "<p>FIND JOY IN EVERY BITE</p>",
+        "heading": "<strong>A LITTLE SWEETNESS GOES A LONG WAY</strong>",
         "heading_size": "h0",
-        "heading_alignment": "center",
-        "layout": "section",
-        "container_color_scheme": "scheme-1",
-        "color_scheme": "scheme-1",
-        "open_first_collapsible_row": true,
-        "image": "shopify://shop_images/waffles-for-breakfast.jpg",
-        "image_ratio": "adapt",
-        "desktop_layout": "image_second",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "description": "<p>We put care into every detail — from selecting the finest ingredients to creating flavors that brighten your day.</p>",
+        "side_image": "shopify://shop_images/waffles-for-breakfast.jpg",
+        "open_first_item": true,
+        "auto_close_others": true,
+        "bg_color": "#faf8f5",
+        "heading_color": "#d91c0b",
+        "accent_color": "#d91c0b",
+        "text_color": "#4a2c2a",
+        "item_title_color": "#d91c0b",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#e2e2e2",
+        "card_active_bg_color": "#fff5f5",
+        "card_active_border_color": "#d91c0b",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
@@ -603,6 +595,6 @@
     "marquee_section_fdqD9j",
     "video_testimonials_slider_UhUtkQ",
     "aroma_insert_R8f4ai",
-    "collapsible_content_x9LdAm"
+    "custom_faq_image_ymBRKi"
   ]
 }

@@ -1,0 +1,231 @@
+.custom-faq-wrapper {
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.custom-faq__heading-font {
+  text-transform: uppercase;
+}
+
+.custom-faq__header {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.custom-faq__subheading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.custom-faq__subheading-line {
+  height: 1px;
+  width: 36px;
+  background-color: var(--faq-accent-color);
+  opacity: 0.8;
+}
+
+.custom-faq__subheading-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.custom-faq__subheading-default-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--faq-accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-faq__subheading.rte p {
+  margin: 0;
+  color: var(--faq-accent-color);
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.custom-faq__subheading.rte {
+  margin-bottom: 16px;
+}
+
+.custom-faq__title {
+  line-height: 1.05;
+  margin: 16px 0;
+}
+
+.custom-faq__title.rte p,
+.custom-faq__title.rte h1,
+.custom-faq__title.rte h2,
+.custom-faq__title.rte h3 {
+  margin: 0;
+  color: var(--faq-heading-color);
+}
+
+
+@media screen and (max-width: 749px) {
+  .custom-faq__title.heading-large p {
+    font-size: 2.8rem;
+  }
+  .custom-faq__title.heading-medium p {
+    font-size: 2.2rem;
+  }
+}
+
+.custom-faq__description {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.custom-faq__description.rte p {
+  margin: 0;
+  color: var(--faq-text-color);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.custom-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media screen and (min-width: 990px) {
+  .custom-faq__grid {
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+  }
+}
+
+.custom-faq__accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.custom-faq__item {
+  border: 1px solid var(--faq-card-border-color);
+  border-radius: 12px;
+  background-color: var(--faq-card-bg-color);
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+}
+
+.custom-faq__item.is-open {
+  border-color: var(--faq-card-active-border-color);
+  background-color: var(--faq-card-active-bg-color);
+  box-shadow: 0 4px 12px rgba(217, 28, 11, 0.04);
+}
+
+.custom-faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  gap: 16px;
+}
+
+.custom-faq__trigger-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.custom-faq__item-icon-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+.custom-faq__item-title {
+  line-height: 1.1;
+}
+
+.custom-faq__item-title.rte p {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--faq-item-title-color);
+  font-weight: 500;
+}
+
+.custom-faq__item.is-open .custom-faq__item-title.rte p {
+  color: var(--faq-accent-color);
+}
+
+.custom-faq__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--faq-accent-color);
+  flex-shrink: 0;
+}
+
+.custom-faq__item.is-open .custom-faq__chevron {
+  transform: rotate(180deg);
+}
+
+.custom-faq__content {
+  padding: 0 28px 24px 28px;
+  transition: max-height 0.3s ease;
+}
+
+.custom-faq__content-inner.rte p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--faq-text-color);
+  max-width: 380px;
+}
+
+.custom-faq__image-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+@media screen and (min-width: 990px) {
+  .custom-faq__image-wrapper {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+  }
+}
+
+.custom-faq__media {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 520px; 
+  aspect-ratio: 4 / 3;
+  background-color: #f5f5f5;
+}
+
+.custom-faq__media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
