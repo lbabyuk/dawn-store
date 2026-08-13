@@ -104,10 +104,9 @@
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
-        "color_scheme": "scheme-034b85ee-8cdb-4880-a154-f8322374fc55",
+        "color_scheme": "scheme-2",
         "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "cover",
@@ -136,7 +135,6 @@
     },
     "related-products": {
       "type": "related-products",
-      "disabled": true,
       "settings": {
         "heading": "<strong>RELATED PRODUCTS</strong>",
         "heading_size": "h0",
@@ -163,7 +161,7 @@
             "title": "<strong> HOLIDAY RECIPES</strong>",
             "text": "<p>Discover our favorite holiday recipes crafted to inspire your seasonal cooking. From traditional favorites to modern twists, each recipe is designed to bring warmth and joy to your table. Explore step-by-step instructions, ingredient lists, and expert tips to make your holiday gatherings unforgettable.</p>",
             "link_label": "READ MORE",
-            "link": ""
+            "link": "shopify://products/chocolate-velvet-cake-copy"
           }
         },
         "column_ABFmiF": {
@@ -173,7 +171,7 @@
             "title": "<strong>COCTAILES</strong>",
             "text": "<p>Discover our curated selection of premium cocktail ingredients and bar essentials. From classic spirits to artisanal mixers, we stock everything you need to craft exceptional drinks at home. Explore detailed tasting notes, serving suggestions, and expert recommendations to elevate your cocktail experience.</p>",
             "link_label": "READ MORE",
-            "link": ""
+            "link": "shopify://collections/cakes"
           }
         },
         "column_CbFqRJ": {
@@ -183,7 +181,7 @@
             "title": "<strong>CLASSIC CAKES</strong>",
             "text": "<p>Handcrafted cakes made fresh to order. Each creation combines premium ingredients with time-honored baking techniques. From elegant layer cakes to custom designs, our classic collection celebrates timeless flavors and beautiful presentation. Perfect for celebrations, gatherings, or whenever you crave something truly special.</p>",
             "link_label": "READ MORE",
-            "link": ""
+            "link": "shopify://products/berry-cheesecake"
           }
         }
       },

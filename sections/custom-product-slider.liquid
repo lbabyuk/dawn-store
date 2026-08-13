@@ -1,0 +1,327 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+{{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+{{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{{ 'custom-product-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'custom-product-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .custom-slider-{{ section.id }} {
+    --accent-color: {{ section.settings.accent_color }};
+    --accent-hover: {{ section.settings.accent_hover_color }};
+    --button-icon-color: {{ section.settings.button_icon_color }};
+    --card-aspect-ratio: {{ section.settings.aspect_ratio }};
+    background-color: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<div class="custom-slider-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="page-width">
+  {%- if section.settings.title != blank -%}
+    <div class="title-wrapper--self-padded-mobile title-wrapper--no-top-margin text-center">
+      <h2
+        class="title inline-richtext {{ section.settings.heading_size }}"
+        style="color: {{ section.settings.title_color }};"
+      >
+        {{ section.settings.title }}
+      </h2>
+    </div>
+  {%- endif -%}
+
+  <custom-product-slider class="custom-slider-wrapper">
+    <button type="button" class="slider-arrow slider-arrow--prev" name="previous" aria-label="Previous slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <div
+      class="custom-slider-track"
+      data-slides-desktop="{{ section.settings.slides_to_show }}"
+      data-slides-mobile="{{ section.settings.slides_to_show_mobile }}"
+    >
+      {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        <div class="custom-slider-slide">
+          <div class="product-card-custom">
+            <div class="product-card-custom__image-wrapper" style="aspect-ratio: var(--card-aspect-ratio);">
+              {%- if product.featured_media -%}
+                <img
+                  srcset="
+                    {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                    {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                  "
+                  src="{{ product.featured_media | image_url: width: 533 }}"
+                  sizes="(min-width: 990px) calc((100vw - 130px) / {{ section.settings.slides_to_show }}), (min-width: 750px) calc((100vw - 120px) / 2), calc(100vw - 35px)"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  class="product-card-custom__image"
+                  loading="lazy"
+                  width="{{ product.featured_media.width }}"
+                  height="{{ product.featured_media.height }}"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'product-card-custom__image placeholder' }}
+              {%- endif -%}
+
+              <div class="product-card-custom__actions">
+                {%- if product.available -%}
+                  <button
+                    type="button"
+                    class="card-action-btn js-add-to-cart"
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    data-tooltip="Add to cart"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/><path d="M12 9v6m3-3H9"/>
+                    </svg>
+                  </button>
+                {%- endif -%}
+
+                <button
+                  type="button"
+                  class="card-action-btn js-quick-view"
+                  data-product-handle="{{ product.handle }}"
+                  data-tooltip="Quick view"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card-custom__info text-center">
+              <h3 class="product-card-custom__title h2">
+                <a href="{{ product.url }}">{{ product.title | escape }}</a>
+              </h3>
+
+              {% comment %} Inserted Red Separator line {% endcomment %}
+              <hr class="product-card-custom__separator">
+
+              <div class="product-card-custom__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <s class="price-item price-item--regular">{{ product.compare_at_price | money }}</s>
+                  <span class="price-item price-item--sale">{{ product.price | money }}</span>
+                {%- else -%}
+                  <span class="price-item">{{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <div class="custom-slider-slide">
+            <div class="product-card-custom">
+              <div class="product-card-custom__image-wrapper" style="aspect-ratio: 1/1;">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'product-card-custom__image' }}
+              </div>
+              <div class="product-card-custom__info text-center">
+                <h3 class="product-card-custom__title">{{ product.title | escape }}</h3>
+                <hr class="product-card-custom__separator">
+                <div class="product-card-custom__price">{{ product.price | money }}</div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <button type="button" class="slider-arrow slider-arrow--next" name="next" aria-label="Next slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </custom-product-slider>
+  </div>
+</div>
+
+<dialog id="QuickView-Modal" class="quick-view-modal">
+  <div class="quick-view-modal__content global-settings-popup">
+    <button
+      type="button"
+      class="quick-view-modal__close quick-add-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+      onclick="this.closest('dialog').close()"
+    >
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </button>
+    <div id="QuickView-Target" class="quick-view-modal__body quick-add-modal__content-info"></div>
+  </div>
+</dialog>
+
+{% schema %}
+{
+  "name": "Custom Product Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Related Product",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Total products to show"
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2,
+      "label": "Slides per view (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "label": "Slides per view (Mobile)"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "options": [
+        { "value": "1/1", "label": "Square (1:1)" },
+        { "value": "4/3", "label": "Landscape (4:3)" },
+        { "value": "3/4", "label": "Portrait (3:4)" }
+      ],
+      "default": "1/1",
+      "label": "Image Aspect Ratio"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#b83835"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Button Color",
+      "default": "#c83733"
+    },
+    {
+      "type": "color",
+      "id": "accent_hover_color",
+      "label": "Button Hover Color",
+      "default": "#fbb040"
+    },
+    {
+      "type": "color",
+      "id": "button_icon_color",
+      "label": "Button Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Slider"
+    }
+  ]
+}
+{% endschema %}

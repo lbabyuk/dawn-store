@@ -15,13 +15,13 @@
         "slide_4kxEaU": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ripe-red-strawberries-in-a-white-bowl.jpg",
-            "image_overlay_opacity": 0,
+            "image": "shopify://shop_images/healthy-breakfast.jpg",
+            "image_overlay_opacity": 40,
             "heading": "DISCOVER FLAVORS THAT TRANSFORM YOUR TABLE INTO AN EXPERIENCE.",
             "heading_size": "h0",
             "subheading": "Savor the finest flavors crafted with care. From farm to table, every bite tells a story of quality and passion. Explore our collection and taste the difference.",
-            "button_label": "Shop All",
-            "link": "shopify://collections",
+            "button_label": "FIND YOUR FAVORITE",
+            "link": "shopify://collections/cakes",
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "middle-left",
@@ -32,47 +32,26 @@
         },
         "slide_dJXPhE": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/slide-two.webp",
-            "image_overlay_opacity": 0,
-            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
+            "image": "shopify://shop_images/a-handful-of-blueberries.jpg",
+            "image_overlay_opacity": 30,
+            "heading": "PURE BLISS IN EVERY BITE",
             "heading_size": "h0",
-            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
-            "button_label": "Shop the Collection",
-            "link": "shopify://collections",
+            "subheading": "Indulge in our decadent berry cheesecake — a perfect blend of creamy richness and tart berry goodness. Each slice features a buttery graham cracker crust, velvety cheesecake filling, and a generous topping of fresh berries.",
+            "button_label": "DISCOVER MORE",
+            "link": "shopify://products/berry-cheesecake",
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "middle-left",
             "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-73c8dc1e-e3c9-45d5-b8de-7254c8df9e5a"
-          }
-        },
-        "slide_Xr3qWi": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/slide-three.webp",
-            "image_overlay_opacity": 0,
-            "heading": "<strong>MORE THAN JUST SHOES — IT'S A PART OF YOUR STORY.</strong>",
-            "heading_size": "h0",
-            "subheading": "Original sneakers from Nike and other top brands that make every step feel special.",
-            "button_label": "Shop the Collection",
-            "link": "shopify://collections",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-left",
-            "text_alignment": "left",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-73c8dc1e-e3c9-45d5-b8de-7254c8df9e5a"
+            "color_scheme": "scheme-3d103d18-698d-4c67-b67b-6c99c1c196c5"
           }
         }
       },
       "block_order": [
         "slide_4kxEaU",
-        "slide_dJXPhE",
-        "slide_Xr3qWi"
+        "slide_dJXPhE"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
@@ -81,37 +60,28 @@
         "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "show_text_below": false,
         "accessibility_info": "Slideshow about our brand"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
+    "custom_product_slider_3xnNPC": {
+      "type": "custom-product-slider",
+      "name": "Custom Product Slider",
       "settings": {
-        "collection": "all",
-        "products_to_show": 6,
-        "title": "<strong>BEST SELLERS</strong>",
+        "title": "TREAT YOURSELF TO MORE",
         "heading_size": "h0",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": true,
-        "full_width": true,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 44,
+        "collection": "cakes",
+        "products_to_show": 8,
+        "slides_to_show": 4,
+        "slides_to_show_mobile": 1,
+        "aspect_ratio": "1/1",
+        "background_color": "#ffffff",
+        "title_color": "#d91c0b",
+        "accent_color": "#d91c0b",
+        "accent_hover_color": "#fbb040",
+        "button_icon_color": "#ffffff",
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
@@ -185,7 +155,7 @@
           "type": "button",
           "settings": {
             "button_label": "LEARN MORE",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://products/berry-cheesecake",
             "button_style_secondary": false
           }
         }
@@ -236,7 +206,7 @@
             "title": "",
             "text": "Explore bold flavors, smooth finishes, and unforgettable taste experiences.",
             "button_label": "Read More",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections/cakes",
             "bg_color": "#ffffff",
             "border_color": "#e53935",
             "text_color": "#e53935",
@@ -278,7 +248,7 @@
             "title": "",
             "text": "Indulge in our handcrafted cakes, baked fresh daily with premium ingredients.",
             "button_label": "Read More",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://products/chocolate-cake-with-toffee-sauced",
             "bg_color": "#ffffff",
             "border_color": "#e53935",
             "text_color": "#e53935",
@@ -339,8 +309,8 @@
       "settings": {
         "image": "shopify://shop_images/summer-cocktials.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
+        "image_height": "small",
+        "image_behavior": "fixed",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
@@ -521,7 +491,7 @@
         "heading_size": "h0",
         "text": "<em>“ </em>Every bite brings a touch of fresh orange — vibrant, zesty, and naturally sweet. Because everyday moments deserve a little sweetness.\"",
         "button_label": "LEARN MORE",
-        "button_link": "",
+        "button_link": "shopify://collections/cakes",
         "image": "shopify://shop_images/citrus-fruit-bunch.png",
         "background_color": "#ecf166",
         "text_color": "#4a2c2a",
@@ -587,7 +557,7 @@
   },
   "order": [
     "slideshow_RkE6zF",
-    "featured_collection",
+    "custom_product_slider_3xnNPC",
     "image_banner_wqqtad",
     "image_with_text_fBrPYf",
     "custom_collage_Pa9Kw4",
