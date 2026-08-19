@@ -18,21 +18,21 @@
           "type": "link_list",
           "settings": {
             "heading": "Resources",
-            "menu": "footer"
+            "menu": "resources-copy"
           }
         },
         "link_list_DCJz8w": {
           "type": "link_list",
           "settings": {
             "heading": "Store",
-            "menu": "footer"
+            "menu": "footer-help"
           }
         },
         "link_list_wG8Qj7": {
           "type": "link_list",
           "settings": {
             "heading": "LEARN",
-            "menu": "footer"
+            "menu": "customer-account-main-menu"
           }
         },
         "image_R699qL": {
