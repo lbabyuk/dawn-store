@@ -33,6 +33,7 @@
       "block_order": [
         "stockist_store_locator_locator_block_v1_fPjmfX"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
