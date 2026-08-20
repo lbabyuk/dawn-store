@@ -24,7 +24,7 @@
           "type": "shopify://apps/stockist-store-locator/blocks/locator_block_v1/019cc9e1-93e7-7b09-8c2f-1f193ba24811",
           "settings": {
             "width": "full",
-            "max_width": 1400,
+            "max_width": 1440,
             "padding_top": 40,
             "padding_bottom": 40,
             "loading_message": "Loading <a href=\"https://stockist.co?ref=sabl\" target=\"_blank\">Stockist Store Locator</a>..."
