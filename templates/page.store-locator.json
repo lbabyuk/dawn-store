@@ -61,11 +61,133 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "video_testimonials_slider_nBpjtU": {
+      "type": "video-testimonials-slider",
+      "blocks": {
+        "testimonial_Qj9KC7": {
+          "type": "testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/model-in-gold-fashion.jpg",
+            "author_name": "Sophie Laurent",
+            "author_subtitle": "Pastry Lover, Verified Buyer",
+            "video": "shopify://files/videos/6306031-hd_1080_2048_24fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/freshly-baked-lemon-cake-with-powdered-sugar.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "The chocolate velvet cake was so moist and rich! Hands down the best cake I've ordered online."
+          }
+        },
+        "testimonial_4hPjVp": {
+          "type": "testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/model-in-gold-fashion.jpg",
+            "author_name": "Sophie Laurent",
+            "author_subtitle": "Pastry Lover, Verified Buyer",
+            "video": "shopify://files/videos/15793205-hd_1080_1920_30fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/colorful-fruit-and-custard-tart.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "The chocolate velvet cake was so moist and rich! Hands down the best cake I've ordered online."
+          }
+        },
+        "testimonial_GqFqjp": {
+          "type": "testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/fashion-model-in-pink.jpg",
+            "author_name": "Emma Watson",
+            "author_subtitle": "Wedding Planner",
+            "video": "shopify://files/videos/15793205-hd_1080_1920_30fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/berry-cheesecake.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "...the tiered vanilla berry cake stole the show at our wedding! Soft, fresh, and beautifully decorated..."
+          }
+        },
+        "testimonial_GjVtLc": {
+          "type": "testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/user-3.png",
+            "author_name": "Marcus Vance",
+            "author_subtitle": "Dessert Blogger",
+            "video": "shopify://files/videos/6306031-hd_1080_2048_24fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/freshly-baked-lemon-cake-with-powdered-sugar.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "...these French macarons have the perfect chewy shell and rich ganache filling. Absolute perfection!"
+          }
+        },
+        "testimonial_mRW8qm": {
+          "type": "testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "author_name": "Clara Higgins",
+            "author_subtitle": "Birthday Host",
+            "video": "shopify://files/videos/15793205-hd_1080_1920_30fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/healthy-beet-juice.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "...ordered the custom salted caramel cake. Every bite was heavenly, not overly sweet—just right..."
+          }
+        },
+        "testimonial_iaaCg6": {
+          "type": "testimonial",
+          "settings": {
+            "author_name": "David Miller",
+            "author_subtitle": "Verified Customer",
+            "video": "shopify://files/videos/6306031-hd_1080_2048_24fps.mp4",
+            "external_video_url": "",
+            "cover_image": "shopify://shop_images/two-red-cocktails-on-a-tray.jpg",
+            "product_image": "shopify://shop_images/citrus-fruit-bunch.png",
+            "product": "",
+            "quote_text": "...the artisan chocolate truffles melt right in your mouth. Shipped super fast and arrived fresh..."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Qj9KC7",
+        "testimonial_4hPjVp",
+        "testimonial_GqFqjp",
+        "testimonial_GjVtLc",
+        "testimonial_mRW8qm",
+        "testimonial_iaaCg6"
+      ],
+      "name": "Sweet Reviews Slider",
+      "settings": {
+        "heading": "LOVED BY CAKE & SWEET LOVERS",
+        "heading_size_desktop": 52,
+        "heading_size_mobile": 24,
+        "desktop_columns": 4,
+        "max_width": 1400,
+        "show_navigation": true,
+        "show_pagination": true,
+        "bg_color": "#fffaf6",
+        "heading_color": "#4a2c2a",
+        "card_bg": "#ffffff",
+        "card_header_bg": "#f8ece8",
+        "author_title_color": "#4a2c2a",
+        "author_subtitle_color": "#8c6b68",
+        "quote_bg": "#fde0e0",
+        "quote_color": "#4a2c2a",
+        "nav_bg": "#ffffff",
+        "nav_color": "#4a2c2a",
+        "bullet_color": "#8c6b68",
+        "bullet_active_color": "#4a2c2a",
+        "card_radius": 16,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "main",
     "rich_text_RUgcj3",
-    "1787172350f0e0ace3"
+    "1787172350f0e0ace3",
+    "video_testimonials_slider_nBpjtU"
   ]
 }
