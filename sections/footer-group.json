@@ -37,6 +37,7 @@
         },
         "image_R699qL": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Image_4_._2026_._10_31_44.png",
             "image_width": 550,
