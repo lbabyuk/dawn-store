@@ -263,7 +263,7 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "berry-cheesecake",
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
         "secondary_background": false,
         "media_size": "medium",
         "constrain_to_viewport": true,
