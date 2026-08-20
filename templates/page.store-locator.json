@@ -209,6 +209,7 @@
       "blocks": {
         "text_LRpcQQ": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "{{ section.settings.product.vendor }}",
             "text_style": "uppercase"
@@ -217,7 +218,7 @@
         "title_9Md9zR": {
           "type": "title",
           "settings": {
-            "heading_size": "h1"
+            "heading_size": "h0"
           }
         },
         "price_8erpyG": {
@@ -244,6 +245,7 @@
         },
         "share_NcnBxa": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
