@@ -187,7 +187,7 @@
         "max_width": 1400,
         "show_navigation": true,
         "show_pagination": true,
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "heading_color": "#4a2c2a",
         "card_bg": "#ffffff",
         "card_header_bg": "#f8ece8",
@@ -203,6 +203,76 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "featured_product_CVPKRx": {
+      "type": "featured-product",
+      "blocks": {
+        "text_LRpcQQ": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_9Md9zR": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_8erpyG": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_PikQfx": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_DVyUxB": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_KY7rQi": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_NcnBxa": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_LRpcQQ",
+        "title_9Md9zR",
+        "price_8erpyG",
+        "variant_picker_PikQfx",
+        "quantity_selector_DVyUxB",
+        "buy_buttons_KY7rQi",
+        "share_NcnBxa"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "chocolate-cake-with-toffee-sauced",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -210,6 +280,7 @@
     "rich_text_RUgcj3",
     "1787172350f0e0ace3",
     "custom_product_slider_Pbq7KK",
-    "video_testimonials_slider_nBpjtU"
+    "video_testimonials_slider_nBpjtU",
+    "featured_product_CVPKRx"
   ]
 }
