@@ -24,7 +24,7 @@
           "type": "heading",
           "settings": {
             "heading": "{{ page.title }}",
-            "heading_size": "h1"
+            "heading_size": "h0"
           }
         }
       },
@@ -166,7 +166,7 @@
         "max_width": 1400,
         "show_navigation": true,
         "show_pagination": true,
-        "bg_color": "#fffaf6",
+        "bg_color": "#FFFFFF",
         "heading_color": "#4a2c2a",
         "card_bg": "#ffffff",
         "card_header_bg": "#f8ece8",
