@@ -553,6 +553,48 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "marquee_section_EFb6ye": {
+      "type": "marquee-section",
+      "blocks": {
+        "image_block_XryMj3": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/chocolate-velvet-cake-copy"
+          }
+        },
+        "image_block_rQ98xe": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/berry-cheesecake"
+          }
+        },
+        "image_block_4NTF69": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/chocolate-velvet-cake"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_XryMj3",
+        "image_block_rQ98xe",
+        "image_block_4NTF69"
+      ],
+      "name": "Image marquee",
+      "settings": {
+        "bg_color": "#ffffff",
+        "image_height": 60,
+        "speed": 60,
+        "gap": 100,
+        "grayscale": false,
+        "pause_on_hover": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
     }
   },
   "order": [
@@ -565,6 +607,7 @@
     "marquee_section_fdqD9j",
     "video_testimonials_slider_UhUtkQ",
     "aroma_insert_R8f4ai",
-    "custom_faq_image_ymBRKi"
+    "custom_faq_image_ymBRKi",
+    "marquee_section_EFb6ye"
   ]
 }
