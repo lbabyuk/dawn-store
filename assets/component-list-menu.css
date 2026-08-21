@@ -30,7 +30,16 @@
 }
 
 .menu--heading {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 116%;
   margin-bottom: 16px;
+  width: fit-content;
+  padding-bottom: 4px;
+  border-bottom: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--color-foreground), 0.8),
+    transparent
+  ) bottom / 100% 1px no-repeat;
 }

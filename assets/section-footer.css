@@ -6,6 +6,11 @@
   border-top: none;
 }
 
+footer-accordion {
+  display: block;
+  width: 100%;
+}
+
 .footer__content-top {
   padding-bottom: 5rem;
   display: flex;
@@ -18,16 +23,79 @@
 @media screen and (max-width: 749px) {
   .footer .grid {
     display: block;
+    width: 100%;
+    max-width: 100%;
   }
 
   .footer-block.grid__item {
     padding: 0;
-    margin: 4rem 0;
+    margin: 0;
     width: 100%;
+    background: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--color-foreground), 0.6),
+    transparent
+  ) bottom / 100% 2px no-repeat;
   }
 
   .footer-block.grid__item:first-child {
     margin-top: 0;
+  }
+
+   footer-accordion {
+    margin-bottom: 20px;
+   }
+
+  footer-accordion,
+  .footer-accordion__item {
+    width: 100%;
+    display: block;
+  }
+
+  .footer-accordion__content {
+    width: 100%;
+  }
+
+  .footer-accordion__content[hidden] {
+    display: none !important;
+  }
+
+  .footer-accordion__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    padding: 1.6rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+  }
+
+  .footer-accordion__trigger .footer-block__heading {
+    margin: 0;
+    font-size: calc(var(--font-heading-scale) * 1.6rem);
+    background: none;
+  }
+
+  .footer-accordion__chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .footer-accordion__item.is-open .footer-accordion__chevron {
+    transform: rotate(180deg);
+  }
+
+  .footer-accordion__content .footer-block__details-content {
+    width: 100%;
+    margin-bottom: 1.6rem;
   }
 
   .footer__content-top {
@@ -345,7 +413,7 @@
 
 .footer-block__details-content .list-menu__item--link,
 .copyright__content a {
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground));
 }
 
 .footer-block__details-content .list-menu__item--active {
