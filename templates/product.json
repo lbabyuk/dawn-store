@@ -183,7 +183,7 @@
       ],
       "name": "Image marquee",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#FFFAF6",
         "image_height": 60,
         "speed": 60,
         "gap": 100,
