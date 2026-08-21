@@ -101,6 +101,29 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  .header__icon--account {
+    position: relative;
+  }
+
+  .b2b-customer-label {
+    position: absolute;
+    height: 2.7rem;
+    width: 2.7rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .9rem;
+    bottom: .8rem;
+    left: 2.2rem;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 5px;
+    pointer-events: none;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -278,6 +301,14 @@
               endif
             -%}
           </span>
+          {%- if customer and customer.b2b? -%}
+            <p
+              class="b2b-customer-label"
+              title="{{ customer.first_name }} {{ customer.last_name }}"
+            >
+              B2B
+            </p>
+          {%- endif -%}
         </a>
       {%- endif -%}
 

@@ -3,20 +3,50 @@ volume-pricing {
   margin-top: 2rem;
 }
 
-volume-pricing li:nth-child(odd) {
-  background: rgba(var(--color-foreground), 0.04);
+volume-pricing .caption-large {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
 volume-pricing ul {
   margin-top: 1.2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+volume-pricing li:nth-child(odd) {
+  background: transparent;
 }
 
 volume-pricing li {
   font-size: 1.4rem;
   letter-spacing: 0.06rem;
-  padding: 0.6rem 0.8rem;
+  padding: 1.2rem 1.6rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+volume-pricing li:last-child {
+  border-bottom: none;
+}
+
+volume-pricing li:first-child {
+  background: rgba(var(--color-button), 0.08);
+  color: rgb(var(--color-button));
+  font-weight: 600;
+}
+
+volume-pricing li:first-child span {
+  color: rgb(var(--color-button));
+}
+
+volume-pricing li span:last-child {
+  font-weight: 600;
 }
 
 div.volume-pricing-note {

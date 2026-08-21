@@ -157,7 +157,7 @@
         "title": "Volume Pricing",
         "note": "Volume pricing available",
         "minimum": "{{ quantity }}+",
-        "price_at_each_html": "at {{ price }}/ea",
+        "price_at_each_html": "at {{ price }}/each",
         "price_range": "{{ minimum }} - {{ maximum }}"
       },
       "pickup_availability": {
@@ -362,7 +362,7 @@
     "quick_order_list": {
       "product_total": "Product subtotal",
       "view_cart": "View cart",
-      "each": "{{ money }}/ea",
+      "each": "{{ money }}/each",
       "product": "Product",
       "variant": "Variant",
       "variant_total": "Variant total",
