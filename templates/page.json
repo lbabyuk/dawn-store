@@ -11,13 +11,36 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "17871742945b48b7f6": {
+      "type": "apps",
+      "blocks": {
+        "stockist_store_locator_locator_block_v1_J7xY34": {
+          "type": "shopify://apps/stockist-store-locator/blocks/locator_block_v1/019cc9e1-93e7-7b09-8c2f-1f193ba24811",
+          "settings": {
+            "width": "full",
+            "max_width": 1400,
+            "padding_top": 60,
+            "padding_bottom": 60,
+            "loading_message": "Loading <a href=\"https://stockist.co?ref=sabl\" target=\"_blank\">Stockist Store Locator</a>..."
+          }
+        }
+      },
+      "block_order": [
+        "stockist_store_locator_locator_block_v1_J7xY34"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "17871742945b48b7f6"
   ]
 }
