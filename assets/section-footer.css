@@ -413,6 +413,8 @@
 
 .footer-block__image-wrapper {
   overflow: hidden !important;
+  max-width: 350px;
+  max-height: 350px;
 }
 
 .footer-block__image-wrapper img {
