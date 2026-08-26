@@ -58,6 +58,15 @@
             "show_gift_card_recipient": true
           }
         },
+        "judge_me_reviews_trust_badge_QNt93j": {
+          "type": "shopify://apps/judge-me-reviews/blocks/trust_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "structure": "default",
+            "color": "default",
+            "star": "default",
+            "alignment": "center"
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -100,6 +109,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "judge_me_reviews_trust_badge_QNt93j",
         "share",
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
@@ -183,7 +193,7 @@
       ],
       "name": "Image marquee",
       "settings": {
-        "bg_color": "#FFFAF6",
+        "bg_color": "#fffaf6",
         "image_height": 60,
         "speed": 60,
         "gap": 100,
