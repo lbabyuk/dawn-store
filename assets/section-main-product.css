@@ -1492,3 +1492,7 @@ a.product__text {
     border: none;
   }
 }
+
+.shopify-block.shopify-app-block.recharge-subscription-widget {
+  justify-content: flex-start !important;
+}
