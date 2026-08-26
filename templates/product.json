@@ -51,25 +51,16 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "recharge_subscriptions_subscription_widget_v2_7FmtXE": {
+          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
           }
-        },
-        "rebuy_personalization_engine_rebuy_widget_FxM8p7": {
-          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
-          "settings": {
-            "enabled": true,
-            "id": "307825",
-            "product_id_enabled": true,
-            "collection_id_enabled": false
-          }
-        },
-        "recharge_subscriptions_subscription_widget_v2_7FmtXE": {
-          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
-          "settings": {}
         },
         "share": {
           "type": "share",
@@ -112,9 +103,8 @@
         "description",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons",
-        "rebuy_personalization_engine_rebuy_widget_FxM8p7",
         "recharge_subscriptions_subscription_widget_v2_7FmtXE",
+        "buy_buttons",
         "share",
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
