@@ -67,6 +67,10 @@
             "collection_id_enabled": false
           }
         },
+        "recharge_subscriptions_subscription_widget_v2_7FmtXE": {
+          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -110,6 +114,7 @@
         "quantity_selector",
         "buy_buttons",
         "rebuy_personalization_engine_rebuy_widget_FxM8p7",
+        "recharge_subscriptions_subscription_widget_v2_7FmtXE",
         "share",
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
