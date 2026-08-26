@@ -58,13 +58,13 @@
             "show_gift_card_recipient": true
           }
         },
-        "judge_me_reviews_trust_badge_QNt93j": {
-          "type": "shopify://apps/judge-me-reviews/blocks/trust_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "rebuy_personalization_engine_rebuy_widget_FxM8p7": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
-            "structure": "default",
-            "color": "default",
-            "star": "default",
-            "alignment": "center"
+            "enabled": true,
+            "id": "307825",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
           }
         },
         "share": {
@@ -109,7 +109,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "judge_me_reviews_trust_badge_QNt93j",
+        "rebuy_personalization_engine_rebuy_widget_FxM8p7",
         "share",
         "icon_with_text_tjFh3F",
         "complementary_GR7LTY"
