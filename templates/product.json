@@ -72,7 +72,7 @@
         "icon_with_text_tjFh3F": {
           "type": "icon-with-text",
           "settings": {
-            "layout": "vertical",
+            "layout": "horizontal",
             "icon_1": "truck",
             "heading_1": "Free U.S. Shipping Over $150",
             "icon_2": "star",
