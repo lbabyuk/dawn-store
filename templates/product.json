@@ -254,6 +254,50 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "custom_faq_image_diPtVk": {
+      "type": "custom-faq-image",
+      "blocks": {
+        "faq_item_3YEymd": {
+          "type": "faq_item",
+          "settings": {
+            "title": "<p>Rich Cream Filling</p>",
+            "answer": "<p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>"
+          }
+        },
+        "faq_item_AiQW9i": {
+          "type": "faq_item",
+          "settings": {
+            "title": "<p>Rich Cream Filling</p>",
+            "answer": "<p>Smooth and rich cream creates a perfectly balanced taste experience through its layering, contributing to an overall enjoyable flavor profile.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_3YEymd",
+        "faq_item_AiQW9i"
+      ],
+      "name": "Custom FAQ with Image",
+      "settings": {
+        "subheading": "<p>Monthly Cake</p>",
+        "heading": "Check out This Month’s new cake",
+        "heading_size": "h1",
+        "description": "<p>A special cake created to highlight our newest ideas.</p><p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>",
+        "side_image": "shopify://shop_images/ornate-white-birthday-cake.jpg",
+        "open_first_item": true,
+        "auto_close_others": false,
+        "bg_color": "#FAF8F6",
+        "heading_color": "#2D2D2D",
+        "accent_color": "#2D2D2D",
+        "text_color": "#4A4A4A",
+        "item_title_color": "#2D2D2D",
+        "card_bg_color": "#FFFFFF",
+        "card_border_color": "#EFEFEF",
+        "card_active_bg_color": "#FFF8F8",
+        "card_active_border_color": "#2D2D2D",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -261,6 +305,7 @@
     "quick_order_list_nfPY3a",
     "related-products",
     "marquee_section_bJzNPe",
-    "multicolumn_JzicmM"
+    "multicolumn_JzicmM",
+    "custom_faq_image_diPtVk"
   ]
 }
