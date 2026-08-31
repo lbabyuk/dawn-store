@@ -1,0 +1,568 @@
+{% comment %}
+  Section: How It Works / Steps Section
+  File: sections/how-it-works.liquid
+{% endcomment %}
+
+{%- liquid
+  assign overlay_opacity = section.settings.banner_overlay_opacity | default: 45
+  assign overlay_color = section.settings.banner_overlay_color | default: '#2D1E1E'
+  assign overlay_alpha = overlay_opacity | divided_by: 100.0
+-%}
+
+<div class="how-it-works-section section-{{ section.id }}-padding">
+  <div class="how-it-works__container">
+    
+    <!-- Section Header -->
+    <div class="how-it-works__header">
+      {%- if section.settings.script_subheading != blank -%}
+        <span class="how-it-works__script-subheading">{{ section.settings.script_subheading }}</span>
+      {%- endif -%}
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="how-it-works__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+      
+      {%- if section.settings.heading != blank -%}
+        <h2 class="how-it-works__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.description != blank -%}
+        <p class="how-it-works__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Main Grid Content -->
+    <div class="how-it-works__content">
+      
+      <!-- Left Featured Banner Card -->
+      <div class="how-it-works__banner">
+        <div class="how-it-works__banner-media">
+          {%- if section.settings.banner_image != blank -%}
+            {{ section.settings.banner_image | image_url: width: 1000 | image_tag: 
+              loading: 'lazy',
+              sizes: '(min-width: 990px) 33vw, 100vw',
+              widths: '375, 550, 750, 1000',
+              alt: section.settings.banner_heading
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        
+        <div class="how-it-works__banner-text">
+          {%- if section.settings.banner_heading != blank -%}
+            <h3 class="how-it-works__banner-heading">{{ section.settings.banner_heading }}</h3>
+          {%- endif -%}
+          
+          {%- if section.settings.banner_text != blank -%}
+            <p class="how-it-works__banner-subtext">{{ section.settings.banner_text }}</p>
+          {%- endif -%}
+          
+          {%- if section.settings.banner_button_label != blank -%}
+            <a 
+              href="{{ section.settings.banner_button_link | default: '#' }}" 
+              class="how-it-works__banner-btn"
+            >
+              {{ section.settings.banner_button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Right 2x2 Steps Grid -->
+      <div class="how-it-works__steps-grid">
+        {%- for block in section.blocks -%}
+          <div class="how-it-works__step-card" {{ block.shopify_attributes }}>
+            <div class="how-it-works__step-image-wrapper border-radius-{{ block.settings.corner_style }}">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: 
+                  loading: 'lazy',
+                  sizes: '(min-width: 990px) 30vw, (min-width: 750px) 45vw, 100vw',
+                  widths: '300, 450, 600',
+                  alt: block.settings.title
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            
+            <div class="how-it-works__step-info">
+              <h4 class="how-it-works__step-title">
+                <span class="how-it-works__step-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}.</span>
+                {{ block.settings.title }}
+              </h4>
+              {%- if block.settings.description != blank -%}
+                <p class="how-it-works__step-text">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .how-it-works__container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Header Styles */
+  .how-it-works__header {
+    text-align: center;
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+
+  .how-it-works__script-subheading {
+    font-family: 'Alex Brush', cursive;
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: #e5d3c5;
+    z-index: 1;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .how-it-works__subheading {
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    letter-spacing: 0.25em;
+    color: #333333;
+    margin: 0 0 0.5rem 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .how-it-works__heading {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-heading-family), serif; 
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2c2c2c;
+    margin: 0 0 1rem 0;
+  }
+
+  .how-it-works__description {
+    font-size: 1.8rem;
+    color: #666666;
+    margin: 0 auto;
+    max-width: 800px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Grid Layout */
+  .how-it-works__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .how-it-works__content {
+      grid-template-columns: 350px 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .how-it-works__content {
+      grid-template-columns: 400px 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Banner Card (Left) */
+  .how-it-works__banner {
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .how-it-works__banner-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .how-it-works__banner-media img,
+  .how-it-works__banner-media svg {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .how-it-works__banner-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    {%- if overlay_opacity > 0 -%}
+      background-color: {{ overlay_color | color_modify: 'alpha', overlay_alpha }};
+    {%- else -%}
+      display: none;
+    {%- endif -%}
+  }
+
+  .how-it-works__banner-text {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .how-it-works__banner-heading {
+    font-family: Georgia, serif;
+    font-size: 4.2rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.2;
+  }
+
+  .how-it-works__banner-subtext {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #f3f3f3;
+    margin: 0 0 2rem 0;
+    max-width: 380px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .how-it-works__banner-btn {
+    display: inline-block;
+    padding: 0.9rem 1.75rem;
+    background-color: #e8d0b5;
+    color: #2c2c2c;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Open Sans', sans-serif
+  }
+
+  .how-it-works__banner-btn:hover {
+    background-color: #dfc1a1;
+  }
+
+  /* Steps Grid (Right) */
+  .how-it-works__steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem 1.75rem;
+  }
+
+  @media screen and (min-width: 600px) {
+    .how-it-works__steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .how-it-works__step-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .how-it-works__step-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    background-color: #f8f8f8;
+  }
+
+  .how-it-works__step-image-wrapper img,
+  .how-it-works__step-image-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Asymmetric Arch Styles matching design */
+  .border-radius-top-left-arch {
+    border-top-left-radius: 120px;
+  }
+  .border-radius-top-right-arch {
+    border-top-right-radius: 120px;
+  }
+  .border-radius-bottom-left-arch {
+    border-bottom-left-radius: 120px;
+  }
+  .border-radius-bottom-right-arch {
+    border-bottom-right-radius: 120px;
+  }
+  .border-radius-rounded {
+    border-radius: 16px;
+  }
+
+  .how-it-works__step-title {
+    font-family: Georgia, serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .how-it-works__step-number {
+    font-weight: 300;
+    margin-right: 0.3rem;
+  }
+
+  .how-it-works__step-text {
+    font-size: 1.6rem;
+    color: #777777;
+    margin: 0;
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works Steps",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "script_subheading",
+      "label": "Script Background Subheading",
+      "default": "How It Works?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Small Subheading",
+      "default": "HOW IT WORKS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "YOUR STEPS TO MAKE AN ORDER"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Follow a few simple steps to create and receive your perfect dessert order."
+    },
+    {
+      "type": "header",
+      "content": "Left Banner Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Background Image"
+    },
+    {
+      "type": "color",
+      "id": "banner_overlay_color",
+      "label": "Banner overlay color",
+      "default": "#2D1E1E"
+    },
+    {
+      "type": "range",
+      "id": "banner_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Banner overlay opacity",
+      "default": 45
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Banner Heading",
+      "default": "Baked Fresh Every Morning"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "Start your day with soft, handcrafted cakes made from premium ingredients."
+    },
+    {
+      "type": "text",
+      "id": "banner_button_label",
+      "label": "Button Label",
+      "default": "See Our Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "select",
+          "id": "corner_style",
+          "label": "Image Arch Corner Style",
+          "options": [
+            { "value": "top-left-arch", "label": "Top-Left Arch" },
+            { "value": "top-right-arch", "label": "Top-Right Arch" },
+            { "value": "bottom-left-arch", "label": "Bottom-Left Arch" },
+            { "value": "bottom-right-arch", "label": "Bottom-Right Arch" },
+            { "value": "rounded", "label": "Standard Rounded" }
+          ],
+          "default": "top-left-arch"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Choose Your Treats"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Browse our menu & pick the desired desserts."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "corner_style": "top-left-arch",
+            "title": "Choose Your Treats",
+            "description": "Browse our menu & pick the desired desserts."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "corner_style": "top-right-arch",
+            "title": "Customize Your Order",
+            "description": "Add personal details, flavors, and preferences."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "corner_style": "bottom-left-arch",
+            "title": "Place Your Order",
+            "description": "Confirm the selection and complete the order."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "corner_style": "bottom-right-arch",
+            "title": "Schedule Delivery",
+            "description": "Select a convenient time for delivery or pickup."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

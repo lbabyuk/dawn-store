@@ -596,6 +596,135 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "features_center_image_HNC8hd": {
+      "type": "features-center-image",
+      "blocks": {
+        "feature_JVfzQg": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/006-blender_1.svg",
+            "icon": "bake",
+            "title": "Fresh Daily Baking",
+            "text": "Every dessert is prepared fresh using selected ingredients."
+          }
+        },
+        "feature_w6WPjB": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/022-bakery_1.svg",
+            "icon": "bake",
+            "title": "Premium Ingredients",
+            "text": "We use high-quality ingredients to ensure rich taste."
+          }
+        },
+        "feature_VqFFHn": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/037-bakery_1.svg",
+            "icon": "bake",
+            "title": "Custom Cake Design",
+            "text": "Personalized cakes created to match your style."
+          }
+        },
+        "feature_KiBHkm": {
+          "type": "feature",
+          "settings": {
+            "custom_icon": "shopify://shop_images/047-baker_1.svg",
+            "icon": "bake",
+            "title": "Reliable Service",
+            "text": "Smooth ordering process with timely preparation and delivery."
+          }
+        }
+      },
+      "block_order": [
+        "feature_JVfzQg",
+        "feature_w6WPjB",
+        "feature_VqFFHn",
+        "feature_KiBHkm"
+      ],
+      "name": "Features Center Image",
+      "settings": {
+        "subheading": "<p>FEATURES</p>",
+        "title": "WHAT MAKES US DIFFERENT",
+        "heading_size": "h0",
+        "description": "Discover the key qualities that make our desserts special and your experience enjoyable.",
+        "image": "shopify://shop_images/69e73176664ca1c320aa41a5_optimized_1140_c1140x1140-0x0.webp",
+        "page_width": 1400,
+        "background_color": "#ffffff",
+        "subcaption_color": "#666666",
+        "heading_color": "#2b2b2b",
+        "text_color": "#777777",
+        "icon_bg_color": "#f8c5c5",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "how_it_works_9PLnMG": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_V3cTpg": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/choose_teats.webp",
+            "corner_style": "top-left-arch",
+            "title": "Choose Your Treats",
+            "description": "Browse our menu & pick the desired desserts."
+          }
+        },
+        "step_g3pNmp": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/customize_your_order.webp",
+            "corner_style": "top-right-arch",
+            "title": "Customize Your Order",
+            "description": "Add personal details, flavors, and preferences."
+          }
+        },
+        "step_LhMPTk": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/place_your_order.webp",
+            "corner_style": "bottom-left-arch",
+            "title": "Place Your Order",
+            "description": "Confirm the selection and complete the order."
+          }
+        },
+        "step_fUdkJe": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/Schedule_Delivery.webp",
+            "corner_style": "bottom-right-arch",
+            "title": "Schedule Delivery",
+            "description": "Select a convenient time for delivery or pickup."
+          }
+        }
+      },
+      "block_order": [
+        "step_V3cTpg",
+        "step_g3pNmp",
+        "step_LhMPTk",
+        "step_fUdkJe"
+      ],
+      "name": "How It Works Steps",
+      "settings": {
+        "script_subheading": "How It Works?",
+        "subheading": "",
+        "heading": "YOUR STEPS TO MAKE AN ORDER",
+        "heading_size": "h0",
+        "description": "Follow a few simple steps to create and receive your perfect dessert order.",
+        "banner_image": "shopify://shop_images/69e73176664ca1c320aa41a5_optimized_1140_c1140x1140-0x0.webp",
+        "banner_overlay_color": "#2d1e1e",
+        "banner_overlay_opacity": 65,
+        "banner_heading": "Baked Fresh Every Morning",
+        "banner_text": "Start your day with soft, handcrafted cakes made from premium ingredients.",
+        "banner_button_label": "See Our Bestsellers",
+        "banner_button_link": "shopify://collections/cakes",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -609,6 +738,8 @@
     "video_testimonials_slider_UhUtkQ",
     "aroma_insert_R8f4ai",
     "custom_faq_image_ymBRKi",
-    "marquee_section_EFb6ye"
+    "marquee_section_EFb6ye",
+    "features_center_image_HNC8hd",
+    "how_it_works_9PLnMG"
   ]
 }
