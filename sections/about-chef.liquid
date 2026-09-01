@@ -1,0 +1,567 @@
+{%- style -%}
+  @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+  .about-chef-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .about-chef__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .about-chef__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+  }
+
+  /* Media Visuals */
+  .about-chef__media-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .about-chef__image-primary {
+    position: relative;
+    width: 82%;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .about-chef__image-primary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-chef__image-secondary {
+    position: absolute;
+    right: 0;
+    bottom: -10%;
+    width: 52%;
+    z-index: 2;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  .about-chef__image-secondary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Content Styling */
+  .about-chef__content {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef__content {
+      text-align: left;
+    }
+  }
+
+  .about-chef__subheading-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .about-chef__subheading {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    font-weight: 600;
+    color: #4a4a4a;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+  }
+
+  .about-chef__script {
+    position: absolute;
+    top: -12px;
+    left: 60%;
+    font-family: 'Alex Brush', cursive;
+    font-size: 42px;
+    color: {{ section.settings.accent_color }};
+    white-space: nowrap;
+    opacity: 0.65;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .about-chef__script {
+      left: 50%;
+      transform: translateX(-50%);
+      top: -18px;
+      font-size: 38px;
+    }
+  }
+
+  .about-chef__title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
+    margin: 12px 0 24px 0;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef__title {
+      font-size: 40px;
+    }
+  }
+
+  .about-chef__lead-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: #2b2b2b;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .about-chef__body-text {
+    font-size: 15px;
+    color: #717171;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  /* Stats Grid */
+  .about-chef__stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef__stats {
+      justify-content: flex-start;
+      gap: 60px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .about-chef__stats {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  .about-chef__stat-number {
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+    color: #222222;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .about-chef__stat-label {
+    font-size: 13px;
+    color: #8c8c8c;
+    margin: 0;
+  }
+
+  /* Action Buttons */
+  .about-chef__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 769px) {
+    .about-chef__buttons {
+      justify-content: flex-start;
+    }
+  }
+
+  .about-chef__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+    min-width: 150px;
+  }
+
+  .about-chef__btn--primary {
+    background-color: {{ section.settings.primary_btn_bg }};
+    color: {{ section.settings.primary_btn_text }};
+    border: 1px solid {{ section.settings.primary_btn_bg }};
+  }
+
+  .about-chef__btn--primary:hover {
+    opacity: 0.9;
+  }
+
+  .about-chef__btn--secondary {
+    background-color: transparent;
+    color: {{ section.settings.secondary_btn_text }};
+    border: 1px solid {{ section.settings.secondary_btn_border }};
+  }
+
+  .about-chef__btn--secondary:hover {
+    background-color: {{ section.settings.secondary_btn_border }};
+    color: #ffffff;
+  }
+
+  .about-chef__placeholder {
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4/5;
+  }
+{%- endstyle -%}
+
+<section class="about-chef-{{ section.id }}">
+  <div class="about-chef__container">
+    <div class="about-chef__grid">
+      
+      <!-- Visual Media Stack -->
+      <div class="about-chef__media-wrapper">
+        <div class="about-chef__image-primary">
+          {%- if section.settings.primary_image != blank -%}
+            {{ section.settings.primary_image | image_url: width: 1000 | image_tag: 
+              loading: 'lazy', 
+              alt: section.settings.primary_image.alt | default: section.settings.heading,
+              widths: '375, 550, 750, 1000'
+            }}
+          {%- else -%}
+            <div class="about-chef__placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="about-chef__image-secondary">
+          {%- if section.settings.secondary_image != blank -%}
+            {{ section.settings.secondary_image | image_url: width: 600 | image_tag: 
+              loading: 'lazy', 
+              alt: section.settings.secondary_image.alt | default: section.settings.heading,
+              widths: '200, 400, 600'
+            }}
+          {%- else -%}
+            <div class="about-chef__placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Text Content Section -->
+      <div class="about-chef__content">
+        <div class="about-chef__subheading-wrapper">
+          {%- if section.settings.subheading != blank -%}
+            <p class="about-chef__subheading">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+          {%- if section.settings.script_subheading != blank -%}
+            <span class="about-chef__script">{{ section.settings.script_subheading }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="about-chef__title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.lead_text != blank -%}
+          <p class="about-chef__lead-text">{{ section.settings.lead_text }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <div class="about-chef__body-text">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+
+        <!-- Dynamic Statistics Blocks -->
+        {%- if section.blocks.size > 0 -%}
+          <div class="about-chef__stats">
+            {%- for block in section.blocks -%}
+              <div class="about-chef__stat-item" {{ block.shopify_attributes }}>
+                {%- if block.settings.stat_value != blank -%}
+                  <div class="about-chef__stat-number">{{ block.settings.stat_value }}</div>
+                {%- endif -%}
+                {%- if block.settings.stat_label != blank -%}
+                  <p class="about-chef__stat-label">{{ block.settings.stat_label }}</p>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <!-- Action Callouts -->
+        <div class="about-chef__buttons">
+          {%- if section.settings.btn_1_label != blank -%}
+            <a href="{{ section.settings.btn_1_link | default: '#' }}" class="about-chef__btn about-chef__btn--primary">
+              {{ section.settings.btn_1_label }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.btn_2_label != blank -%}
+            <a href="{{ section.settings.btn_2_link | default: '#' }}" class="about-chef__btn about-chef__btn--secondary">
+              {{ section.settings.btn_2_label }}
+            </a>
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Chef Section",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "primary_image",
+      "label": "Primary Storefront Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary Overlay Image (Chef)"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Uppercase Subheading",
+      "default": "ABOUT OUR CHEF"
+    },
+    {
+      "type": "text",
+      "id": "script_subheading",
+      "label": "Script Overlay Subheading",
+      "default": "Our Chef"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "ABOUT THE CHEF"
+    },
+    {
+      "type": "text",
+      "id": "lead_text",
+      "label": "Lead Text",
+      "default": "A talented chef dedicated to creating exceptional desserts."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Body Description",
+      "default": "<p>With years of experience and a passion for baking, our chef focuses on combining creativity, precision, and high-quality ingredients to deliver desserts that stand out in both taste and presentation.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_1_label",
+      "label": "Button Label",
+      "default": "Order Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_1_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_2_label",
+      "label": "Button Label",
+      "default": "Explore Cakes"
+    },
+    {
+      "type": "url",
+      "id": "btn_2_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors & Styling"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Script Font Accent Color",
+      "default": "#e6caaa"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_bg",
+      "label": "Primary Button Background",
+      "default": "#f5b7b7"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text",
+      "label": "Primary Button Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_border",
+      "label": "Secondary Button Border Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_text",
+      "label": "Secondary Button Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Number Value",
+          "default": "500+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "cakes created"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Chef Section",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "500+",
+            "stat_label": "cakes created"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "24.5K",
+            "stat_label": "happy customers served"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
