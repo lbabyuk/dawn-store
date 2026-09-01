@@ -97,7 +97,7 @@
 
   .about-chef__subheading {
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.25em;
     font-weight: 600;
     color: #4a4a4a;
@@ -129,8 +129,7 @@
   }
 
   .about-chef__title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 32px;
+    font-family: var(--font-heading-family), serif; 
     font-weight: 400;
     letter-spacing: 0.08em;
     color: #1a1a1a;
@@ -140,7 +139,7 @@
 
   @media screen and (min-width: 769px) {
     .about-chef__title {
-      font-size: 40px;
+      font-family: var(--font-heading-family), serif; 
     }
   }
 
@@ -300,7 +299,7 @@
         </div>
 
         {%- if section.settings.heading != blank -%}
-          <h2 class="about-chef__title">{{ section.settings.heading }}</h2>
+          <h2 class="about-chef__title {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
         {%- endif -%}
 
         {%- if section.settings.lead_text != blank -%}
@@ -393,6 +392,34 @@
       "id": "heading",
       "label": "Main Heading",
       "default": "ABOUT THE CHEF"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1"
     },
     {
       "type": "text",
