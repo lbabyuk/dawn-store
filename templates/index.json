@@ -725,6 +725,53 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "about_chef_TjznKg": {
+      "type": "about-chef",
+      "blocks": {
+        "stat_Ddxm8f": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "500+",
+            "stat_label": "cakes created"
+          }
+        },
+        "stat_hMQVCU": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "24.5K",
+            "stat_label": "happy customers served"
+          }
+        }
+      },
+      "block_order": [
+        "stat_Ddxm8f",
+        "stat_hMQVCU"
+      ],
+      "name": "About Chef Section",
+      "settings": {
+        "primary_image": "shopify://shop_images/69e73176664ca1c320aa41a5_optimized_1140_c1140x1140-0x0.webp",
+        "secondary_image": "shopify://shop_images/customize_your_order.webp",
+        "subheading": "ABOUT OUR CHEF",
+        "script_subheading": "Our Chef",
+        "heading": "ABOUT THE CHEF",
+        "lead_text": "A talented chef dedicated to creating exceptional desserts.",
+        "description": "<p>With years of experience and a passion for baking, our chef focuses on combining creativity, precision, and high-quality ingredients to deliver desserts that stand out in both taste and presentation.</p>",
+        "btn_1_label": "Order Now",
+        "btn_1_link": "",
+        "btn_2_label": "Explore Cakes",
+        "btn_2_link": "",
+        "bg_color": "#ffffff",
+        "accent_color": "#e6caaa",
+        "primary_btn_bg": "#f5b7b7",
+        "primary_btn_text": "#333333",
+        "secondary_btn_border": "#222222",
+        "secondary_btn_text": "#222222",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
     }
   },
   "order": [
@@ -740,6 +787,7 @@
     "custom_faq_image_ymBRKi",
     "marquee_section_EFb6ye",
     "features_center_image_HNC8hd",
-    "how_it_works_9PLnMG"
+    "how_it_works_9PLnMG",
+    "about_chef_TjznKg"
   ]
 }
