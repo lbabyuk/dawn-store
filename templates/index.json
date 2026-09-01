@@ -751,7 +751,7 @@
       "name": "About Chef Section",
       "settings": {
         "primary_image": "shopify://shop_images/69e73176664ca1c320aa41a5_optimized_1140_c1140x1140-0x0.webp",
-        "secondary_image": "shopify://shop_images/customize_your_order.webp",
+        "secondary_image": "shopify://shop_images/image.jpg",
         "subheading": "ABOUT OUR CHEF",
         "script_subheading": "Our Chef",
         "heading": "ABOUT THE CHEF",
