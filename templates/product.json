@@ -74,10 +74,13 @@
           "settings": {
             "layout": "horizontal",
             "icon_1": "truck",
+            "image_1": "shopify://shop_images/delivery-truck-icon.svg",
             "heading_1": "Free U.S. Shipping Over $150",
             "icon_2": "star",
+            "image_2": "shopify://shop_images/payment-cash-icon.svg",
             "heading_2": "Safe & Secure Checkout",
             "icon_3": "clipboard",
+            "image_3": "shopify://shop_images/icon-document-bookmark.svg",
             "heading_3": "Afterpay available at checkout"
           }
         },
