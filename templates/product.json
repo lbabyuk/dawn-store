@@ -265,14 +265,16 @@
           "type": "faq_item",
           "settings": {
             "title": "<p>Rich Cream Filling</p>",
-            "answer": "<p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>"
+            "answer": "<p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>",
+            "item_icon": "shopify://shop_images/icon6.svg"
           }
         },
         "faq_item_AiQW9i": {
           "type": "faq_item",
           "settings": {
             "title": "<p>Rich Cream Filling</p>",
-            "answer": "<p>Smooth and rich cream creates a perfectly balanced taste experience through its layering, contributing to an overall enjoyable flavor profile.</p>"
+            "answer": "<p>Smooth and rich cream creates a perfectly balanced taste experience through its layering, contributing to an overall enjoyable flavor profile.</p>",
+            "item_icon": "shopify://shop_images/icon5.svg"
           }
         }
       },
