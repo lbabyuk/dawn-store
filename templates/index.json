@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/healthy-breakfast.jpg",
             "image_overlay_opacity": 40,
-            "heading": "DISCOVER <strong>FLAVORS </strong>THAT TRANSFORM YOUR TABLE INTO AN EXPERIENCE. {{ metaobjects.over[\"over-2-m\"].over.value }}",
+            "heading": "DISCOVER FLAVORS THAT TRANSFORM YOUR TABLE INTO AN EXPERIENCE.",
             "heading_size": "h0",
             "subheading": "Savor the finest flavors crafted with care. From farm to table, every bite tells a story of quality and passion. Explore our collection and taste the difference.",
             "button_label": "FIND YOUR FAVORITE",
