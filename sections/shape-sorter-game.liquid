@@ -1,14 +1,11 @@
-<!-- Polyfill script for mobile touch event support -->
-<script src="https://cdn.jsdelivr.net/npm/drag-drop-touch-polyfill@1.0.0/DragDropTouch.js"></script>
-
 <div class="sorter-game-wrapper">
   <h2>{{ section.settings.heading }}</h2>
   <p class="sorter-subheading">{{ section.settings.subheading }}</p>
 
-  <!-- Pool for draggable shapes -->
+  <!-- Pool for shapes -->
   <div class="shapes-pool" id="shapesPool">
     <!-- Shape 3: Large (Size 3) -->
-    <div class="draggable-shape" draggable="true" data-size="3" id="shape-large">
+    <div class="draggable-shape" data-size="3" id="shape-large">
       {% if section.settings.image_large != blank %}
         <img src="{{ section.settings.image_large | image_url: width: 200 }}" alt="Large shape" width="90" height="90">
       {% else %}
@@ -22,7 +19,7 @@
     </div>
 
     <!-- Shape 1: Small (Size 1) -->
-    <div class="draggable-shape" draggable="true" data-size="1" id="shape-small">
+    <div class="draggable-shape" data-size="1" id="shape-small">
       {% if section.settings.image_small != blank %}
         <img src="{{ section.settings.image_small | image_url: width: 200 }}" alt="Small shape" width="50" height="50">
       {% else %}
@@ -36,7 +33,7 @@
     </div>
 
     <!-- Shape 2: Medium (Size 2) -->
-    <div class="draggable-shape" draggable="true" data-size="2" id="shape-medium">
+    <div class="draggable-shape" data-size="2" id="shape-medium">
       {% if section.settings.image_medium != blank %}
         <img src="{{ section.settings.image_medium | image_url: width: 200 }}" alt="Medium shape" width="70" height="70">
       {% else %}
@@ -63,7 +60,7 @@
     </div>
   </div>
 
-  <!-- Success win message -->
+  <!-- Win message -->
   <div class="game-success" id="gameSuccess" style="display: none;">
     🎉 {{ section.settings.success_message }}
   </div>
@@ -79,6 +76,7 @@
   text-align: center;
   font-family: inherit;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  touch-action: manipulation;
 }
 
 .sorter-subheading {
@@ -104,21 +102,24 @@
 .draggable-shape {
   cursor: grab;
   user-select: none;
-  -webkit-user-drag: element;
-  transition: transform 0.2s;
+  -webkit-user-select: none;
+  touch-action: none; /* Забігає прокручуванню сторінки при перетягуванні */
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
+  position: relative;
 }
 
-.draggable-shape img {
-  object-fit: contain;
+.draggable-shape img, .draggable-shape svg {
   pointer-events: none;
 }
 
-.draggable-shape:active {
-  cursor: grabbing;
-  transform: scale(1.1);
+.draggable-shape.is-dragging {
+  opacity: 0.8;
+  z-index: 1000;
+  position: fixed;
+  pointer-events: none;
 }
 
 .slots-container {
@@ -137,7 +138,7 @@
   justify-content: center;
   background: #fff;
   position: relative;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .drop-slot.hovered {
@@ -173,50 +174,106 @@ document.addEventListener('DOMContentLoaded', () => {
   const successMsg = document.getElementById('gameSuccess');
   let placedCount = 0;
 
-  // Shuffle shapes on page load
+  // Shuffle shapes
   const shapesArray = Array.from(shapes);
   shapesArray.sort(() => Math.random() - 0.5);
   shapesArray.forEach(shape => pool.appendChild(shape));
 
   shapes.forEach(shape => {
-    shape.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', shape.id);
-    });
-  });
+    let active = false;
+    let currentX, currentY, initialX, initialY;
+    let xOffset = 0, yOffset = 0;
 
-  slots.forEach(slot => {
-    slot.addEventListener('dragover', (e) => {
+    // --- Touch & Mouse Down ---
+    function dragStart(e) {
+      if (shape.getAttribute('data-placed') === 'true') return;
+
+      const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+      initialX = clientX - xOffset;
+      initialY = clientY - yOffset;
+
+      active = true;
+      shape.classList.add('is-dragging');
+    }
+
+    // --- Touch & Mouse Move ---
+    function drag(e) {
+      if (!active) return;
       e.preventDefault();
-      slot.classList.add('hovered');
-    });
 
-    slot.addEventListener('dragleave', () => {
-      slot.classList.remove('hovered');
-    });
+      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
 
-    slot.addEventListener('drop', (e) => {
-      e.preventDefault();
-      slot.classList.remove('hovered');
+      currentX = clientX - initialX;
+      currentY = clientY - initialY;
 
-      const shapeId = e.dataTransfer.getData('text/plain');
-      const shape = document.getElementById(shapeId);
-      if (!shape) return;
+      xOffset = currentX;
+      yOffset = currentY;
 
-      const shapeSize = shape.getAttribute('data-size');
-      const expectedSize = slot.getAttribute('data-expected-size');
+      shape.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
 
-      // Verify shape size and check if slot is empty
-      if (shapeSize === expectedSize && slot.querySelectorAll('.draggable-shape').length === 0) {
-        slot.appendChild(shape);
-        shape.setAttribute('draggable', 'false');
-        shape.style.cursor = 'default';
-        placedCount++;
+      // Check slot highlights under finger/cursor
+      const elemBelow = document.elementFromPoint(clientX, clientY);
+      slots.forEach(slot => slot.classList.remove('hovered'));
+      if (elemBelow) {
+        const slotBelow = elemBelow.closest('.drop-slot');
+        if (slotBelow) slotBelow.classList.add('hovered');
+      }
+    }
 
-        if (placedCount === shapes.length) {
-          successMsg.style.display = 'block';
+    // --- Touch & Mouse End ---
+    function dragEnd(e) {
+      if (!active) return;
+      active = false;
+
+      const clientX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchend' ? e.changedTouches[0].clientY : e.clientY;
+
+      shape.classList.remove('is-dragging');
+      slots.forEach(slot => slot.classList.remove('hovered'));
+
+      const elemBelow = document.elementFromPoint(clientX, clientY);
+      let droppedSuccessfully = false;
+
+      if (elemBelow) {
+        const slot = elemBelow.closest('.drop-slot');
+        if (slot) {
+          const shapeSize = shape.getAttribute('data-size');
+          const expectedSize = slot.getAttribute('data-expected-size');
+
+          if (shapeSize === expectedSize && slot.querySelectorAll('.draggable-shape').length === 0) {
+            slot.appendChild(shape);
+            shape.style.transform = 'none';
+            shape.setAttribute('data-placed', 'true');
+            droppedSuccessfully = true;
+            placedCount++;
+
+            if (placedCount === shapes.length) {
+              successMsg.style.display = 'block';
+            }
+          }
         }
       }
-    });
+
+      // Reset position if drop failed
+      if (!droppedSuccessfully) {
+        xOffset = 0;
+        yOffset = 0;
+        shape.style.transform = 'none';
+      }
+    }
+
+    // Mouse Listeners
+    shape.addEventListener('mousedown', dragStart);
+    window.addEventListener('mousemove', drag, { passive: false });
+    window.addEventListener('mouseup', dragEnd);
+
+    // Touch Listeners (Планшети та смартфони)
+    shape.addEventListener('touchstart', dragStart, { passive: false });
+    window.addEventListener('touchmove', drag, { passive: false });
+    window.addEventListener('touchend', dragEnd);
   });
 });
 </script>
