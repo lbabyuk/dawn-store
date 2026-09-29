@@ -775,6 +775,14 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
+    },
+    "shape_sorter_game_nGJhGM": {
+      "type": "shape-sorter-game",
+      "name": "Kids Shape Sorter Game",
+      "settings": {
+        "heading": "Sort the shapes from smallest to largest!",
+        "success_message": "Great job! Here is your 10% discount code: KIDS10"
+      }
     }
   },
   "order": [
@@ -791,6 +799,7 @@
     "marquee_section_EFb6ye",
     "features_center_image_HNC8hd",
     "how_it_works_9PLnMG",
-    "about_chef_TjznKg"
+    "about_chef_TjznKg",
+    "shape_sorter_game_nGJhGM"
   ]
 }
