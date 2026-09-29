@@ -1,80 +1,69 @@
-{% schema %}
-{
-  "name": "Kids Shape Sorter Game",
-  "tag": "section",
-  "class": "section-shape-sorter",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Game Heading",
-      "default": "Sort the shapes from smallest to largest!"
-    },
-    {
-      "type": "text",
-      "id": "success_message",
-      "label": "Success Message",
-      "default": "Great job! Here is your 10% discount code: KIDS10"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kids Shape Sorter Game"
-    }
-  ]
-}
-{% endschema %}
+<!-- Polyfill script for mobile touch event support -->
+<script src="https://cdn.jsdelivr.net/npm/drag-drop-touch-polyfill@1.0.0/DragDropTouch.js"></script>
 
 <div class="sorter-game-wrapper">
   <h2>{{ section.settings.heading }}</h2>
-  
-  <!-- Pool with draggable shapes -->
+  <p class="sorter-subheading">{{ section.settings.subheading }}</p>
+
+  <!-- Pool for draggable shapes -->
   <div class="shapes-pool" id="shapesPool">
     <!-- Shape 3: Large (Size 3) -->
     <div class="draggable-shape" draggable="true" data-size="3" id="shape-large">
-      <svg viewBox="0 0 100 100" width="90" height="90">
-        <circle cx="50" cy="50" r="45" fill="#FF5722" />
-        <circle cx="35" cy="40" r="5" fill="#FFF" />
-        <circle cx="65" cy="40" r="5" fill="#FFF" />
-        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
-      </svg>
+      {% if section.settings.image_large != blank %}
+        <img src="{{ section.settings.image_large | image_url: width: 200 }}" alt="Large shape" width="90" height="90">
+      {% else %}
+        <svg viewBox="0 0 100 100" width="90" height="90">
+          <circle cx="50" cy="50" r="45" fill="#FF5722" />
+          <circle cx="35" cy="40" r="5" fill="#FFF" />
+          <circle cx="65" cy="40" r="5" fill="#FFF" />
+          <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+        </svg>
+      {% endif %}
     </div>
 
     <!-- Shape 1: Small (Size 1) -->
     <div class="draggable-shape" draggable="true" data-size="1" id="shape-small">
-      <svg viewBox="0 0 100 100" width="50" height="50">
-        <circle cx="50" cy="50" r="45" fill="#4CAF50" />
-        <circle cx="35" cy="40" r="5" fill="#FFF" />
-        <circle cx="65" cy="40" r="5" fill="#FFF" />
-        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
-      </svg>
+      {% if section.settings.image_small != blank %}
+        <img src="{{ section.settings.image_small | image_url: width: 200 }}" alt="Small shape" width="50" height="50">
+      {% else %}
+        <svg viewBox="0 0 100 100" width="50" height="50">
+          <circle cx="50" cy="50" r="45" fill="#4CAF50" />
+          <circle cx="35" cy="40" r="5" fill="#FFF" />
+          <circle cx="65" cy="40" r="5" fill="#FFF" />
+          <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+        </svg>
+      {% endif %}
     </div>
 
     <!-- Shape 2: Medium (Size 2) -->
     <div class="draggable-shape" draggable="true" data-size="2" id="shape-medium">
-      <svg viewBox="0 0 100 100" width="70" height="70">
-        <circle cx="50" cy="50" r="45" fill="#2196F3" />
-        <circle cx="35" cy="40" r="5" fill="#FFF" />
-        <circle cx="65" cy="40" r="5" fill="#FFF" />
-        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
-      </svg>
+      {% if section.settings.image_medium != blank %}
+        <img src="{{ section.settings.image_medium | image_url: width: 200 }}" alt="Medium shape" width="70" height="70">
+      {% else %}
+        <svg viewBox="0 0 100 100" width="70" height="70">
+          <circle cx="50" cy="50" r="45" fill="#2196F3" />
+          <circle cx="35" cy="40" r="5" fill="#FFF" />
+          <circle cx="65" cy="40" r="5" fill="#FFF" />
+          <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+        </svg>
+      {% endif %}
     </div>
   </div>
 
   <!-- Target drop slots -->
   <div class="slots-container">
     <div class="drop-slot" data-expected-size="1">
-      <span class="slot-label">Small</span>
+      <span class="slot-label">{{ section.settings.label_small }}</span>
     </div>
     <div class="drop-slot" data-expected-size="2">
-      <span class="slot-label">Medium</span>
+      <span class="slot-label">{{ section.settings.label_medium }}</span>
     </div>
     <div class="drop-slot" data-expected-size="3">
-      <span class="slot-label">Large</span>
+      <span class="slot-label">{{ section.settings.label_large }}</span>
     </div>
   </div>
 
-  <!-- Win message -->
+  <!-- Success win message -->
   <div class="game-success" id="gameSuccess" style="display: none;">
     🎉 {{ section.settings.success_message }}
   </div>
@@ -88,8 +77,15 @@
   background: #f9f9f9;
   border-radius: 16px;
   text-align: center;
-  font-family: sans-serif;
+  font-family: inherit;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sorter-subheading {
+  font-size: 14px;
+  color: #666;
+  margin-top: -5px;
+  margin-bottom: 20px;
 }
 
 .shapes-pool {
@@ -97,9 +93,9 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  min-height: 110px;
+  min-height: 120px;
   margin-bottom: 30px;
-  padding: 10px;
+  padding: 15px;
   background: #ffffff;
   border: 2px dashed #ccc;
   border-radius: 12px;
@@ -108,8 +104,16 @@
 .draggable-shape {
   cursor: grab;
   user-select: none;
-  touch-action: none;
+  -webkit-user-drag: element;
   transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draggable-shape img {
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .draggable-shape:active {
@@ -133,7 +137,7 @@
   justify-content: center;
   background: #fff;
   position: relative;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .drop-slot.hovered {
@@ -143,10 +147,11 @@
 
 .slot-label {
   position: absolute;
-  bottom: 5px;
+  bottom: 8px;
   font-size: 12px;
   color: #888;
   pointer-events: none;
+  font-weight: 500;
 }
 
 .game-success {
@@ -164,8 +169,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const shapes = document.querySelectorAll('.draggable-shape');
   const slots = document.querySelectorAll('.drop-slot');
+  const pool = document.getElementById('shapesPool');
   const successMsg = document.getElementById('gameSuccess');
   let placedCount = 0;
+
+  // Shuffle shapes on page load
+  const shapesArray = Array.from(shapes);
+  shapesArray.sort(() => Math.random() - 0.5);
+  shapesArray.forEach(shape => pool.appendChild(shape));
 
   shapes.forEach(shape => {
     shape.addEventListener('dragstart', (e) => {
@@ -194,10 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const shapeSize = shape.getAttribute('data-size');
       const expectedSize = slot.getAttribute('data-expected-size');
 
-      // Check if size matches and slot is empty
+      // Verify shape size and check if slot is empty
       if (shapeSize === expectedSize && slot.querySelectorAll('.draggable-shape').length === 0) {
         slot.appendChild(shape);
-        shape.setAttribute('draggable', 'false'); // Lock after placement
+        shape.setAttribute('draggable', 'false');
+        shape.style.cursor = 'default';
         placedCount++;
 
         if (placedCount === shapes.length) {
@@ -208,3 +220,81 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
+{% schema %}
+{
+  "name": "Kids Shape Sorter",
+  "tag": "section",
+  "class": "section-shape-sorter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Game Title",
+      "default": "Sort the shapes from smallest to largest!"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Drag each shape into the matching slot"
+    },
+    {
+      "type": "header",
+      "content": "Custom Images (Optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_small",
+      "label": "Small Shape Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_medium",
+      "label": "Medium Shape Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_large",
+      "label": "Large Shape Image"
+    },
+    {
+      "type": "header",
+      "content": "Slot Labels"
+    },
+    {
+      "type": "text",
+      "id": "label_small",
+      "label": "Small",
+      "default": "Small"
+    },
+    {
+      "type": "text",
+      "id": "label_medium",
+      "label": "Medium",
+      "default": "Medium"
+    },
+    {
+      "type": "text",
+      "id": "label_large",
+      "label": "Large",
+      "default": "Large"
+    },
+    {
+      "type": "header",
+      "content": "Completion"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Great job! Here is your 10% discount code: KIDS10"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kids Shape Sorter"
+    }
+  ]
+}
+{% endschema %}
