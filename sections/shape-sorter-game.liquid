@@ -1,0 +1,210 @@
+{% schema %}
+{
+  "name": "Kids Shape Sorter Game",
+  "tag": "section",
+  "class": "section-shape-sorter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Game Heading",
+      "default": "Sort the shapes from smallest to largest!"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Great job! Here is your 10% discount code: KIDS10"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kids Shape Sorter Game"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="sorter-game-wrapper">
+  <h2>{{ section.settings.heading }}</h2>
+  
+  <!-- Pool with draggable shapes -->
+  <div class="shapes-pool" id="shapesPool">
+    <!-- Shape 3: Large (Size 3) -->
+    <div class="draggable-shape" draggable="true" data-size="3" id="shape-large">
+      <svg viewBox="0 0 100 100" width="90" height="90">
+        <circle cx="50" cy="50" r="45" fill="#FF5722" />
+        <circle cx="35" cy="40" r="5" fill="#FFF" />
+        <circle cx="65" cy="40" r="5" fill="#FFF" />
+        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+      </svg>
+    </div>
+
+    <!-- Shape 1: Small (Size 1) -->
+    <div class="draggable-shape" draggable="true" data-size="1" id="shape-small">
+      <svg viewBox="0 0 100 100" width="50" height="50">
+        <circle cx="50" cy="50" r="45" fill="#4CAF50" />
+        <circle cx="35" cy="40" r="5" fill="#FFF" />
+        <circle cx="65" cy="40" r="5" fill="#FFF" />
+        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+      </svg>
+    </div>
+
+    <!-- Shape 2: Medium (Size 2) -->
+    <div class="draggable-shape" draggable="true" data-size="2" id="shape-medium">
+      <svg viewBox="0 0 100 100" width="70" height="70">
+        <circle cx="50" cy="50" r="45" fill="#2196F3" />
+        <circle cx="35" cy="40" r="5" fill="#FFF" />
+        <circle cx="65" cy="40" r="5" fill="#FFF" />
+        <path d="M 35 65 Q 50 80 65 65" stroke="#FFF" stroke-width="4" fill="none" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Target drop slots -->
+  <div class="slots-container">
+    <div class="drop-slot" data-expected-size="1">
+      <span class="slot-label">Small</span>
+    </div>
+    <div class="drop-slot" data-expected-size="2">
+      <span class="slot-label">Medium</span>
+    </div>
+    <div class="drop-slot" data-expected-size="3">
+      <span class="slot-label">Large</span>
+    </div>
+  </div>
+
+  <!-- Win message -->
+  <div class="game-success" id="gameSuccess" style="display: none;">
+    🎉 {{ section.settings.success_message }}
+  </div>
+</div>
+
+<style>
+.sorter-game-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  text-align: center;
+  font-family: sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.shapes-pool {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-height: 110px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+}
+
+.draggable-shape {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s;
+}
+
+.draggable-shape:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+.slots-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.drop-slot {
+  width: 110px;
+  height: 110px;
+  border: 3px dashed #bbb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.drop-slot.hovered {
+  background-color: #e3f2fd;
+  border-color: #2196F3;
+}
+
+.slot-label {
+  position: absolute;
+  bottom: 5px;
+  font-size: 12px;
+  color: #888;
+  pointer-events: none;
+}
+
+.game-success {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 8px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const shapes = document.querySelectorAll('.draggable-shape');
+  const slots = document.querySelectorAll('.drop-slot');
+  const successMsg = document.getElementById('gameSuccess');
+  let placedCount = 0;
+
+  shapes.forEach(shape => {
+    shape.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', shape.id);
+    });
+  });
+
+  slots.forEach(slot => {
+    slot.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      slot.classList.add('hovered');
+    });
+
+    slot.addEventListener('dragleave', () => {
+      slot.classList.remove('hovered');
+    });
+
+    slot.addEventListener('drop', (e) => {
+      e.preventDefault();
+      slot.classList.remove('hovered');
+
+      const shapeId = e.dataTransfer.getData('text/plain');
+      const shape = document.getElementById(shapeId);
+      if (!shape) return;
+
+      const shapeSize = shape.getAttribute('data-size');
+      const expectedSize = slot.getAttribute('data-expected-size');
+
+      // Check if size matches and slot is empty
+      if (shapeSize === expectedSize && slot.querySelectorAll('.draggable-shape').length === 0) {
+        slot.appendChild(shape);
+        shape.setAttribute('draggable', 'false'); // Lock after placement
+        placedCount++;
+
+        if (placedCount === shapes.length) {
+          successMsg.style.display = 'block';
+        }
+      }
+    });
+  });
+});
+</script>
