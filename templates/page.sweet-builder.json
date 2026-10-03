@@ -34,13 +34,152 @@
       "block_order": [
         "stockist_store_locator_locator_block_v1_J7xY34"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
+      }
+    },
+    "sweets_builder_Fd8fr4": {
+      "type": "sweets-builder",
+      "blocks": {
+        "extra_jtNJ7j": {
+          "type": "extra",
+          "settings": {
+            "label": "Flag",
+            "layer_image": "shopify://shop_images/extra-flag.png",
+            "product": "fluffy-classic-pancakes"
+          }
+        },
+        "extra_X9LFMB": {
+          "type": "extra",
+          "settings": {
+            "label": "Sparkler",
+            "layer_image": "shopify://shop_images/extra-sparkler.png",
+            "product": "chocolate-velvet-cake"
+          }
+        },
+        "extra_UF79bb": {
+          "type": "extra",
+          "settings": {
+            "label": "Candle",
+            "layer_image": "shopify://shop_images/extra-candle.png",
+            "product": "berry-cheesecake"
+          }
+        },
+        "topping_V6c9Et": {
+          "type": "topping",
+          "settings": {
+            "label": "Sprinkles",
+            "layer_image": "shopify://shop_images/topping-sprinkles.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "topping_cDBYzm": {
+          "type": "topping",
+          "settings": {
+            "label": "Strawberry",
+            "layer_image": "shopify://shop_images/topping-strawberry.png",
+            "product": "fluffy-classic-pancakes"
+          }
+        },
+        "topping_9MAWkc": {
+          "type": "topping",
+          "settings": {
+            "label": "Charry",
+            "layer_image": "shopify://shop_images/topping-cherry.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "frosting_UQwPAb": {
+          "type": "frosting",
+          "settings": {
+            "label": "Strawberry",
+            "layer_image": "shopify://shop_images/frosting-strawberry.png",
+            "product": "berry-cheesecake"
+          }
+        },
+        "frosting_biqCME": {
+          "type": "frosting",
+          "settings": {
+            "label": "Chocolate",
+            "layer_image": "shopify://shop_images/frosting-chocolate.png",
+            "product": "chocolate-velvet-cake"
+          }
+        },
+        "frosting_JkTUyF": {
+          "type": "frosting",
+          "settings": {
+            "label": "vanilla",
+            "layer_image": "shopify://shop_images/frosting-vanilla.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "sponge_UPntFY": {
+          "type": "sponge",
+          "settings": {
+            "label": "Vanilla",
+            "layer_image": "shopify://shop_images/sponge-vanilla.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "sponge_BBYqkT": {
+          "type": "sponge",
+          "settings": {
+            "label": "Chocolate",
+            "layer_image": "shopify://shop_images/sponge-chocolate.png",
+            "product": "chocolate-cake-with-toffee-sauced"
+          }
+        },
+        "sponge_YchBjr": {
+          "type": "sponge",
+          "settings": {
+            "label": "Red Velvet",
+            "layer_image": "shopify://shop_images/sponge-redvelvet.png",
+            "product": "chocolate-velvet-cake"
+          }
+        }
+      },
+      "block_order": [
+        "extra_jtNJ7j",
+        "extra_X9LFMB",
+        "extra_UF79bb",
+        "topping_V6c9Et",
+        "topping_cDBYzm",
+        "topping_9MAWkc",
+        "frosting_UQwPAb",
+        "frosting_biqCME",
+        "frosting_JkTUyF",
+        "sponge_UPntFY",
+        "sponge_BBYqkT",
+        "sponge_YchBjr"
+      ],
+      "name": "Sweets builder",
+      "settings": {
+        "heading": "Build your dream cupcake",
+        "subheading": "Pick a sponge, frosting, topping and a little extra, then shop the treats.",
+        "base_image": "shopify://shop_images/plate.png",
+        "base_alt": "A cupcake on a plate",
+        "tab_sponge": "Sponge",
+        "tab_frosting": "Frosting",
+        "tab_topping": "Topping",
+        "tab_extra": "Extra",
+        "surprise_label": "Surprise me",
+        "reset_label": "Start over",
+        "actions_gap": 20,
+        "summary_heading": "Your creation",
+        "total_label": "Total",
+        "empty_text": "Pick a sponge to start building your cupcake.",
+        "cta_label": "Shop the look",
+        "cta_link": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "main",
-    "17871742945b48b7f6"
+    "17871742945b48b7f6",
+    "sweets_builder_Fd8fr4"
   ]
 }
