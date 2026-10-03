@@ -14,6 +14,7 @@
       "blocks": {
         "eyebrow": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "HANDMADE · FRESH INGREDIENTS · SEASONAL FRUITS",
             "text_style": "uppercase"
@@ -120,6 +121,7 @@
         },
         "redesign_benefit_1": {
           "type": "redesign_benefit",
+          "disabled": true,
           "settings": {
             "icon": "apple",
             "icon_color": "#4a2c2a",
@@ -134,6 +136,7 @@
         },
         "redesign_benefit_2": {
           "type": "redesign_benefit",
+          "disabled": true,
           "settings": {
             "icon": "heart",
             "icon_color": "#4a2c2a",
@@ -148,6 +151,7 @@
         },
         "redesign_benefit_3": {
           "type": "redesign_benefit",
+          "disabled": true,
           "settings": {
             "icon": "truck",
             "icon_color": "#4a2c2a",
@@ -162,6 +166,7 @@
         },
         "redesign_perfect_pair": {
           "type": "redesign_perfect_pair",
+          "disabled": true,
           "settings": {
             "heading": "Perfect pair",
             "heading_color": "#4a2c2a",
@@ -306,6 +311,7 @@
         "benefit_4",
         "social_proof"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Why you'll love it",
         "heading_size": "h2",
@@ -315,7 +321,7 @@
         "text": "<p>Our tarts are more than just dessert — they're a moment of pure joy.</p>",
         "text_color": "#333333",
         "text_font_size": 16,
-        "background_color": "#FFFAF6",
+        "background_color": "#fffaf6",
         "show_dividers": true,
         "divider_color": "#ddd5cb",
         "color_scheme": "scheme-1",
@@ -386,6 +392,7 @@
         "image_block_imwFTn",
         "image_block_k6xHQm"
       ],
+      "disabled": true,
       "name": "Image marquee",
       "settings": {
         "bg_color": "#fffaf6",
@@ -437,6 +444,7 @@
         "column_ABFmiF",
         "column_CbFqRJ"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "<strong>INDULGE IN SWEET MOMENTS</strong>",
@@ -479,6 +487,7 @@
         "faq_item_3YEymd",
         "faq_item_AiQW9i"
       ],
+      "disabled": true,
       "name": "Custom FAQ with Image",
       "settings": {
         "subheading": "<p>Monthly Cake</p>",
