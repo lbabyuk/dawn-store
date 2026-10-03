@@ -119,7 +119,9 @@
   opacity: 0.8;
   z-index: 1000;
   position: fixed;
+  margin: 0;
   pointer-events: none;
+  will-change: left, top;
 }
 
 .slots-container {
@@ -167,115 +169,144 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const shapes = document.querySelectorAll('.draggable-shape');
-  const slots = document.querySelectorAll('.drop-slot');
-  const pool = document.getElementById('shapesPool');
-  const successMsg = document.getElementById('gameSuccess');
-  let placedCount = 0;
+(function () {
+  const sectionEl = document.getElementById('shopify-section-{{ section.id }}');
+  const root = (sectionEl && sectionEl.querySelector('.sorter-game-wrapper'))
+    || document.querySelector('#shopify-section-{{ section.id }} .sorter-game-wrapper');
 
-  // Shuffle shapes
-  const shapesArray = Array.from(shapes);
-  shapesArray.sort(() => Math.random() - 0.5);
-  shapesArray.forEach(shape => pool.appendChild(shape));
+  if (!root || root.dataset.sorterInit === 'true') return;
+  root.dataset.sorterInit = 'true';
 
-  shapes.forEach(shape => {
-    let active = false;
-    let currentX, currentY, initialX, initialY;
-    let xOffset = 0, yOffset = 0;
+  function initShapeSorter() {
+    const shapes = root.querySelectorAll('.draggable-shape');
+    const slots = root.querySelectorAll('.drop-slot');
+    const pool = root.querySelector('#shapesPool');
+    const successMsg = root.querySelector('#gameSuccess');
+    let placedCount = 0;
+    let activeShape = null;
+    let grabOffsetX = 0;
+    let grabOffsetY = 0;
 
-    // --- Touch & Mouse Down ---
+    // Shuffle shapes in pool
+    const shapesArray = Array.from(shapes);
+    shapesArray.sort(() => Math.random() - 0.5);
+    shapesArray.forEach((shape) => pool.appendChild(shape));
+
+    function getPoint(e) {
+      if (e.type.startsWith('touch')) {
+        const touch = e.changedTouches?.[0] || e.touches?.[0];
+        return { x: touch.clientX, y: touch.clientY };
+      }
+      return { x: e.clientX, y: e.clientY };
+    }
+
+    function clearHover() {
+      slots.forEach((slot) => slot.classList.remove('hovered'));
+    }
+
+    function setDraggingPosition(shape, clientX, clientY) {
+      shape.style.left = `${clientX - grabOffsetX}px`;
+      shape.style.top = `${clientY - grabOffsetY}px`;
+      shape.style.transform = 'none';
+    }
+
+    function resetShapeStyles(shape) {
+      shape.classList.remove('is-dragging');
+      shape.style.left = '';
+      shape.style.top = '';
+      shape.style.width = '';
+      shape.style.height = '';
+      shape.style.transform = '';
+    }
+
     function dragStart(e) {
+      const shape = e.currentTarget;
       if (shape.getAttribute('data-placed') === 'true') return;
 
-      const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+      e.preventDefault();
+      const { x, y } = getPoint(e);
+      const rect = shape.getBoundingClientRect();
 
-      initialX = clientX - xOffset;
-      initialY = clientY - yOffset;
+      grabOffsetX = x - rect.left;
+      grabOffsetY = y - rect.top;
+      activeShape = shape;
 
-      active = true;
+      shape.style.width = `${rect.width}px`;
+      shape.style.height = `${rect.height}px`;
       shape.classList.add('is-dragging');
+      setDraggingPosition(shape, x, y);
     }
 
-    // --- Touch & Mouse Move ---
     function drag(e) {
-      if (!active) return;
+      if (!activeShape) return;
       e.preventDefault();
 
-      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+      const { x, y } = getPoint(e);
+      setDraggingPosition(activeShape, x, y);
 
-      currentX = clientX - initialX;
-      currentY = clientY - initialY;
-
-      xOffset = currentX;
-      yOffset = currentY;
-
-      shape.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-
-      // Check slot highlights under finger/cursor
-      const elemBelow = document.elementFromPoint(clientX, clientY);
-      slots.forEach(slot => slot.classList.remove('hovered'));
-      if (elemBelow) {
-        const slotBelow = elemBelow.closest('.drop-slot');
-        if (slotBelow) slotBelow.classList.add('hovered');
-      }
+      clearHover();
+      const elemBelow = document.elementFromPoint(x, y);
+      const slotBelow = elemBelow?.closest('.drop-slot');
+      if (slotBelow && root.contains(slotBelow)) slotBelow.classList.add('hovered');
     }
 
-    // --- Touch & Mouse End ---
     function dragEnd(e) {
-      if (!active) return;
-      active = false;
+      if (!activeShape) return;
 
-      const clientX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
-      const clientY = e.type === 'touchend' ? e.changedTouches[0].clientY : e.clientY;
+      const shape = activeShape;
+      const { x, y } = getPoint(e);
 
-      shape.classList.remove('is-dragging');
-      slots.forEach(slot => slot.classList.remove('hovered'));
-
-      const elemBelow = document.elementFromPoint(clientX, clientY);
+      // Hit-test while pointer-events: none is still on the dragged shape
+      const elemBelow = document.elementFromPoint(x, y);
+      const slot = elemBelow?.closest('.drop-slot');
       let droppedSuccessfully = false;
 
-      if (elemBelow) {
-        const slot = elemBelow.closest('.drop-slot');
-        if (slot) {
-          const shapeSize = shape.getAttribute('data-size');
-          const expectedSize = slot.getAttribute('data-expected-size');
+      clearHover();
 
-          if (shapeSize === expectedSize && slot.querySelectorAll('.draggable-shape').length === 0) {
-            slot.appendChild(shape);
-            shape.style.transform = 'none';
-            shape.setAttribute('data-placed', 'true');
-            droppedSuccessfully = true;
-            placedCount++;
+      if (slot && root.contains(slot)) {
+        const shapeSize = shape.getAttribute('data-size');
+        const expectedSize = slot.getAttribute('data-expected-size');
+        const empty = slot.querySelectorAll('.draggable-shape').length === 0;
 
-            if (placedCount === shapes.length) {
-              successMsg.style.display = 'block';
-            }
+        if (shapeSize === expectedSize && empty) {
+          resetShapeStyles(shape);
+          slot.appendChild(shape);
+          shape.setAttribute('data-placed', 'true');
+          shape.style.cursor = 'default';
+          droppedSuccessfully = true;
+          placedCount++;
+
+          if (placedCount === shapes.length && successMsg) {
+            successMsg.style.display = 'block';
           }
         }
       }
 
-      // Reset position if drop failed
       if (!droppedSuccessfully) {
-        xOffset = 0;
-        yOffset = 0;
-        shape.style.transform = 'none';
+        resetShapeStyles(shape);
+        if (!pool.contains(shape)) pool.appendChild(shape);
       }
+
+      activeShape = null;
     }
 
-    // Mouse Listeners
-    shape.addEventListener('mousedown', dragStart);
+    shapes.forEach((shape) => {
+      shape.addEventListener('mousedown', dragStart);
+      shape.addEventListener('touchstart', dragStart, { passive: false });
+    });
+
     window.addEventListener('mousemove', drag, { passive: false });
     window.addEventListener('mouseup', dragEnd);
-
-    // Touch Listeners (Планшети та смартфони)
-    shape.addEventListener('touchstart', dragStart, { passive: false });
     window.addEventListener('touchmove', drag, { passive: false });
     window.addEventListener('touchend', dragEnd);
-  });
-});
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShapeSorter);
+  } else {
+    initShapeSorter();
+  }
+})();
 </script>
 
 {% schema %}

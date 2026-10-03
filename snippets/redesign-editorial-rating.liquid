@@ -1,0 +1,33 @@
+{% comment %}
+  Editable editorial rating row (not connected to a review app).
+  Accepts: block {Object}
+{% endcomment %}
+{%- liquid
+  assign rating_value = block.settings.rating_value | default: '4.9'
+  assign rating_max = block.settings.rating_max | default: '5'
+  assign review_count = block.settings.review_count | default: '124'
+  assign show_stars = block.settings.show_stars
+  assign star_color = block.settings.star_color | default: '#c9a227'
+  assign text_color = block.settings.text_color | default: '#333333'
+  assign font_size = block.settings.font_size | default: 14
+-%}
+<div
+  class="redesign-editorial-rating"
+  style="
+    --rating-star-color: {{ star_color }};
+    --rating-text-color: {{ text_color }};
+    --rating-font-size: {{ font_size }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if show_stars -%}
+    <span class="redesign-editorial-rating__stars" aria-hidden="true">★★★★★</span>
+  {%- endif -%}
+  <p class="redesign-editorial-rating__text">
+    <span class="visually-hidden">Rating:</span>
+    <span>{{ rating_value | escape }}/{{ rating_max | escape }}</span>
+    {%- if review_count != blank -%}
+      <span class="redesign-editorial-rating__count">({{ review_count | escape }} reviews)</span>
+    {%- endif -%}
+  </p>
+</div>

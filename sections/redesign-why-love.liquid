@@ -1,0 +1,569 @@
+{{ 'redesign-why-love.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .redesign-why-love {
+    background: {{ section.settings.background_color }};
+    --why-heading-color: {{ section.settings.heading_color }};
+    --why-heading-font-size: {{ section.settings.heading_font_size }}px;
+    --why-text-color: {{ section.settings.text_color }};
+    --why-text-font-size: {{ section.settings.text_font_size }}px;
+    --why-divider-color: {{ section.settings.divider_color }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign benefit_blocks = section.blocks | where: 'type', 'benefit_item'
+  assign social_blocks = section.blocks | where: 'type', 'social_proof'
+-%}
+
+<div class="redesign-why-love section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}{% if section.settings.show_dividers %} redesign-why-love--dividers{% endif %}">
+  <div class="page-width redesign-why-love__inner">
+    <div class="redesign-why-love__deco redesign-why-love__deco--left" aria-hidden="true">
+      {%- if section.settings.deco_image_left != blank -%}
+        {{
+          section.settings.deco_image_left
+          | image_url: width: 200
+          | image_tag: loading: 'lazy', widths: '100, 160, 200', sizes: '100px', alt: ''
+        }}
+      {%- else -%}
+        <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+          <path d="M10 150Q40 130 65 95T110 20" stroke="#5a6b41" stroke-width="2" stroke-linecap="round"/>
+          <path d="M65 95Q45 80 35 85T30 105Q50 110 65 95Z" fill="#809660" opacity="0.85"/>
+          <path d="M85 65Q105 50 115 58T110 78Q90 80 85 65Z" fill="#6b804e" opacity="0.85"/>
+          <path d="M40 120Q20 110 15 120T20 135Q35 135 40 120Z" fill="#94aa73" opacity="0.85"/>
+          <path d="M110 20Q125 5 135 15T125 30Q110 30 110 20Z" fill="#5a6b41" opacity="0.85"/>
+        </svg>
+      {%- endif -%}
+    </div>
+
+    <div class="redesign-why-love__deco redesign-why-love__deco--right" aria-hidden="true">
+      {%- if section.settings.deco_image_right != blank -%}
+        {{
+          section.settings.deco_image_right
+          | image_url: width: 200
+          | image_tag: loading: 'lazy', widths: '100, 160, 200', sizes: '100px', alt: ''
+        }}
+      {%- else -%}
+        <svg
+          viewBox="0 0 160 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100"
+          height="100"
+          style="transform: scale(-1, -1);"
+        >
+          <path d="M10 150Q40 130 65 95T110 20" stroke="#5a6b41" stroke-width="2" stroke-linecap="round"/>
+          <path d="M65 95Q45 80 35 85T30 105Q50 110 65 95Z" fill="#809660" opacity="0.85"/>
+          <path d="M85 65Q105 50 115 58T110 78Q90 80 85 65Z" fill="#6b804e" opacity="0.85"/>
+          <path d="M40 120Q20 110 15 120T20 135Q35 135 40 120Z" fill="#94aa73" opacity="0.85"/>
+          <path d="M110 20Q125 5 135 15T125 30Q110 30 110 20Z" fill="#5a6b41" opacity="0.85"/>
+        </svg>
+      {%- endif -%}
+    </div>
+
+    <div class="redesign-why-love__col redesign-why-love__intro">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="redesign-why-love__heading {{ section.settings.heading_size }}{% if section.settings.heading_italic %} redesign-why-love__heading--italic{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="redesign-why-love__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if benefit_blocks.size > 0 -%}
+      <div class="redesign-why-love__benefits">
+        {%- for block in benefit_blocks -%}
+          {%- liquid
+            assign item_icon_size = block.settings.icon_size | default: 24
+            assign item_icon_color = block.settings.icon_color | default: '#1a1a1a'
+            assign item_label_color = block.settings.label_color | default: '#333333'
+            assign item_label_size = block.settings.label_size | default: 13
+            assign item_icon_sizes = item_icon_size | append: 'px'
+          -%}
+          <div
+            class="redesign-why-love__benefit"
+            style="
+              --why-benefit-icon-size: {{ item_icon_size }}px;
+              --why-benefit-icon-color: {{ item_icon_color }};
+              --why-benefit-label-color: {{ item_label_color }};
+              --why-benefit-label-size: {{ item_label_size }}px;
+            "
+            {{ block.shopify_attributes }}
+          >
+            <div class="redesign-why-love__benefit-icon" aria-hidden="true">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 96
+                  | image_tag: loading: 'lazy', widths: '32, 48, 64, 96', sizes: item_icon_sizes, alt: ''
+                }}
+              {%- elsif block.settings.icon != 'none' -%}
+                {%- render 'icon-accordion', icon: block.settings.icon -%}
+              {%- endif -%}
+            </div>
+            {%- if block.settings.label != blank -%}
+              <p class="redesign-why-love__benefit-label">{{ block.settings.label }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- for block in social_blocks -%}
+      {%- liquid
+        assign social_star_color = block.settings.star_color | default: '#c9a227'
+        assign social_text_color = block.settings.text_color | default: '#333333'
+        assign social_font_size = block.settings.font_size | default: 14
+        assign social_tagline_color = block.settings.tagline_color | default: '#6b6b6b'
+        assign social_heart_color = block.settings.heart_color | default: '#1a1a1a'
+        assign has_avatars = false
+        if block.settings.avatar_1 != blank or block.settings.avatar_2 != blank or block.settings.avatar_3 != blank
+          assign has_avatars = true
+        endif
+      -%}
+      <div
+        class="redesign-why-love__col redesign-why-love__social"
+        style="
+          --why-social-star-color: {{ social_star_color }};
+          --why-social-text-color: {{ social_text_color }};
+          --why-social-font-size: {{ social_font_size }}px;
+          --why-social-tagline-color: {{ social_tagline_color }};
+          --why-social-heart-color: {{ social_heart_color }};
+        "
+        {{ block.shopify_attributes }}
+      >
+        <div class="redesign-why-love__social-content">
+          <div class="redesign-why-love__rating-wrapper">
+            <p class="redesign-why-love__rating">
+              {%- if block.settings.show_stars -%}
+                <span class="redesign-why-love__stars" aria-hidden="true">★★★★★</span>
+              {%- endif -%}
+              <span class="redesign-why-love__score">
+                {{ block.settings.rating_value | escape }}/{{ block.settings.rating_max | escape }}
+              </span>
+            </p>
+            {%- if block.settings.customers_text != blank -%}
+              <p class="redesign-why-love__customers">{{ block.settings.customers_text }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- if has_avatars or block.settings.tagline != blank -%}
+            <div class="redesign-why-love__people">
+              {%- if has_avatars -%}
+                <ul class="redesign-why-love__avatars" aria-hidden="true">
+                  {%- if block.settings.avatar_1 != blank -%}
+                    <li>
+                      {{
+                        block.settings.avatar_1
+                        | image_url: width: 80
+                        | image_tag: loading: 'lazy', widths: '64, 80', sizes: '34px', alt: ''
+                      }}
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.avatar_2 != blank -%}
+                    <li>
+                      {{
+                        block.settings.avatar_2
+                        | image_url: width: 80
+                        | image_tag: loading: 'lazy', widths: '64, 80', sizes: '34px', alt: ''
+                      }}
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.avatar_3 != blank -%}
+                    <li>
+                      {{
+                        block.settings.avatar_3
+                        | image_url: width: 80
+                        | image_tag: loading: 'lazy', widths: '64, 80', sizes: '34px', alt: ''
+                      }}
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
+              
+              {%- if block.settings.tagline != blank -%}
+                <div class="redesign-why-love__tagline-wrap">
+                  <p class="redesign-why-love__tagline">{{ block.settings.tagline }}</p>
+                  {%- if block.settings.show_heart -%}
+                    <span class="svg-wrapper redesign-why-love__heart" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                      </svg>
+                    </span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Redesign: Why love",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why you'll love it"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small preset" },
+        { "value": "h1", "label": "Medium preset" },
+        { "value": "h0", "label": "Large preset" }
+      ],
+      "default": "h1",
+      "label": "Heading style preset"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_italic",
+      "label": "Italic heading",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 28
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Supporting text",
+      "default": "<p>Our tarts are more than just dessert — they're a moment of pure joy.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Supporting text color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Supporting text size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f7f3ee"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "Show column dividers",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#ddd5cb"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_image_left",
+      "label": "Decorative image (left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "deco_image_right",
+      "label": "Decorative image (right)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit_item",
+      "name": "Benefit item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "check_mark",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "apple", "label": "Apple" },
+            { "value": "check_mark", "label": "Check mark" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "serving_dish", "label": "Serving dish" },
+            { "value": "star", "label": "Star" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "box", "label": "Box" },
+            { "value": "fire", "label": "Fire" },
+            { "value": "return", "label": "Return" },
+            { "value": "lock", "label": "Lock" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom icon image"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon color",
+          "default": "#1a1a1a"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon size",
+          "default": 28
+        },
+        {
+          "type": "header",
+          "content": "Label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "label",
+          "label": "Label",
+          "default": "Premium quality ingredients"
+        },
+        {
+          "type": "color",
+          "id": "label_color",
+          "label": "Label color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "label_size",
+          "min": 10,
+          "max": 22,
+          "step": 1,
+          "unit": "px",
+          "label": "Label size",
+          "default": 13
+        }
+      ]
+    },
+    {
+      "type": "social_proof",
+      "name": "Social proof",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_stars",
+          "label": "Show stars",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "rating_value",
+          "label": "Rating value",
+          "default": "4.9"
+        },
+        {
+          "type": "text",
+          "id": "rating_max",
+          "label": "Rating max",
+          "default": "5"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "customers_text",
+          "label": "Customers text",
+          "default": "Over 2M happy customers"
+        },
+        {
+          "type": "header",
+          "content": "Colors & typography"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Star color",
+          "default": "#c9a227"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Avatars & tagline"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_1",
+          "label": "Avatar 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_2",
+          "label": "Avatar 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_3",
+          "label": "Avatar 3"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "Real people, real moments"
+        },
+        {
+          "type": "color",
+          "id": "tagline_color",
+          "label": "Tagline color",
+          "default": "#6b6b6b"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_heart",
+          "label": "Show heart under tagline",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "heart_color",
+          "label": "Heart color",
+          "default": "#1a1a1a"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Redesign: Why you'll love it",
+      "blocks": [
+        {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "check_mark",
+            "label": "Premium quality ingredients"
+          }
+        },
+        {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "apple",
+            "label": "Seasonal fruits"
+          }
+        },
+        {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "serving_dish",
+            "label": "Made by our pastry chefs"
+          }
+        },
+        {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "truck",
+            "label": "Fast & secure delivery"
+          }
+        },
+        {
+          "type": "social_proof"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

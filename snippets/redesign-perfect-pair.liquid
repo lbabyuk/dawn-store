@@ -1,0 +1,131 @@
+{% comment %}
+  Optional Perfect Pair upsell using a Theme Editor product picker.
+  Uses Dawn product-form / cart AJAX patterns.
+  Accepts: block {Object}, section {Object}
+{% endcomment %}
+{%- assign pair_product = block.settings.product -%}
+{%- if pair_product != blank -%}
+  {%- assign pair_variant = pair_product.selected_or_first_available_variant -%}
+  {%- assign pair_form_id = 'redesign-perfect-pair-' | append: section.id | append: '-' | append: block.id -%}
+  {%- liquid
+    assign heading_color = block.settings.heading_color | default: '#b08d57'
+    assign heading_size = block.settings.heading_size | default: 11
+    assign title_color = block.settings.title_color | default: '#1a1a1a'
+    assign title_size = block.settings.title_size | default: 16
+    assign description_color = block.settings.description_color | default: '#6b6b6b'
+    assign description_size = block.settings.description_size | default: 13
+    assign price_color = block.settings.price_color | default: '#1a1a1a'
+    assign price_size = block.settings.price_size | default: 15
+    assign button_bg = block.settings.button_bg | default: '#1a1a1a'
+    assign button_text_color = block.settings.button_text_color | default: '#ffffff'
+    assign button_font_size = block.settings.button_font_size | default: 13
+    assign show_price_plus = true
+    if block.settings.show_price_plus == false
+      assign show_price_plus = false
+    endif
+  -%}
+  <div
+    class="redesign-perfect-pair"
+    style="
+      --perfect-pair-heading-color: {{ heading_color }};
+      --perfect-pair-heading-size: {{ heading_size }}px;
+      --perfect-pair-title-color: {{ title_color }};
+      --perfect-pair-title-size: {{ title_size }}px;
+      --perfect-pair-description-color: {{ description_color }};
+      --perfect-pair-description-size: {{ description_size }}px;
+      --perfect-pair-price-color: {{ price_color }};
+      --perfect-pair-price-size: {{ price_size }}px;
+      --perfect-pair-button-bg: {{ button_bg }};
+      --perfect-pair-button-text: {{ button_text_color }};
+      --perfect-pair-button-size: {{ button_font_size }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.heading != blank -%}
+      <p class="redesign-perfect-pair__eyebrow">{{ block.settings.heading }}</p>
+    {%- endif -%}
+    <div class="redesign-perfect-pair__card">
+      <a href="{{ pair_product.url }}" class="redesign-perfect-pair__media">
+        {%- if pair_product.featured_media -%}
+          {%- liquid
+            assign pair_alt = pair_product.featured_media.alt | default: pair_product.title | escape
+          -%}
+          {{
+            pair_product.featured_media
+            | image_url: width: 240
+            | image_tag: loading: 'lazy', widths: '80, 120, 160, 200, 240', sizes: '88px', alt: pair_alt
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </a>
+      <div class="redesign-perfect-pair__info">
+        <a href="{{ pair_product.url }}" class="redesign-perfect-pair__title">
+          {%- if block.settings.custom_title != blank -%}
+            {{ block.settings.custom_title }}
+          {%- else -%}
+            {{ pair_product.title | escape }}
+          {%- endif -%}
+        </a>
+        {%- if block.settings.description != blank -%}
+          <div class="redesign-perfect-pair__description rte">{{ block.settings.description }}</div>
+        {%- endif -%}
+        <p class="redesign-perfect-pair__price">
+          {%- if show_price_plus -%}+{%- endif -%}
+          {%- if settings.currency_code_enabled -%}
+            {{ pair_variant.price | money_with_currency }}
+          {%- else -%}
+            {{ pair_variant.price | money }}
+          {%- endif -%}
+        </p>
+        <product-form class="redesign-perfect-pair__form" data-section-id="{{ section.id }}">
+          {%- form 'product',
+            pair_product,
+            id: pair_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          -%}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ pair_variant.id }}"
+              class="product-variant-id"
+              {% unless pair_variant.available %}
+                disabled
+              {% endunless %}
+            >
+            <button
+              type="submit"
+              name="add"
+              class="redesign-perfect-pair__button button button--primary"
+              {% unless pair_variant.available %}
+                disabled
+              {% endunless %}
+            >
+              <span>
+                {%- if pair_variant.available -%}
+                  {{ block.settings.button_label | default: 'Add to cart' | escape }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </span>
+              {%- render 'loading-spinner' -%}
+            </button>
+          {%- endform -%}
+        </product-form>
+      </div>
+    </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="redesign-perfect-pair redesign-perfect-pair--empty" {{ block.shopify_attributes }}>
+    <p class="redesign-perfect-pair__eyebrow">
+      {%- if block.settings.heading != blank -%}
+        {{ block.settings.heading }}
+      {%- else -%}
+        Perfect pair
+      {%- endif -%}
+    </p>
+    <p class="redesign-perfect-pair__description">Select a complementary product in the Theme Editor.</p>
+  </div>
+{%- endif -%}

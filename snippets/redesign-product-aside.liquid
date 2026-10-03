@@ -1,0 +1,34 @@
+{% comment %}
+  Under-gallery stack: benefit blocks + perfect pair (full width of media column).
+  Accepts: section {Object}
+{% endcomment %}
+{%- liquid
+  assign has_benefits = false
+  assign has_pair = false
+  for block in section.blocks
+    if block.type == 'redesign_benefit'
+      assign has_benefits = true
+    endif
+    if block.type == 'redesign_perfect_pair'
+      assign has_pair = true
+    endif
+  endfor
+-%}
+{%- if has_benefits or has_pair -%}
+  <aside class="product__redesign-aside" aria-label="Product benefits">
+    {%- if has_benefits -%}
+      <div class="redesign-benefits">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'redesign_benefit' -%}
+            {% render 'redesign-benefit', block: block %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'redesign_perfect_pair' -%}
+        {% render 'redesign-perfect-pair', block: block, section: section %}
+      {%- endif -%}
+    {%- endfor -%}
+  </aside>
+{%- endif -%}

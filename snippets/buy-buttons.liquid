@@ -83,6 +83,9 @@
             {% endif %}
           >
             <span>
+              <span class="svg-wrapper product-form__submit-icon" aria-hidden="true">
+                {{- 'icon-cart.svg' | inline_asset_content -}}
+              </span>
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}

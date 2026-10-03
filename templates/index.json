@@ -781,7 +781,279 @@
       "name": "Kids Shape Sorter Game",
       "settings": {
         "heading": "Sort the shapes from smallest to largest!",
+        "subheading": "Drag each shape into the matching slot",
+        "label_small": "Small",
+        "label_medium": "Medium",
+        "label_large": "Large",
         "success_message": "Great job! Here is your 10% discount code: KIDS10"
+      }
+    },
+    "character_builder_ycJ3Xx": {
+      "type": "character-builder",
+      "blocks": {
+        "outfit_EaMMmC": {
+          "type": "outfit",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/outfit-astronaut.png",
+            "product": "nike-air-max-plus"
+          }
+        },
+        "outfit_HRmqeb": {
+          "type": "outfit",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/outfit-raincoat.png",
+            "product": "nike-revolution-7"
+          }
+        },
+        "outfit_HRae77": {
+          "type": "outfit",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/outfit-explorer.png",
+            "product": "nike-streakfly-2"
+          }
+        },
+        "hat_PYxVWD": {
+          "type": "hat",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/hat-safari.png",
+            "product": ""
+          }
+        },
+        "hat_eYHct6": {
+          "type": "hat",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/hat-beanie.png",
+            "product": ""
+          }
+        },
+        "hat_dgQdgF": {
+          "type": "hat",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/hat-cap.png",
+            "product": ""
+          }
+        },
+        "friend_cXrmiY": {
+          "type": "friend",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/friend-robot.png",
+            "product": ""
+          }
+        },
+        "friend_8C3wMi": {
+          "type": "friend",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/friend-dino.png",
+            "product": ""
+          }
+        },
+        "friend_FwtNhA": {
+          "type": "friend",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/friend-fox.png",
+            "product": ""
+          }
+        },
+        "accessory_rhjFiW": {
+          "type": "accessory",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/accessory-binoculars.png",
+            "product": ""
+          }
+        },
+        "accessory_NmdkTC": {
+          "type": "accessory",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/accessory-scarf.png",
+            "product": ""
+          }
+        },
+        "accessory_MmigdF": {
+          "type": "accessory",
+          "settings": {
+            "label": "",
+            "layer_image": "shopify://shop_images/accessory-sunglasses.png",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "outfit_EaMMmC",
+        "outfit_HRmqeb",
+        "outfit_HRae77",
+        "hat_PYxVWD",
+        "hat_eYHct6",
+        "hat_dgQdgF",
+        "friend_cXrmiY",
+        "friend_8C3wMi",
+        "friend_FwtNhA",
+        "accessory_rhjFiW",
+        "accessory_NmdkTC",
+        "accessory_MmigdF"
+      ],
+      "name": "Character builder",
+      "settings": {
+        "heading": "Build your little explorer",
+        "subheading": "Mix and match outfits, hats, gear and friends, then shop the look.",
+        "base_image": "shopify://shop_images/base-character.png",
+        "base_alt": "Your little explorer",
+        "tab_outfit": "Outfit",
+        "tab_hat": "Hat",
+        "tab_accessory": "Accessory",
+        "tab_friend": "Friend",
+        "surprise_label": "Surprise me",
+        "summary_heading": "Your look",
+        "empty_text": "Pick something to start building your explorer.",
+        "cta_label": "Shop the look",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "sweets_builder_mAnrfe": {
+      "type": "sweets-builder",
+      "blocks": {
+        "extra_9iNddf": {
+          "type": "extra",
+          "settings": {
+            "label": "Flag",
+            "layer_image": "shopify://shop_images/extra-flag.png",
+            "product": "fluffy-classic-pancakes"
+          }
+        },
+        "extra_wyxkh9": {
+          "type": "extra",
+          "settings": {
+            "label": "Sparkler",
+            "layer_image": "shopify://shop_images/extra-sparkler.png",
+            "product": "chocolate-velvet-cake"
+          }
+        },
+        "extra_8FmkX6": {
+          "type": "extra",
+          "settings": {
+            "label": "Candle",
+            "layer_image": "shopify://shop_images/extra-candle.png",
+            "product": "berry-cheesecake"
+          }
+        },
+        "topping_MtPcAK": {
+          "type": "topping",
+          "settings": {
+            "label": "Sprinkles",
+            "layer_image": "shopify://shop_images/topping-sprinkles.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "topping_3jefwg": {
+          "type": "topping",
+          "settings": {
+            "label": "Strawberry",
+            "layer_image": "shopify://shop_images/topping-strawberry.png",
+            "product": "fluffy-classic-pancakes"
+          }
+        },
+        "topping_nKKaJ6": {
+          "type": "topping",
+          "settings": {
+            "label": "Charry",
+            "layer_image": "shopify://shop_images/topping-cherry.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "frosting_Mib3KN": {
+          "type": "frosting",
+          "settings": {
+            "label": "Strawberry",
+            "layer_image": "shopify://shop_images/frosting-strawberry.png",
+            "product": "berry-cheesecake"
+          }
+        },
+        "frosting_DAAyKU": {
+          "type": "frosting",
+          "settings": {
+            "label": "Chocolate",
+            "layer_image": "shopify://shop_images/frosting-chocolate.png",
+            "product": "chocolate-velvet-cake"
+          }
+        },
+        "frosting_EJ39ck": {
+          "type": "frosting",
+          "settings": {
+            "label": "vanilla",
+            "layer_image": "shopify://shop_images/frosting-vanilla.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "sponge_ND4mG7": {
+          "type": "sponge",
+          "settings": {
+            "label": "Vanilla",
+            "layer_image": "shopify://shop_images/sponge-vanilla.png",
+            "product": "chocolate-velvet-cake-copy"
+          }
+        },
+        "sponge_qAzgtp": {
+          "type": "sponge",
+          "settings": {
+            "label": "Chocolate",
+            "layer_image": "shopify://shop_images/sponge-chocolate.png",
+            "product": "chocolate-cake-with-toffee-sauced"
+          }
+        },
+        "sponge_ViJ9r8": {
+          "type": "sponge",
+          "settings": {
+            "label": "Red Velvet",
+            "layer_image": "shopify://shop_images/sponge-redvelvet.png",
+            "product": "chocolate-velvet-cake"
+          }
+        }
+      },
+      "block_order": [
+        "extra_9iNddf",
+        "extra_wyxkh9",
+        "extra_8FmkX6",
+        "topping_MtPcAK",
+        "topping_3jefwg",
+        "topping_nKKaJ6",
+        "frosting_Mib3KN",
+        "frosting_DAAyKU",
+        "frosting_EJ39ck",
+        "sponge_ND4mG7",
+        "sponge_qAzgtp",
+        "sponge_ViJ9r8"
+      ],
+      "name": "Sweets builder",
+      "settings": {
+        "heading": "Build your dream cupcake",
+        "subheading": "Pick a sponge, frosting, topping and a little extra, then shop the treats.",
+        "base_image": "shopify://shop_images/plate.png",
+        "base_alt": "A cupcake on a plate",
+        "tab_sponge": "Sponge",
+        "tab_frosting": "Frosting",
+        "tab_topping": "Topping",
+        "tab_extra": "Extra",
+        "surprise_label": "Surprise me",
+        "summary_heading": "Your creation",
+        "total_label": "Total",
+        "empty_text": "Pick a sponge to start building your cupcake.",
+        "cta_label": "Shop the look",
+        "cta_link": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
@@ -800,6 +1072,8 @@
     "features_center_image_HNC8hd",
     "how_it_works_9PLnMG",
     "about_chef_TjznKg",
-    "shape_sorter_game_nGJhGM"
+    "shape_sorter_game_nGJhGM",
+    "character_builder_ycJ3Xx",
+    "sweets_builder_mAnrfe"
   ]
 }

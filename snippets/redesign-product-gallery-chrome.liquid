@@ -1,0 +1,43 @@
+{% comment %}
+  Premium gallery overlays for the product media area.
+  Accepts: section {Object}
+{% endcomment %}
+{%- liquid
+  assign show_badge = section.settings.redesign_show_bestseller_badge
+  assign badge_text = section.settings.redesign_bestseller_badge_text
+  assign show_wishlist = section.settings.redesign_show_wishlist_button
+  assign badge_bg = section.settings.redesign_badge_bg | default: '#fffaf6'
+  assign badge_text_color = section.settings.redesign_badge_text_color | default: '#1a1a1a'
+  assign badge_font_size = section.settings.redesign_badge_font_size | default: 12
+  assign wishlist_color = section.settings.redesign_wishlist_color | default: '#1a1a1a'
+  assign wishlist_bg = section.settings.redesign_wishlist_bg | default: '#ffffff'
+  assign wishlist_size = section.settings.redesign_wishlist_size | default: 40
+-%}
+{%- if show_badge or show_wishlist -%}
+  <div
+    class="redesign-gallery-chrome"
+    style="
+      --badge-bg: {{ badge_bg }};
+      --badge-text-color: {{ badge_text_color }};
+      --badge-font-size: {{ badge_font_size }}px;
+      --wishlist-color: {{ wishlist_color }};
+      --wishlist-bg: {{ wishlist_bg }};
+      --wishlist-size: {{ wishlist_size }}px;
+    "
+  >
+    {%- if show_badge and badge_text != blank -%}
+      <span class="redesign-bestseller-badge">{{ badge_text | escape }}</span>
+    {%- endif -%}
+    {%- if show_wishlist -%}
+      <button
+        type="button"
+        class="redesign-wishlist-button"
+        aria-label="{{ section.settings.redesign_wishlist_label | default: 'Add to wishlist' | escape }}"
+      >
+        <span class="svg-wrapper" aria-hidden="true">
+          {{- 'icon-heart.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    {%- endif -%}
+  </div>
+{%- endif -%}

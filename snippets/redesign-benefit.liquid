@@ -1,0 +1,47 @@
+{% comment %}
+  Single benefit item for the product aside.
+  Accepts: block {Object}
+{% endcomment %}
+{%- if block.settings.title != blank or block.settings.text != blank -%}
+  {%- liquid
+    assign icon_size = block.settings.icon_size | default: 28
+    assign icon_color = block.settings.icon_color | default: '#1a1a1a'
+    assign icon_sizes_attr = icon_size | append: 'px'
+    assign title_color = block.settings.title_color | default: '#1a1a1a'
+    assign title_size = block.settings.title_size | default: 16
+    assign text_color = block.settings.text_color | default: '#6b6b6b'
+    assign text_size = block.settings.text_size | default: 13
+  -%}
+  <div
+    class="redesign-benefit"
+    style="
+      --benefit-icon-size: {{ icon_size }}px;
+      --benefit-icon-color: {{ icon_color }};
+      --benefit-title-color: {{ title_color }};
+      --benefit-title-size: {{ title_size }}px;
+      --benefit-text-color: {{ text_color }};
+      --benefit-text-size: {{ text_size }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    <div class="redesign-benefit__icon" aria-hidden="true">
+      {%- if block.settings.image != blank -%}
+        {{
+          block.settings.image
+          | image_url: width: 96
+          | image_tag: loading: 'lazy', widths: '32, 48, 64, 96', sizes: icon_sizes_attr, alt: ''
+        }}
+      {%- elsif block.settings.icon != 'none' -%}
+        {%- render 'icon-accordion', icon: block.settings.icon -%}
+      {%- endif -%}
+    </div>
+    <div class="redesign-benefit__content">
+      {%- if block.settings.title != blank -%}
+        <h3 class="redesign-benefit__title">{{ block.settings.title }}</h3>
+      {%- endif -%}
+      {%- if block.settings.text != blank -%}
+        <div class="redesign-benefit__text rte">{{ block.settings.text }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

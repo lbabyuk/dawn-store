@@ -12,6 +12,13 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "HANDMADE · FRESH INGREDIENTS · SEASONAL FRUITS",
+            "text_style": "uppercase"
+          }
+        },
         "vendor": {
           "type": "text",
           "disabled": true,
@@ -23,6 +30,18 @@
         "title": {
           "type": "title",
           "settings": {}
+        },
+        "redesign_editorial_rating": {
+          "type": "redesign_editorial_rating",
+          "settings": {
+            "show_stars": true,
+            "rating_value": "4.9",
+            "rating_max": "5",
+            "review_count": "124",
+            "star_color": "#c9a227",
+            "text_color": "#333333",
+            "font_size": 14
+          }
         },
         "price": {
           "type": "price",
@@ -44,7 +63,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "square"
+            "swatch_shape": "circle"
           }
         },
         "quantity_selector": {
@@ -58,7 +77,7 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": false,
+            "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
           }
         },
@@ -71,6 +90,7 @@
         },
         "icon_with_text_tjFh3F": {
           "type": "icon-with-text",
+          "disabled": true,
           "settings": {
             "layout": "horizontal",
             "icon_1": "truck",
@@ -86,6 +106,7 @@
         },
         "complementary_GR7LTY": {
           "type": "complementary",
+          "disabled": true,
           "settings": {
             "block_heading": "Pairs well with",
             "make_collapsible_row": false,
@@ -96,11 +117,77 @@
             "image_ratio": "square",
             "enable_quick_add": true
           }
+        },
+        "redesign_benefit_1": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "apple",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Fresh ingredients",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Only the finest seasonal fruits and natural ingredients.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_benefit_2": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "heart",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Handmade with care",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Baked fresh for the best flavor and quality.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_benefit_3": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "truck",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Safe & secure checkout",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Your order is protected and delivered with care.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_perfect_pair": {
+          "type": "redesign_perfect_pair",
+          "settings": {
+            "heading": "Perfect pair",
+            "heading_color": "#4a2c2a",
+            "heading_size": 14,
+            "product": "berry-cheesecake",
+            "custom_title": "Add a box of fresh berries",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "description": "<p>A bright, juicy complement to your tart.</p>",
+            "description_color": "#6b6b6b",
+            "description_size": 13,
+            "show_price_plus": true,
+            "price_color": "#1a1a1a",
+            "price_size": 15,
+            "button_label": "Add to cart",
+            "button_bg": "#1a1a1a",
+            "button_text_color": "#ffffff",
+            "button_font_size": 13
+          }
         }
       },
       "block_order": [
+        "eyebrow",
         "vendor",
         "title",
+        "redesign_editorial_rating",
         "price",
         "inventory_V9a9rc",
         "description",
@@ -110,12 +197,26 @@
         "buy_buttons",
         "share",
         "icon_with_text_tjFh3F",
-        "complementary_GR7LTY"
+        "complementary_GR7LTY",
+        "redesign_benefit_1",
+        "redesign_benefit_2",
+        "redesign_benefit_3",
+        "redesign_perfect_pair"
       ],
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-2",
-        "media_size": "small",
+        "redesign_show_bestseller_badge": true,
+        "redesign_bestseller_badge_text": "Bestseller",
+        "redesign_badge_bg": "#fffaf6",
+        "redesign_badge_text_color": "#1a1a1a",
+        "redesign_badge_font_size": 12,
+        "redesign_show_wishlist_button": true,
+        "redesign_wishlist_label": "Add to wishlist",
+        "redesign_wishlist_color": "#1a1a1a",
+        "redesign_wishlist_bg": "#ffffff",
+        "redesign_wishlist_size": 40,
+        "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "cover",
         "gallery_layout": "thumbnail_slider",
@@ -126,6 +227,102 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "redesign_why_love": {
+      "type": "redesign-why-love",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "check_mark",
+            "image": "shopify://shop_images/green-checkmark-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Premium Quality",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_2": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "apple",
+            "image": "shopify://shop_images/leaf-icon_72873200-1dae-4d97-92f2-5866228e393e.png",
+            "icon_color": "#008000",
+            "icon_size": 24,
+            "label": "Seasonal Fruits",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_3": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "serving_dish",
+            "image": "shopify://shop_images/green-serving-dish-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Made By Us",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_4": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "truck",
+            "image": "shopify://shop_images/green-truck-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Fast Delivery",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "social_proof": {
+          "type": "social_proof",
+          "settings": {
+            "show_stars": true,
+            "rating_value": "4.9",
+            "rating_max": "5",
+            "customers_text": "Over 2M happy customers",
+            "star_color": "#c9a227",
+            "text_color": "#333333",
+            "font_size": 16,
+            "avatar_1": "shopify://shop_images/womens-necklace.jpg",
+            "avatar_2": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "tagline": "Real people, real moments",
+            "tagline_color": "#6b6b6b",
+            "show_heart": true,
+            "heart_color": "#1a1a1a"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "social_proof"
+      ],
+      "settings": {
+        "heading": "Why you'll love it",
+        "heading_size": "h2",
+        "heading_italic": true,
+        "heading_color": "#4a2c2a",
+        "heading_font_size": 24,
+        "text": "<p>Our tarts are more than just dessert — they're a moment of pure joy.</p>",
+        "text_color": "#333333",
+        "text_font_size": 16,
+        "background_color": "#FFFAF6",
+        "show_dividers": true,
+        "divider_color": "#ddd5cb",
+        "color_scheme": "scheme-1",
+        "deco_image_left": "shopify://shop_images/1.png",
+        "deco_image_right": "shopify://shop_images/1_e89c826a-282d-445c-8516-e93a2e1453fe.png",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "quick_order_list_nfPY3a": {
@@ -308,6 +505,7 @@
   },
   "order": [
     "main",
+    "redesign_why_love",
     "quick_order_list_nfPY3a",
     "related-products",
     "marquee_section_bJzNPe",

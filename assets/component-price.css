@@ -98,3 +98,8 @@
   margin-top: 0.2rem;
   color: rgba(var(--color-foreground), 0.7);
 }
+
+
+.unit-price.caption .price-item.price-item--last  {
+  display: none;
+}
