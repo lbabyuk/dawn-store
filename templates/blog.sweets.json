@@ -54,7 +54,7 @@
         "lead_text": "A talented chef dedicated to creating exceptional desserts.",
         "description": "<p>With years of experience and a passion for baking, our chef focuses on combining creativity, precision, and high-quality ingredients to deliver desserts that stand out in both taste and presentation.</p>",
         "btn_1_label": "Order Now",
-        "btn_1_link": "",
+        "btn_1_link": "shopify://collections/cakes",
         "btn_2_label": "Explore Cakes",
         "btn_2_link": "",
         "bg_color": "#ffffff",
