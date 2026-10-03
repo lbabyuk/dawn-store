@@ -778,6 +778,7 @@
     },
     "shape_sorter_game_nGJhGM": {
       "type": "shape-sorter-game",
+      "disabled": true,
       "name": "Kids Shape Sorter Game",
       "settings": {
         "heading": "Sort the shapes from smallest to largest!",
@@ -902,6 +903,7 @@
         "accessory_NmdkTC",
         "accessory_MmigdF"
       ],
+      "disabled": true,
       "name": "Character builder",
       "settings": {
         "heading": "Build your little explorer",
@@ -913,6 +915,8 @@
         "tab_accessory": "Accessory",
         "tab_friend": "Friend",
         "surprise_label": "Surprise me",
+        "reset_label": "Start over",
+        "actions_gap": 20,
         "summary_heading": "Your look",
         "empty_text": "Pick something to start building your explorer.",
         "cta_label": "Shop the look",
@@ -1035,6 +1039,7 @@
         "sponge_qAzgtp",
         "sponge_ViJ9r8"
       ],
+      "disabled": true,
       "name": "Sweets builder",
       "settings": {
         "heading": "Build your dream cupcake",
@@ -1046,6 +1051,8 @@
         "tab_topping": "Topping",
         "tab_extra": "Extra",
         "surprise_label": "Surprise me",
+        "reset_label": "Start over",
+        "actions_gap": 20,
         "summary_heading": "Your creation",
         "total_label": "Total",
         "empty_text": "Pick a sponge to start building your cupcake.",
