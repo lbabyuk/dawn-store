@@ -1,0 +1,515 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "HANDMADE · FRESH INGREDIENTS · SEASONAL FRUITS",
+            "text_style": "uppercase"
+          }
+        },
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "redesign_editorial_rating": {
+          "type": "redesign_editorial_rating",
+          "settings": {
+            "show_stars": true,
+            "rating_value": "4.9",
+            "rating_max": "5",
+            "review_count": "124",
+            "star_color": "#c9a227",
+            "text_color": "#333333",
+            "font_size": 14
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "inventory_V9a9rc": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "subtitle",
+            "inventory_threshold": 0,
+            "show_inventory_quantity": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "recharge_subscriptions_subscription_widget_v2_7FmtXE": {
+          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "icon_with_text_tjFh3F": {
+          "type": "icon-with-text",
+          "disabled": true,
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "truck",
+            "image_1": "shopify://shop_images/delivery-truck-icon.svg",
+            "heading_1": "Free U.S. Shipping Over $150",
+            "icon_2": "star",
+            "image_2": "shopify://shop_images/payment-cash-icon.svg",
+            "heading_2": "Safe & Secure Checkout",
+            "icon_3": "clipboard",
+            "image_3": "shopify://shop_images/icon-document-bookmark.svg",
+            "heading_3": "Afterpay available at checkout"
+          }
+        },
+        "complementary_GR7LTY": {
+          "type": "complementary",
+          "disabled": true,
+          "settings": {
+            "block_heading": "Pairs well with",
+            "make_collapsible_row": false,
+            "icon": "price_tag",
+            "product_list_limit": 1,
+            "products_per_page": 1,
+            "pagination_style": "dots",
+            "image_ratio": "square",
+            "enable_quick_add": true
+          }
+        },
+        "redesign_benefit_1": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "apple",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Fresh ingredients",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Only the finest seasonal fruits and natural ingredients.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_benefit_2": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "heart",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Handmade with care",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Baked fresh for the best flavor and quality.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_benefit_3": {
+          "type": "redesign_benefit",
+          "settings": {
+            "icon": "truck",
+            "icon_color": "#4a2c2a",
+            "icon_size": 28,
+            "title": "Safe & secure checkout",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "text": "<p>Your order is protected and delivered with care.</p>",
+            "text_color": "#333333",
+            "text_size": 13
+          }
+        },
+        "redesign_perfect_pair": {
+          "type": "redesign_perfect_pair",
+          "settings": {
+            "heading": "Perfect pair",
+            "heading_color": "#4a2c2a",
+            "heading_size": 14,
+            "product": "berry-cheesecake",
+            "custom_title": "Add a box of fresh berries",
+            "title_color": "#4a2c2a",
+            "title_size": 16,
+            "description": "<p>A bright, juicy complement to your tart.</p>",
+            "description_color": "#6b6b6b",
+            "description_size": 13,
+            "show_price_plus": true,
+            "price_color": "#1a1a1a",
+            "price_size": 15,
+            "button_label": "Add to cart",
+            "button_bg": "#1a1a1a",
+            "button_text_color": "#ffffff",
+            "button_font_size": 13
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "vendor",
+        "title",
+        "redesign_editorial_rating",
+        "price",
+        "inventory_V9a9rc",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "recharge_subscriptions_subscription_widget_v2_7FmtXE",
+        "buy_buttons",
+        "share",
+        "icon_with_text_tjFh3F",
+        "complementary_GR7LTY",
+        "redesign_benefit_1",
+        "redesign_benefit_2",
+        "redesign_benefit_3",
+        "redesign_perfect_pair"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-2",
+        "redesign_show_bestseller_badge": true,
+        "redesign_bestseller_badge_text": "Bestseller",
+        "redesign_badge_bg": "#fffaf6",
+        "redesign_badge_text_color": "#1a1a1a",
+        "redesign_badge_font_size": 12,
+        "redesign_show_wishlist_button": true,
+        "redesign_wishlist_label": "Add to wishlist",
+        "redesign_wishlist_color": "#1a1a1a",
+        "redesign_wishlist_bg": "#ffffff",
+        "redesign_wishlist_size": 40,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "redesign_why_love": {
+      "type": "redesign-why-love",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "check_mark",
+            "image": "shopify://shop_images/green-checkmark-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Premium Quality",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_2": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "apple",
+            "image": "shopify://shop_images/leaf-icon_72873200-1dae-4d97-92f2-5866228e393e.png",
+            "icon_color": "#008000",
+            "icon_size": 24,
+            "label": "Seasonal Fruits",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_3": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "serving_dish",
+            "image": "shopify://shop_images/green-serving-dish-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Made By Us",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "benefit_4": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "truck",
+            "image": "shopify://shop_images/green-truck-icon.png",
+            "icon_color": "#1a1a1a",
+            "icon_size": 24,
+            "label": "Fast Delivery",
+            "label_color": "#333333",
+            "label_size": 14
+          }
+        },
+        "social_proof": {
+          "type": "social_proof",
+          "settings": {
+            "show_stars": true,
+            "rating_value": "4.9",
+            "rating_max": "5",
+            "customers_text": "Over 2M happy customers",
+            "star_color": "#c9a227",
+            "text_color": "#333333",
+            "font_size": 16,
+            "avatar_1": "shopify://shop_images/womens-necklace.jpg",
+            "avatar_2": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "tagline": "Real people, real moments",
+            "tagline_color": "#6b6b6b",
+            "show_heart": true,
+            "heart_color": "#1a1a1a"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4",
+        "social_proof"
+      ],
+      "settings": {
+        "heading": "Why you'll love it",
+        "heading_size": "h2",
+        "heading_italic": true,
+        "heading_color": "#4a2c2a",
+        "heading_font_size": 24,
+        "text": "<p>Our tarts are more than just dessert — they're a moment of pure joy.</p>",
+        "text_color": "#333333",
+        "text_font_size": 16,
+        "background_color": "#FFFAF6",
+        "show_dividers": true,
+        "divider_color": "#ddd5cb",
+        "color_scheme": "scheme-1",
+        "deco_image_left": "shopify://shop_images/1.png",
+        "deco_image_right": "shopify://shop_images/1_e89c826a-282d-445c-8516-e93a2e1453fe.png",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "quick_order_list_nfPY3a": {
+      "type": "quick-order-list",
+      "disabled": true,
+      "name": "t:sections.quick-order-list.presets.name",
+      "settings": {
+        "variants_per_page": 50,
+        "show_image": true,
+        "show_sku": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "<strong>RELATED PRODUCTS</strong>",
+        "heading_size": "h0",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "marquee_section_bJzNPe": {
+      "type": "marquee-section",
+      "blocks": {
+        "image_block_VwHQhp": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/chocolate-velvet-cake-copy"
+          }
+        },
+        "image_block_imwFTn": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/berry-cheesecake"
+          }
+        },
+        "image_block_k6xHQm": {
+          "type": "image_block",
+          "settings": {
+            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "link": "shopify://products/chocolate-velvet-cake"
+          }
+        }
+      },
+      "block_order": [
+        "image_block_VwHQhp",
+        "image_block_imwFTn",
+        "image_block_k6xHQm"
+      ],
+      "name": "Image marquee",
+      "settings": {
+        "bg_color": "#fffaf6",
+        "image_height": 60,
+        "speed": 60,
+        "gap": 100,
+        "grayscale": false,
+        "pause_on_hover": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "multicolumn_JzicmM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rzwYp8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/colorful-fruit-and-custard-tart.jpg",
+            "title": "<strong> HOLIDAY RECIPES</strong>",
+            "text": "<p>Discover our favorite holiday recipes crafted to inspire your seasonal cooking. From traditional favorites to modern twists, each recipe is designed to bring warmth and joy to your table. Explore step-by-step instructions, ingredient lists, and expert tips to make your holiday gatherings unforgettable.</p>",
+            "link_label": "READ MORE",
+            "link": "shopify://products/chocolate-velvet-cake-copy"
+          }
+        },
+        "column_ABFmiF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/summer-cocktials.jpg",
+            "title": "<strong>COCTAILES</strong>",
+            "text": "<p>Discover our curated selection of premium cocktail ingredients and bar essentials. From classic spirits to artisanal mixers, we stock everything you need to craft exceptional drinks at home. Explore detailed tasting notes, serving suggestions, and expert recommendations to elevate your cocktail experience.</p>",
+            "link_label": "READ MORE",
+            "link": "shopify://collections/cakes"
+          }
+        },
+        "column_CbFqRJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/berry-cheesecake.jpg",
+            "title": "<strong>CLASSIC CAKES</strong>",
+            "text": "<p>Handcrafted cakes made fresh to order. Each creation combines premium ingredients with time-honored baking techniques. From elegant layer cakes to custom designs, our classic collection celebrates timeless flavors and beautiful presentation. Perfect for celebrations, gatherings, or whenever you crave something truly special.</p>",
+            "link_label": "READ MORE",
+            "link": "shopify://products/berry-cheesecake"
+          }
+        }
+      },
+      "block_order": [
+        "column_rzwYp8",
+        "column_ABFmiF",
+        "column_CbFqRJ"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "<strong>INDULGE IN SWEET MOMENTS</strong>",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_faq_image_diPtVk": {
+      "type": "custom-faq-image",
+      "blocks": {
+        "faq_item_3YEymd": {
+          "type": "faq_item",
+          "settings": {
+            "title": "<p>Rich Cream Filling</p>",
+            "answer": "<p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>",
+            "item_icon": "shopify://shop_images/icon6.svg"
+          }
+        },
+        "faq_item_AiQW9i": {
+          "type": "faq_item",
+          "settings": {
+            "title": "<p>Rich Cream Filling</p>",
+            "answer": "<p>Smooth and rich cream creates a perfectly balanced taste experience through its layering, contributing to an overall enjoyable flavor profile.</p>",
+            "item_icon": "shopify://shop_images/icon5.svg"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_3YEymd",
+        "faq_item_AiQW9i"
+      ],
+      "name": "Custom FAQ with Image",
+      "settings": {
+        "subheading": "<p>Monthly Cake</p>",
+        "subheading_icon": "shopify://shop_images/029-roller.svg",
+        "heading": "Check out This Month’s new cake",
+        "heading_size": "h1",
+        "description": "<p>A special cake created to highlight our newest ideas.</p><p>This month’s cake features fresh inspiration and selected ingredients to create a unique taste experience that is both familiar and exciting.</p>",
+        "side_image": "shopify://shop_images/daisy-floral-cake.jpg",
+        "open_first_item": true,
+        "auto_close_others": false,
+        "bg_color": "#faf8f6",
+        "heading_color": "#4a2c2a",
+        "accent_color": "#4a2c2a",
+        "text_color": "#4a2c2a",
+        "item_title_color": "#4a2c2a",
+        "card_bg_color": "#ffffff",
+        "card_border_color": "#efefef",
+        "card_active_bg_color": "#fff8f8",
+        "card_active_border_color": "#4a2c2a",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "redesign_why_love",
+    "quick_order_list_nfPY3a",
+    "related-products",
+    "marquee_section_bJzNPe",
+    "multicolumn_JzicmM",
+    "custom_faq_image_diPtVk"
+  ]
+}
