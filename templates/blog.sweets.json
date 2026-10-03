@@ -56,7 +56,7 @@
         "btn_1_label": "Order Now",
         "btn_1_link": "shopify://collections/cakes",
         "btn_2_label": "Explore Cakes",
-        "btn_2_link": "",
+        "btn_2_link": "shopify://collections/cakes",
         "bg_color": "#ffffff",
         "accent_color": "#e6caaa",
         "primary_btn_bg": "#f5b7b7",
