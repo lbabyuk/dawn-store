@@ -52,7 +52,7 @@
           "settings": {
             "text_style": "subtitle",
             "inventory_threshold": 0,
-            "show_inventory_quantity": true
+            "show_inventory_quantity": false
           }
         },
         "description": {
@@ -315,7 +315,7 @@
         "text": "<p>Our tarts are more than just dessert — they're a moment of pure joy.</p>",
         "text_color": "#333333",
         "text_font_size": 16,
-        "background_color": "#FFFAF6",
+        "background_color": "#fffaf6",
         "show_dividers": true,
         "divider_color": "#ddd5cb",
         "color_scheme": "scheme-1",
