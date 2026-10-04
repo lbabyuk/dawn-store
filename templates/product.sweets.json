@@ -316,7 +316,7 @@
         "text_color": "#333333",
         "text_font_size": 16,
         "background_color": "#fffaf6",
-        "show_dividers": true,
+        "show_dividers": false,
         "divider_color": "#ddd5cb",
         "color_scheme": "scheme-1",
         "deco_image_left": "shopify://shop_images/1.png",
