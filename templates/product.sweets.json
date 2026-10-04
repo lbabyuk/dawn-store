@@ -348,7 +348,7 @@
         "columns_mobile": "1",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
-        "image_shape": "default",
+        "image_shape": "blob",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
