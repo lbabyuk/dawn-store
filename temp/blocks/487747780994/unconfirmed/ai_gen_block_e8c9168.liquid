@@ -1,6 +1,111 @@
+{% doc %}
+  @prompt
+    A magazine-style editorial layout
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 36px 24px;
+    color: {{ block.settings.text_color }};
+    background: {{ block.settings.background_color }};
+  }
+  .ai-editorial-{{ ai_gen_id }}__inner { max-width: 1400px; margin: 0 auto; }
+  .ai-editorial-{{ ai_gen_id }}__topline { display:flex; justify-content:space-between; gap:16px; align-items:center; border-top:1px solid currentColor; border-bottom:1px solid currentColor; padding:10px 0; margin-bottom:28px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; }
+  .ai-editorial-{{ ai_gen_id }}__grid { display:grid; grid-template-columns:minmax(0, 1.55fr) minmax(220px, .8fr); gap:clamp(24px, 5vw, 72px); align-items:start; }
+  .ai-editorial-{{ ai_gen_id }}__lead { min-width:0; }
+  .ai-editorial-{{ ai_gen_id }}__eyebrow { margin:0 0 12px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+  .ai-editorial-{{ ai_gen_id }}__title { margin:0 0 16px; font-family:Georgia,serif; font-size:clamp(38px, 6vw, 82px); line-height:.98; letter-spacing:-.04em; font-weight:500; }
+  .ai-editorial-{{ ai_gen_id }}__dek { max-width:760px; margin:0 0 24px; font-size:clamp(17px, 2vw, 22px); line-height:1.45; }
+  .ai-editorial-{{ ai_gen_id }}__image { display:block; width:100%; height:auto; aspect-ratio: 16 / 9; object-fit:cover; }
+  .ai-editorial-{{ ai_gen_id }}__placeholder { position:relative; width:100%; aspect-ratio:16 / 9; background:#eee9e2; }
+  .ai-editorial-{{ ai_gen_id }}__placeholder svg { width:100%; height:100%; display:block; }
+  .ai-editorial-{{ ai_gen_id }}__empty { position:absolute; left:12px; right:12px; bottom:12px; margin:0; padding:8px 12px; color:#333; background:rgba(255,255,255,.92); font-size:13px; text-align:center; }
+  .ai-editorial-{{ ai_gen_id }}__caption { margin:9px 0 0; font-size:12px; line-height:1.5; opacity:.82; }
+  .ai-editorial-{{ ai_gen_id }}__side { border-top:3px solid currentColor; }
+  .ai-editorial-{{ ai_gen_id }}__side-heading { margin:12px 0 20px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+  .ai-editorial-{{ ai_gen_id }}__story { padding:0 0 20px; margin:0 0 20px; border-bottom:1px solid rgba(18,18,18,.25); }
+  .ai-editorial-{{ ai_gen_id }}__story:last-child { margin-bottom:0; }
+  .ai-editorial-{{ ai_gen_id }}__story-title { margin:0 0 8px; font-family:Georgia,serif; font-size:clamp(22px, 2.5vw, 32px); line-height:1.08; font-weight:500; }
+  .ai-editorial-{{ ai_gen_id }}__story-title a { color:inherit; text-decoration:none; }
+  .ai-editorial-{{ ai_gen_id }}__story-title a:hover { text-decoration:underline; text-underline-offset:4px; }
+  .ai-editorial-{{ ai_gen_id }}__story-meta { margin:0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+  .ai-editorial-{{ ai_gen_id }}__read { display:inline-block; margin-top:12px; color:inherit; font-size:13px; text-underline-offset:3px; }
+  @media screen and (max-width: 749px) {
+    .ai-editorial-{{ ai_gen_id }} { padding:24px 16px; }
+    .ai-editorial-{{ ai_gen_id }}__topline { align-items:flex-start; flex-direction:column; gap:5px; margin-bottom:22px; }
+    .ai-editorial-{{ ai_gen_id }}__grid { grid-template-columns:1fr; }
+  }
+{% endstyle %}
+
+<div class="ai-editorial-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-editorial-{{ ai_gen_id }}__inner">
+    <div class="ai-editorial-{{ ai_gen_id }}__topline">
+      <span>{{ block.settings.publication_name | escape }}</span>
+      <span>{{ block.settings.edition_label | escape }}</span>
+    </div>
+    <div class="ai-editorial-{{ ai_gen_id }}__grid">
+      <article class="ai-editorial-{{ ai_gen_id }}__lead">
+        {% if block.settings.category != blank %}<p class="ai-editorial-{{ ai_gen_id }}__eyebrow">{{ block.settings.category | escape }}</p>{% endif %}
+        <h2 class="ai-editorial-{{ ai_gen_id }}__title">{{ block.settings.headline | escape }}</h2>
+        {% if block.settings.intro != blank %}<p class="ai-editorial-{{ ai_gen_id }}__dek">{{ block.settings.intro | escape }}</p>{% endif %}
+        {% if block.settings.feature_image %}
+          <img class="ai-editorial-{{ ai_gen_id }}__image" src="{{ block.settings.feature_image | image_url: width: 1800 }}" alt="{{ block.settings.feature_image.alt | escape }}" loading="lazy" width="{{ block.settings.feature_image.width }}" height="{{ block.settings.feature_image.height }}">
+        {% else %}
+          <div class="ai-editorial-{{ ai_gen_id }}__placeholder">{{ 'image' | placeholder_svg_tag }}<p class="ai-editorial-{{ ai_gen_id }}__empty">Add a feature image to complete this editorial layout.</p></div>
+        {% endif %}
+        {% if block.settings.caption != blank %}<p class="ai-editorial-{{ ai_gen_id }}__caption">{{ block.settings.caption | escape }}</p>{% endif %}
+        {% if block.settings.feature_article != blank %}<a class="ai-editorial-{{ ai_gen_id }}__read" href="{{ block.settings.feature_article.url }}">Read the feature: {{ block.settings.feature_article.title | escape }}</a>{% endif %}
+      </article>
+      <aside class="ai-editorial-{{ ai_gen_id }}__side" aria-label="{{ block.settings.side_heading | escape }}">
+        <h3 class="ai-editorial-{{ ai_gen_id }}__side-heading">{{ block.settings.side_heading | escape }}</h3>
+        {% if block.settings.editorial_blog != blank %}
+          {% for article in block.settings.editorial_blog.articles limit: 3 %}
+            <article class="ai-editorial-{{ ai_gen_id }}__story">
+              <p class="ai-editorial-{{ ai_gen_id }}__story-meta">{{ article.published_at | date: '%B %d, %Y' }}</p>
+              <h4 class="ai-editorial-{{ ai_gen_id }}__story-title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h4>
+              {% if article.excerpt != blank %}<p>{{ article.excerpt | strip_html | truncate: 110 | escape }}</p>{% endif %}
+            </article>
+          {% endfor %}
+        {% else %}
+          <article class="ai-editorial-{{ ai_gen_id }}__story">
+            <h4 class="ai-editorial-{{ ai_gen_id }}__story-title">Choose a blog to feature recent stories</h4>
+            <p>Select a blog in the block settings and its latest articles will appear here.</p>
+          </article>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Editorial layout",
+  "settings": [
+    { "type": "header", "content": "Masthead" },
+    { "type": "text", "id": "publication_name", "label": "Publication name", "default": "The Edit" },
+    { "type": "text", "id": "edition_label", "label": "Edition label", "default": "Stories and ideas" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "header", "content": "Lead story" },
+    { "type": "text", "id": "category", "label": "Category", "default": "The cover story" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "A considered life, beautifully told" },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "A thoughtful look at the people, places and objects shaping a more intentional everyday." },
+    { "type": "image_picker", "id": "feature_image", "label": "Feature image" },
+    { "type": "text", "id": "caption", "label": "Image caption", "default": "A moment worth lingering over." },
+    { "type": "article", "id": "feature_article", "label": "Feature article" },
+    { "type": "header", "content": "Latest stories" },
+    { "type": "text", "id": "side_heading", "label": "Column heading", "default": "From the journal" },
+    { "type": "blog", "id": "editorial_blog", "label": "Blog" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFAF6" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#121212" }
+  ],
+  "presets": [{ "name": "Editorial layout" }],
+  "tag": null,
+  "class": "editorial-layout-block"
+}
 {% endschema %}
