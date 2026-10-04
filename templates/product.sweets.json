@@ -440,9 +440,9 @@
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "<strong>INDULGE IN SWEET MOMENTS</strong>",
-        "heading_size": "h0",
+        "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
