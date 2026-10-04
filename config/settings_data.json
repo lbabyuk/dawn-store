@@ -231,6 +231,13 @@
           "shadow": "#ec1107"
         }
       }
+    },
+    "blocks": {
+      "14593901908719032023": {
+        "type": "shopify://apps/smind/blocks/theme-helper/71ba2d48-8be4-4535-bc1f-0fea499001d4",
+        "disabled": false,
+        "settings": {}
+      }
     }
   },
   "presets": {
