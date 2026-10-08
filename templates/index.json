@@ -327,21 +327,24 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake-copy"
+            "link": "shopify://products/chocolate-velvet-cake-copy",
+            "tooltip": "Tooltip info"
           }
         },
         "image_block_bQ8DdG": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/berry-cheesecake"
+            "link": "shopify://products/berry-cheesecake",
+            "tooltip": "Tooltip info"
           }
         },
         "image_block_iwUgmc": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake"
+            "link": "shopify://products/chocolate-velvet-cake",
+            "tooltip": "Tooltip info"
           }
         }
       },
@@ -562,23 +565,25 @@
       "blocks": {
         "image_block_XryMj3": {
           "type": "image_block",
+          "source": "{{ metaobjects.marquie_image.hello }}",
           "settings": {
-            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake-copy"
+            "image": "{{ metaobjects.marquie_image.hello.image.value }}"
           }
         },
         "image_block_rQ98xe": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/berry-cheesecake"
+            "link": "shopify://products/berry-cheesecake",
+            "tooltip": "Tooltip info"
           }
         },
         "image_block_4NTF69": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake"
+            "link": "shopify://products/chocolate-velvet-cake",
+            "tooltip": "Tooltip info"
           }
         }
       },
