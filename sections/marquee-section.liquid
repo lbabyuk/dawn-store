@@ -35,9 +35,9 @@
               {% else %}
                 {{ 'image' | placeholder_svg_tag }}
               {% endif %}
-              {%- if block.settings.tooltip_text != blank -%}
+              {%- if block.settings.tooltip != blank -%}
       <p class="trust-line__tooltip-text">
-        {{ block.settings.tooltip_text | escape }}
+        {{ block.settings.tooltip | escape }}
       </p>
       {%- endif -%}
 
