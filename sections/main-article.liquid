@@ -41,6 +41,39 @@
           </div>
         {%- endif -%}
 
+    {%- when 'table_content' -%}
+  {% if block.settings.table_content != blank %}
+    {% assign table_rows = block.settings.table_content | newline_to_br | split: '<br />' %}
+
+    <div class="custom-table-wrapper">
+      <table class="custom-table">
+        {% assign header = table_rows[0] %}
+        {% assign header_cells = header | split: '|' %}
+
+        <thead>
+          <tr>
+            {% for cell in header_cells %}
+              <th scope="col">{{ cell | strip }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for row in table_rows %}
+            {% unless forloop.first %}
+              {% assign cells = row | split: '|' %}
+              <tr>
+                {% for cell in cells %}
+                  <td>{{ cell | strip }}</td>
+                {% endfor %}
+              </tr>
+            {% endunless %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
       {%- when 'title' -%}
         <header
           class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
@@ -368,7 +401,18 @@
           "default": "t:sections.main-article.blocks.share.settings.text.default"
         }
       ]
-    }
+    },
+    {
+    "type": "table",
+    "name": "Table",
+    "settings": [
+      {
+        "type": "text",
+        "id": "table_content",
+        "label": "Table content"
+      }
+    ]
+  }
   ]
 }
 {% endschema %}
