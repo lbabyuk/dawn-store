@@ -36,9 +36,9 @@
                 {{ 'image' | placeholder_svg_tag }}
               {% endif %}
               {%- if block.settings.tooltip != blank -%}
-      <p class="trust-line__tooltip-text">
-        {{ block.settings.tooltip | escape }}
-      </p>
+      <div class="trust-line__tooltip-text">
+        {{ block.settings.tooltip }}
+      </div>
       {%- endif -%}
 
 
@@ -146,11 +146,11 @@
           "id": "link",
           "label": "Link (optional)"
         },
-        {
-          "type": "textarea",
+         {
+          "type": "richtext",
           "id": "tooltip",
           "label": "Tooltip text",
-          "default": "Tooltip info"
+          "default": "<p>Tooltip info</p>"
         }
       ]
     }
