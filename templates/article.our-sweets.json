@@ -34,13 +34,20 @@
         "content": {
           "type": "content",
           "settings": {}
+        },
+        "table_Cn4Pd9": {
+          "type": "table",
+          "settings": {
+            "table_content": "Product|Size|Price Bread|Small|10 Bread|Medium|15 Bread|Large|20 Milk|1L|5"
+          }
         }
       },
       "block_order": [
         "featured_image",
         "title",
         "share",
-        "content"
+        "content",
+        "table_Cn4Pd9"
       ],
       "settings": {}
     },
