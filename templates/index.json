@@ -565,18 +565,18 @@
       "blocks": {
         "image_block_XryMj3": {
           "type": "image_block",
-          "source": "{{ metaobjects.marquie_image.hello }}",
+          "source": "{{ metaobjects.text.dfgdfgdf }}",
           "settings": {
-            "image": "{{ metaobjects.marquie_image.hello.image.value }}",
-            "link": "",
-            "tooltip": "Tooltip info"
+            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}"
           }
         },
         "image_block_rQ98xe": {
           "type": "image_block",
           "source": "{{ metaobjects.text.dfgdfgdf }}",
           "settings": {
-            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}"
+            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}",
+            "link": "",
+            "tooltip": "Tooltip info"
           }
         },
         "image_block_4NTF69": {
