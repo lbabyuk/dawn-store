@@ -35,6 +35,12 @@
               {% else %}
                 {{ 'image' | placeholder_svg_tag }}
               {% endif %}
+              {%- if block.settings.tooltip_text != blank -%}
+      <p class="trust-line__tooltip-text">
+        {{ block.settings.tooltip_text | escape }}
+      </p>
+      {%- endif -%}
+
 
             {% if block.settings.link != blank %}
               </a>
@@ -139,6 +145,12 @@
           "type": "url",
           "id": "link",
           "label": "Link (optional)"
+        },
+        {
+          "type": "textarea",
+          "id": "tooltip",
+          "label": "Tooltip text",
+          "default": "Tooltip info"
         }
       ]
     }
