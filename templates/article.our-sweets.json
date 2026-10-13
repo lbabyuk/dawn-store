@@ -67,7 +67,7 @@
             "build_days_table": "",
             "build_footer": "{{ article.metafields.custom.tab.value.build_up_footer | metafield_tag }}",
             "reaction_heading": "",
-            "reaction_text": "<p>{{ article.metafields.custom.tab.value.days_table | metafield_tag }}</p>",
+            "reaction_text": "{{ article.metafields.custom.tab.value.days_table | metafield_tag }}",
             "reaction_image_position": "right",
             "expert_name": "",
             "expert_role": "",
@@ -81,7 +81,7 @@
             "warning_text": ""
           }
         },
-        "tab_7EMdDA": {
+        "tab_AtiqnV": {
           "type": "tab",
           "source": "{{ article.metafields.custom.tab_table.value }}",
           "settings": {
@@ -93,7 +93,7 @@
             "before_intro": "{{ article.metafields.custom.tab_table.value.before_intro | metafield_tag }}",
             "before_checklist": "{{ article.metafields.custom.tab_table.value.before_checklist | metafield_tag }}",
             "build_intro": "{{ article.metafields.custom.tab_table.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "<p>{{ article.metafields.custom.tab_table.value.days_table | metafield_tag }}</p>",
+            "build_days_table": "{{ article.metafields.custom.tab_table.value.days_table | metafield_tag }}",
             "build_footer": "{{ article.metafields.custom.tab_table.value.build_up_footer | metafield_tag }}"
           }
         },
@@ -155,7 +155,7 @@
         "content",
         "callout_DneFMw",
         "tab_zVe9q4",
-        "tab_7EMdDA",
+        "tab_AtiqnV",
         "tab_V7B6kn",
         "ladder_step_WFn87y"
       ],
