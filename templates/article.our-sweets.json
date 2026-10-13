@@ -64,14 +64,16 @@
           "settings": {
             "title": "{{ block.repeater.title.value }}",
             "badge": "{{ block.repeater.badge.value }}",
-            "description": "{{ block.repeater.description | metafield_tag }}",
+            "description": "<p>{{ block.repeater.description | metafield_tag }}</p>",
             "portion_guide_label": "{{ block.repeater.portion_guide_label.value }}",
-            "portion_guide": "{{ block.repeater.portion_guide_content | metafield_tag }}",
+            "portion_guide": "<p>{{ block.repeater.portion_guide_content | metafield_tag }}</p>",
             "watch_for_label": "{{ block.repeater.watch_for_label.value }}",
-            "watch_for": "{{ block.repeater.watch_for_content | metafield_tag }}",
+            "watch_for": "<p>{{ block.repeater.watch_for_content | metafield_tag }}</p>",
             "if_tolerated_label": "{{ block.repeater.if_tolerated_label.value }}",
-            "if_tolerated": "{{ block.repeater.if_tolerated_content | metafield_tag }}",
+            "if_tolerated": "<p>{{ block.repeater.if_tolerated_content | metafield_tag }}</p>",
             "image": "{{ block.repeater.image.value }}",
+            "open_by_default": true,
+            "show_note": true,
             "note_icon": "{{ block.repeater.note_icon.value }}",
             "note_text": "{{ block.repeater.note_text | metafield_tag }}"
           }
