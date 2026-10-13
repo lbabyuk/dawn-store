@@ -53,31 +53,34 @@
         },
         "tab_zVe9q4": {
           "type": "tab",
+          "source": "{{ article.metafields.custom.tab.value }}",
           "settings": {
-            "tab_label": "",
-            "heading": "",
-            "content": "",
-            "anchor_id": "",
-            "before_heading": "",
-            "before_intro": "",
-            "before_checklist": "",
-            "build_heading": "",
-            "build_intro": "",
-            "build_days_table": "",
-            "build_footer": "",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
+            "tab_label": "{{ article.metafields.custom.tab.value.tab_label.value }}",
+            "heading": "{{ article.metafields.custom.tab.value.build_up_heading.value }}",
+            "content": "{{ article.metafields.custom.tab.value.content | metafield_tag }}",
+            "anchor_id": "{{ article.metafields.custom.tab.value.before_heading.value }}",
+            "before_heading": "{{ article.metafields.custom.tab.value.heading.value }}",
+            "before_intro": "{{ article.metafields.custom.tab.value.before_intro | metafield_tag }}",
+            "before_checklist": "{{ article.metafields.custom.tab.value.before_checklist | metafield_tag }}",
+            "build_intro": "{{ article.metafields.custom.tab.value.build_up_intro | metafield_tag }}",
+            "build_footer": "{{ article.metafields.custom.tab.value.build_up_footer | metafield_tag }}",
+            "reaction_text": "<p>{{ article.metafields.custom.tab.value.days_table | metafield_tag }}</p>"
+          }
+        },
+        "tab_bFN4Ch": {
+          "type": "tab",
+          "source": "{{ article.metafields.custom.tab_table.value }}",
+          "settings": {
+            "tab_label": "{{ article.metafields.custom.tab_table.value.tab_label.value }}",
+            "heading": "{{ article.metafields.custom.tab_table.value.build_up_heading.value }}",
+            "content": "{{ article.metafields.custom.tab_table.value.content | metafield_tag }}",
+            "anchor_id": "{{ article.metafields.custom.tab_table.value.before_heading.value }}",
+            "before_heading": "{{ article.metafields.custom.tab_table.value.heading.value }}",
+            "before_intro": "{{ article.metafields.custom.tab_table.value.before_intro | metafield_tag }}",
+            "before_checklist": "{{ article.metafields.custom.tab_table.value.before_checklist | metafield_tag }}",
+            "build_intro": "{{ article.metafields.custom.tab_table.value.build_up_intro | metafield_tag }}",
+            "build_footer": "{{ article.metafields.custom.tab_table.value.build_up_footer | metafield_tag }}",
+            "reaction_text": "{{ article.metafields.custom.tab_table.value.days_table | metafield_tag }}"
           }
         },
         "ladder_step_WFn87y": {
@@ -109,6 +112,7 @@
         "content",
         "callout_DneFMw",
         "tab_zVe9q4",
+        "tab_bFN4Ch",
         "ladder_step_WFn87y"
       ],
       "settings": {
