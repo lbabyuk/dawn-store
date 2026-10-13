@@ -92,41 +92,23 @@
             "before_heading": "{{ article.metafields.custom.tab_table.value.heading.value }}",
             "before_intro": "{{ article.metafields.custom.tab_table.value.before_intro | metafield_tag }}",
             "before_checklist": "{{ article.metafields.custom.tab_table.value.before_checklist | metafield_tag }}",
+            "build_heading": "",
             "build_intro": "{{ article.metafields.custom.tab_table.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "<p>Day | What to give<br/>Day 1 | Nil introduction<br/>Day 2 | What to give<br/>Day 3 | If tolerated without issue, increase to ½ biscuit<br/>Day 4 | Nil introduction<br/>Day 5 | If tolerated without issue, increase to 1 biscuit<br/>Day 6 | Nil introduction<br/>Day 7 | If tolerated without issue, increase to 2 biscuits<br/>Day 8 | Nil introduction<br/>Day 9 | NIf tolerated without issue, increase to 3 biscuits<br/>Day 10 | Nil introduction<br/>Day 11 | If tolerated without issue — progress to the next step once the top portion has been given 3 times and tolerated without issue</p>",
-            "build_footer": "{{ article.metafields.custom.tab_table.value.build_up_footer | metafield_tag }}"
-          }
-        },
-        "tab_Ybcmjn": {
-          "type": "tab",
-          "source": "{{ article.metafields.custom.tab_one.value }}",
-          "settings": {
-            "tab_label": "{{ article.metafields.custom.tab_one.value.tab_label.value }}",
-            "heading": "{{ article.metafields.custom.tab_one.value.build_up_heading.value }}",
-            "content": "{{ article.metafields.custom.tab_one.value.content | metafield_tag }}",
-            "anchor_id": "{{ article.metafields.custom.tab_one.value.before_heading.value }}",
-            "before_heading": "{{ article.metafields.custom.tab_one.value.heading.value }}",
-            "before_intro": "{{ article.metafields.custom.tab_one.value.before_intro | metafield_tag }}",
-            "before_checklist": "{{ article.metafields.custom.tab_one.value.before_checklist | metafield_tag }}",
-            "build_intro": "{{ article.metafields.custom.tab_one.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "{{ article.metafields.custom.tab_one.value.days_table | metafield_tag }}",
-            "build_footer": "{{ article.metafields.custom.tab_one.value.build_up_footer | metafield_tag }}"
-          }
-        },
-        "tab_CfjbQ9": {
-          "type": "tab",
-          "source": "{{ article.metafields.custom.tab_two.value }}",
-          "settings": {
-            "tab_label": "{{ article.metafields.custom.tab_two.value.tab_label.value }}",
-            "heading": "{{ article.metafields.custom.tab_two.value.build_up_heading.value }}",
-            "content": "{{ article.metafields.custom.tab_two.value.content | metafield_tag }}",
-            "anchor_id": "{{ article.metafields.custom.tab_two.value.before_heading.value }}",
-            "before_heading": "{{ article.metafields.custom.tab_two.value.heading.value }}",
-            "before_intro": "{{ article.metafields.custom.tab_two.value.before_intro | metafield_tag }}",
-            "before_checklist": "{{ article.metafields.custom.tab_two.value.before_checklist | metafield_tag }}",
-            "build_intro": "{{ article.metafields.custom.tab_two.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "{{ article.metafields.custom.tab_two.value.days_table | metafield_tag }}",
-            "build_footer": "{{ article.metafields.custom.tab_two.value.build_up_footer | metafield_tag }}"
+            "build_days_table": "Day | What to giveDay 1 | Nil introductionDay 2 | What to giveDay 3 | If tolerated without issue, increase to ½ biscuitDay 4 | Nil introductionDay 5 | If tolerated without issue, increase to 1 biscuitDay 6 | Nil introductionDay 7 | If tolerated without issue, increase to 2 biscuitsDay 8 | Nil introductionDay 9 | NIf tolerated without issue, increase to 3 biscuitsDay 10 | Nil introductionDay 11 | If tolerated without issue — progress to the next step once the top portion has been given 3 times and tolerated without issue",
+            "build_footer": "{{ article.metafields.custom.tab_table.value.build_up_footer | metafield_tag }}",
+            "reaction_heading": "",
+            "reaction_text": "",
+            "reaction_image_position": "right",
+            "expert_name": "",
+            "expert_role": "",
+            "expert_show_date": true,
+            "expert_date_format": "%b %d, %Y",
+            "tips_heading": "",
+            "tips_list": "",
+            "support_heading": "",
+            "support_text": "",
+            "support_image_position": "left",
+            "warning_text": ""
           }
         },
         "ladder_step_WFn87y": {
@@ -159,8 +141,6 @@
         "callout_DneFMw",
         "tab_zVe9q4",
         "tab_fWYQQp",
-        "tab_Ybcmjn",
-        "tab_CfjbQ9",
         "ladder_step_WFn87y"
       ],
       "settings": {
