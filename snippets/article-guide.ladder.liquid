@@ -1,0 +1,202 @@
+{% comment %}
+  Milk Ladder accordion for the Article guide section.
+  Uses section-level ladder_step blocks.
+  Optional note per step via show_note + note fields.
+
+  Accepts:
+  - ladder_heading: heading for ladder intro
+  - ladder_disclaimer: disclaimer richtext
+{% endcomment %}
+
+{%- liquid
+  if ladder_heading == blank
+    assign ladder_heading = ''
+  endif
+  if ladder_disclaimer == blank
+    assign ladder_disclaimer = ''
+  endif
+  assign step_count = 0
+  for block in section.blocks
+    if block.type == 'ladder_step'
+      assign step_count = step_count | plus: 1
+    endif
+  endfor
+  assign ladder_anchor = section.settings.sticky_cta_anchor | handleize
+-%}
+
+{%- if step_count > 0 or ladder_heading != blank or ladder_disclaimer != blank -%}
+  <div
+    class="guide-ladder"
+    data-guide-ladder
+    {% if ladder_heading == blank and ladder_anchor != blank %}id="{{ ladder_anchor }}"{% endif %}
+  >
+    {%- if ladder_heading != blank or ladder_disclaimer != blank -%}
+      <div class="guide-ladder__intro">
+        {%- if ladder_heading != blank -%}
+          <h2
+            class="guide-ladder__title _richtext-md text-32-alt"
+            {% if ladder_anchor != blank %}id="{{ ladder_anchor }}"{% endif %}
+          >{{ ladder_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if ladder_disclaimer != blank -%}
+          <div class="guide-ladder__disclaimer _input-richtext text-14/12">{{ ladder_disclaimer }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if step_count > 0 -%}
+      <div class="guide-ladder__list">
+        {%- assign step_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'ladder_step' -%}
+            {%- assign step_index = step_index | plus: 1 -%}
+            {%- liquid
+              assign step_title = block.settings.title
+              assign step_badge = block.settings.badge
+              assign step_description = block.settings.description
+              assign step_portion = block.settings.portion_guide
+              assign step_portion_label = block.settings.portion_guide_label
+              assign step_watch = block.settings.watch_for
+              assign step_watch_label = block.settings.watch_for_label
+              assign step_tolerated = block.settings.if_tolerated
+              assign step_tolerated_label = block.settings.if_tolerated_label
+              assign step_image = block.settings.image
+              assign step_open = block.settings.open_by_default
+              assign show_note = block.settings.show_note
+              assign note_text = block.settings.note_text
+              assign note_icon = block.settings.note_icon
+              if step_title == blank
+                assign step_title = 'Step ' | append: step_index
+              endif
+            -%}
+            <div class="guide-ladder__item-wrap">
+              <details
+                class="guide-ladder__item"
+                data-guide-ladder-item
+                {% if step_open %}open{% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <summary class="guide-ladder__summary">
+                  <span class="guide-ladder__num _richtext-md text-32-alt" aria-hidden="true">{{ step_index }}</span>
+                  <h2 class="guide-ladder__item-title _richtext-md text-32-alt">{{ step_title | escape }}</h2>
+                  {%- if step_badge != blank -%}
+                    <span class="guide-ladder__badge guide-ladder__badge--header _input-richtext text-14/12">{{ step_badge | escape }}</span>
+                  {%- endif -%}
+                  <span class="guide-ladder__icon" aria-hidden="true">
+                    <svg
+                      class="guide-ladder__icon-open"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      focusable="false"
+                    >
+                      <path
+                        d="M23.814 12.0797L25 16.5031L19.0282 18.1384L20.1518 25.3082L15.6573 26L14.6377 19.2914L9.18605 20.8008L8 16.3774L13.9718 14.7421L12.765 6.67086L17.1971 6L18.3415 13.5472L23.814 12.0797Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    <svg
+                      class="guide-ladder__icon-close"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      focusable="false"
+                    >
+                      <path d="M7 13H26V19H7V13Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                </summary>
+
+                <div class="guide-ladder__panel">
+                  <div class="guide-ladder__main">
+                    <div class="guide-ladder__copy">
+                      {%- if step_description != blank -%}
+                        <div class="guide-ladder__desc _input-richtext text-14/12">{{ step_description }}</div>
+                      {%- endif -%}
+
+                      {%- liquid
+                        assign has_meta = false
+                        if step_portion != blank or step_watch != blank or step_tolerated != blank
+                          assign has_meta = true
+                        endif
+                      -%}
+
+                      {%- if step_description != blank and has_meta -%}
+                        <hr class="guide-ladder__separator" aria-hidden="true">
+                      {%- endif -%}
+
+                      {%- if has_meta -%}
+                        <div class="guide-ladder__meta">
+                          {%- if step_portion != blank -%}
+                            <div class="guide-ladder__meta-item">
+                              <h5 class="guide-ladder__meta-label _richtext-md text-20-bold">{{ step_portion_label | escape }}</h5>
+                              <div class="guide-ladder__meta-text _input-richtext text-14/12">{{ step_portion }}</div>
+                            </div>
+                          {%- endif -%}
+                          {%- if step_watch != blank -%}
+                            <div class="guide-ladder__meta-item">
+                              <h5 class="guide-ladder__meta-label _richtext-md text-20-bold">{{ step_watch_label | escape }}</h5>
+                              <div class="guide-ladder__meta-text _input-richtext text-14/12">{{ step_watch }}</div>
+                            </div>
+                          {%- endif -%}
+                          {%- if step_tolerated != blank -%}
+                            <div class="guide-ladder__meta-item">
+                              <h5 class="guide-ladder__meta-label _richtext-md text-20-bold">{{ step_tolerated_label | escape }}</h5>
+                              <div class="guide-ladder__meta-text _input-richtext text-14/12">{{ step_tolerated }}</div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+
+                    {%- if step_image != blank -%}
+                      <div class="guide-ladder__media">
+                        {{
+                          step_image
+                          | image_url: width: 480
+                          | image_tag:
+                            class: 'guide-ladder__image',
+                            loading: 'lazy',
+                            widths: '160, 240, 320, 480',
+                            sizes: '(max-width: 1023px) 120px, 180px',
+                            alt: step_title
+                        }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                  {%- if step_badge != blank -%}
+                    <span class="guide-ladder__badge guide-ladder__badge--body _input-richtext text-14/12">{{ step_badge | escape }}</span>
+                  {%- endif -%}
+                </div>
+              </details>
+
+              {%- if show_note and note_text != blank -%}
+                <div class="guide-ladder__note">
+                  {%- if note_icon != blank -%}
+                    <span class="guide-ladder__note-icon " aria-hidden="true">
+                      {{
+                        note_icon
+                        | image_url: width: 56
+                        | image_tag:
+                          class: 'guide-ladder__note-icon-img',
+                          loading: 'lazy',
+                          widths: '28, 42, 56',
+                          alt: note_icon.alt
+                      }}
+                    </span>
+                  {%- endif -%}
+                  <div class="guide-ladder__note-text _input-richtext text-14/12">{{ note_text }}</div>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
