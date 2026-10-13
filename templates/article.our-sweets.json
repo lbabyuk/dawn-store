@@ -43,10 +43,12 @@
         },
         "callout_DneFMw": {
           "type": "callout",
+          "source": "{{ article.metafields.custom.cellout.value }}",
           "settings": {
-            "insert_after_paragraph": "2",
-            "summary_text": "<p>I</p>",
-            "text": ""
+            "insert_after_paragraph": "{{ article.metafields.custom.cellout.value.insert_after_paragraph.value }}",
+            "icon": "{{ article.metafields.custom.cellout.value.warning_icon.value }}",
+            "summary_text": "{{ article.metafields.custom.cellout.value.header_text | metafield_tag }}",
+            "text": "{{ article.metafields.custom.cellout.value.content | metafield_tag }}"
           }
         }
       },
