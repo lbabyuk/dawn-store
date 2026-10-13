@@ -375,9 +375,11 @@
     {%- endif -%}
      <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
   {%- sections 'smi-group' -%}
+  <script>
   document.addEventListener('rebuy.loaded', function(event){
   window.Rebuy.shop.shopify_selling_plans_enabled = true;
 });
+</script>
 
 </body>
 </html>
