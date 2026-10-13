@@ -81,7 +81,7 @@
             "warning_text": ""
           }
         },
-        "tab_AtiqnV": {
+        "tab_fWYQQp": {
           "type": "tab",
           "source": "{{ article.metafields.custom.tab_table.value }}",
           "settings": {
@@ -93,37 +93,8 @@
             "before_intro": "{{ article.metafields.custom.tab_table.value.before_intro | metafield_tag }}",
             "before_checklist": "{{ article.metafields.custom.tab_table.value.before_checklist | metafield_tag }}",
             "build_intro": "{{ article.metafields.custom.tab_table.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "{{ article.metafields.custom.tab_table.value.days_table | metafield_tag }}",
+            "build_days_table": "<p>Day | What to give<br/>Day 1 | Nil introduction<br/>Day 2 | What to give<br/>Day 3 | If tolerated without issue, increase to ½ biscuit<br/>Day 4 | Nil introduction<br/>Day 5 | If tolerated without issue, increase to 1 biscuit<br/>Day 6 | Nil introduction<br/>Day 7 | If tolerated without issue, increase to 2 biscuits<br/>Day 8 | Nil introduction<br/>Day 9 | NIf tolerated without issue, increase to 3 biscuits<br/>Day 10 | Nil introduction<br/>Day 11 | If tolerated without issue — progress to the next step once the top portion has been given 3 times and tolerated without issue</p>",
             "build_footer": "{{ article.metafields.custom.tab_table.value.build_up_footer | metafield_tag }}"
-          }
-        },
-        "tab_V7B6kn": {
-          "type": "tab",
-          "settings": {
-            "tab_label": "Milk Ladder Guide",
-            "heading": "Headline example",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
-            "anchor_id": "",
-            "before_heading": "",
-            "before_intro": "",
-            "before_checklist": "",
-            "build_heading": "",
-            "build_intro": "",
-            "build_days_table": "<p>Day | What to give<br/>Day 1 | Nil introduction<br/>Day 2 | What to give<br/>Day 3 | If tolerated without issue, increase to ½ biscuit<br/>Day 4 | Nil introduction<br/>Day 5 | If tolerated without issue, increase to 1 biscuit<br/>Day 6 | Nil introduction<br/>Day 7 &nbsp;| If tolerated without issue, increase to 2 biscuits<br/>Day 8 | Nil introduction<br/>Day 9 &nbsp;| NIf tolerated without issue, increase to 3 biscuits<br/>Day 10 | Nil introduction<br/>Day 11 | If tolerated without issue — progress to the next step once the top portion has been given 3 times and tolerated without issue</p>",
-            "build_footer": "",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
           }
         },
         "ladder_step_WFn87y": {
@@ -155,8 +126,7 @@
         "content",
         "callout_DneFMw",
         "tab_zVe9q4",
-        "tab_AtiqnV",
-        "tab_V7B6kn",
+        "tab_fWYQQp",
         "ladder_step_WFn87y"
       ],
       "settings": {
