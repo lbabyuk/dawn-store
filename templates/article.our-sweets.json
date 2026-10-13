@@ -76,6 +76,23 @@
             "note_icon": "shopify://shop_images/green-checkmark-icon.png",
             "note_text": "<p>Add an important note for parents here.</p>"
           }
+        },
+        "ladder_step_yRAjVL": {
+          "type": "ladder_step",
+          "settings": {
+            "title": "cookie/Biscuits",
+            "badge": "Well-baked milk",
+            "description": "<p>Start with 1 and build up to 3. See the Little Monkey Nutrition recipe.</p>",
+            "portion_guide_label": "Portion guide",
+            "portion_guide": "<p>Start with ½, build up by double every 24–48 hours to 1</p>",
+            "watch_for_label": "Watch for",
+            "watch_for": "<p>Tummy, skin or breathing symptoms</p>",
+            "if_tolerated_label": "If tolerated",
+            "if_tolerated": "<p>Top portion given 3 times and tolerated, then move to Step 2</p>",
+            "open_by_default": false,
+            "show_note": false,
+            "note_text": "<p>Add an important note for parents here.</p>"
+          }
         }
       },
       "block_order": [
@@ -86,7 +103,8 @@
         "content",
         "callout_DneFMw",
         "ladder_Rw9YXD",
-        "ladder_step_WFn87y"
+        "ladder_step_WFn87y",
+        "ladder_step_yRAjVL"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
