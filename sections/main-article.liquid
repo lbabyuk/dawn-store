@@ -339,7 +339,7 @@
               {%- liquid
                 assign callout_summary = block.settings.summary_text
                 assign callout_body = block.settings.text
-                assign callout_insert_after = block.settings.insert_after_paragraph | default: 2
+                assign callout_insert_after = block.settings.insert_after_paragraph | default: 2 | plus: 0
                 if callout_insert_after < 1
                   assign callout_insert_after = 2
                 endif
@@ -1304,12 +1304,12 @@
           "type": "header",
           "content": "Placement"
         },
-        {
-          "type": "number",
+         {
+          "type": "text",
           "id": "insert_after_paragraph",
           "label": "Insert after paragraph",
-          "default": 2,
-          "info": "Callout is inserted after this paragraph number in the article body (1 = first paragraph)."
+          "default": "2",
+          "info": "Callout is inserted after this paragraph number in the article body (1 = first paragraph). Connect a metafield via dynamic source if needed."
         },
         {
           "type": "header",
