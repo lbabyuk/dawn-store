@@ -72,10 +72,10 @@
             "if_tolerated_label": "{{ block.repeater.if_tolerated_label.value }}",
             "if_tolerated": "<p>{{ block.repeater.if_tolerated_content | metafield_tag }}</p>",
             "image": "{{ block.repeater.image.value }}",
-            "open_by_default": true,
-            "show_note": true,
+            "open_by_default": "",
+            "show_note": "",
             "note_icon": "{{ block.repeater.note_icon.value }}",
-            "note_text": "{{ block.repeater.note_text | metafield_tag }}"
+            "note_text": "<p>{{ block.repeater.note_text | metafield_tag }}</p>"
           }
         },
         "ladder_step_yRAjVL": {
@@ -90,8 +90,8 @@
             "watch_for": "<p>Tummy, skin or breathing symptoms</p>",
             "if_tolerated_label": "If tolerated",
             "if_tolerated": "<p>Top portion given 3 times and tolerated, then move to Step 2</p>",
-            "open_by_default": false,
-            "show_note": false,
+            "open_by_default": "",
+            "show_note": "",
             "note_text": "<p>Add an important note for parents here.</p>"
           }
         }
