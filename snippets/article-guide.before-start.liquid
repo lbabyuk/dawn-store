@@ -24,7 +24,10 @@
     assign expert_name = block.settings.expert_name
     assign expert_role = block.settings.expert_role
     assign expert_verified = block.settings.expert_verified
-    assign expert_show_date = block.settings.expert_show_date
+    assign expert_show_date = false
+    if block.settings.expert_show_date == true or block.settings.expert_show_date == 'true'
+      assign expert_show_date = true
+    endif
     assign expert_date_format = block.settings.expert_date_format | default: '%b %d, %Y'
 
     assign tips_heading = block.settings.tips_heading
@@ -104,6 +107,7 @@
                   {{ build_days }}
                 {%- else -%}
                   {%- liquid
+                    assign build_days = build_days | replace: '<div class="metafield-rich_text_field">', '' | replace: '</div>', '' | replace: '<span class="metafield-multi_line_text_field">', '' | replace: '</span>', '' | replace: '</p><p>', '<br />' | replace: '<p>', '' | replace: '</p>', ''
                     assign days_rows = build_days | newline_to_br | replace: '<br/>', '<br />' | replace: '<br>', '<br />' | split: '<br />'
                     assign days_header_done = false
                     assign days_thead = ''
@@ -118,7 +122,7 @@
                           <thead>
                             <tr>
                               {%- for c in cells -%}
-                                <th>{{ c | strip | escape }}</th>
+                                <th>{{ c | strip_html | strip | escape }}</th>
                               {%- endfor -%}
                             </tr>
                           </thead>
@@ -129,7 +133,7 @@
                           {{ days_tbody }}
                           <tr>
                             {%- for c in cells -%}
-                              <td>{{ c | strip | escape }}</td>
+                              <td>{{ c | strip_html | strip | escape }}</td>
                             {%- endfor -%}
                           </tr>
                         {%- endcapture -%}
