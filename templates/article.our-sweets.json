@@ -51,6 +51,22 @@
             "text": "{{ article.metafields.custom.cellout.value.content | metafield_tag }}"
           }
         },
+        "tab_B9VinF": {
+          "type": "tab",
+          "source": "{{ article.metafields.custom.tab_3.value }}",
+          "settings": {
+            "tab_label": "{{ article.metafields.custom.tab_3.value.tab_label.value }}",
+            "heading": "{{ article.metafields.custom.tab_3.value.build_up_heading.value }}",
+            "content": "{{ article.metafields.custom.tab_3.value.content | metafield_tag }}",
+            "anchor_id": "{{ article.metafields.custom.tab_3.value.before_heading.value }}",
+            "before_heading": "{{ article.metafields.custom.tab_3.value.heading.value }}",
+            "before_intro": "{{ article.metafields.custom.tab_3.value.before_intro | metafield_tag }}",
+            "before_checklist": "{{ article.metafields.custom.tab_3.value.before_checklist | metafield_tag }}",
+            "build_intro": "{{ article.metafields.custom.tab_3.value.build_up_intro | metafield_tag }}",
+            "build_days_table": "{{ article.metafields.custom.tab_3.value.days_table | metafield_tag }}",
+            "build_footer": "{{ article.metafields.custom.tab_3.value.build_up_footer | metafield_tag }}"
+          }
+        },
         "tab_yJcYyN": {
           "type": "tab",
           "settings": {
@@ -63,7 +79,7 @@
             "before_checklist": "",
             "build_heading": "",
             "build_intro": "",
-            "build_days_table": "",
+            "build_days_table": "<p>Day | What to give<br/>Day 1 | Nil introduction<br/>Day 2 | What to give<br/>Day 3 | If tolerated without issue, increase to ½ biscuit<br/>Day 4 | Nil introduction<br/>Day 5 | If tolerated without issue, increase to 1 biscuit<br/>Day 6 | Nil introduction<br/>Day 7 &nbsp;| If tolerated without issue, increase to 2 biscuits<br/>Day 8 | Nil introduction<br/>Day 9 &nbsp;| NIf tolerated without issue, increase to 3 biscuits<br/>Day 10 | Nil introduction<br/>Day 11 | If tolerated without issue — progress to the next step once the top portion has been given 3 times and tolerated without issue</p>",
             "build_footer": "",
             "reaction_heading": "",
             "reaction_text": "",
@@ -108,6 +124,7 @@
         "share",
         "content",
         "callout_DneFMw",
+        "tab_B9VinF",
         "tab_yJcYyN",
         "ladder_step_WFn87y"
       ],
