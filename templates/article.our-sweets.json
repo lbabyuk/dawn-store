@@ -51,6 +51,35 @@
             "text": "{{ article.metafields.custom.cellout.value.content | metafield_tag }}"
           }
         },
+        "tab_ALpRHr": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Milk Ladder Guide",
+            "heading": "Headline example",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+            "anchor_id": "",
+            "before_heading": "",
+            "before_intro": "",
+            "before_checklist": "",
+            "build_heading": "",
+            "build_intro": "",
+            "build_days_table": "",
+            "build_footer": "",
+            "reaction_heading": "",
+            "reaction_text": "",
+            "reaction_image_position": "right",
+            "expert_name": "",
+            "expert_role": "",
+            "expert_show_date": true,
+            "expert_date_format": "%b %d, %Y",
+            "tips_heading": "",
+            "tips_list": "",
+            "support_heading": "",
+            "support_text": "",
+            "support_image_position": "left",
+            "warning_text": ""
+          }
+        },
         "ladder_Rw9YXD": {
           "type": "ladder",
           "settings": {
@@ -60,19 +89,22 @@
         },
         "ladder_step_WFn87y": {
           "type": "ladder_step",
+          "repeater": "{{ article.metafields.custom.ladder_steps.value }}",
           "settings": {
-            "title": "",
-            "badge": "",
-            "description": "",
-            "portion_guide_label": "",
-            "portion_guide": "",
-            "watch_for_label": "",
-            "watch_for": "",
-            "if_tolerated_label": "",
-            "if_tolerated": "",
-            "open_by_default": "",
-            "show_note": "",
-            "note_text": ""
+            "title": "{{ block.repeater.title.value }}",
+            "badge": "{{ block.repeater.badge.value }}",
+            "description": "<p>{{ block.repeater.description | metafield_tag }}</p>",
+            "portion_guide_label": "{{ block.repeater.portion_guide_label.value }}",
+            "portion_guide": "<p>{{ block.repeater.portion_guide_content | metafield_tag }}</p>",
+            "watch_for_label": "{{ block.repeater.watch_for_label.value }}",
+            "watch_for": "<p>{{ block.repeater.watch_for_content | metafield_tag }}</p>",
+            "if_tolerated_label": "{{ block.repeater.if_tolerated_label.value }}",
+            "if_tolerated": "<p>{{ block.repeater.if_tolerated_content | metafield_tag }}</p>",
+            "image": "{{ block.repeater.image.value }}",
+            "open_by_default": "{{ block.repeater.open_by_default.value }}",
+            "show_note": "{{ block.repeater.show_note.value }}",
+            "note_icon": "{{ block.repeater.note_icon.value }}",
+            "note_text": "{{ block.repeater.note_text | metafield_tag }}"
           }
         }
       },
@@ -83,6 +115,7 @@
         "share",
         "content",
         "callout_DneFMw",
+        "tab_ALpRHr",
         "ladder_Rw9YXD",
         "ladder_step_WFn87y"
       ],
