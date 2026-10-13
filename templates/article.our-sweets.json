@@ -43,12 +43,9 @@
         },
         "callout_g4fkfD": {
           "type": "callout",
-          "source": "{{ article.metafields.custom.cellout.value }}",
           "settings": {
-            "insert_after_paragraph": 2,
-            "icon": "{{ article.metafields.custom.cellout.value.warning_icon.value }}",
-            "summary_text": "{{ article.metafields.custom.cellout.value.header_text | metafield_tag }}",
-            "text": "<p>{{ article.metafields.custom.cellout.value.blog_post_name.value }}</p>"
+            "summary_text": "",
+            "text": ""
           }
         }
       },
