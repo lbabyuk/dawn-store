@@ -50,6 +50,32 @@
             "summary_text": "{{ article.metafields.custom.cellout.value.header_text | metafield_tag }}",
             "text": "{{ article.metafields.custom.cellout.value.content | metafield_tag }}"
           }
+        },
+        "ladder_Rw9YXD": {
+          "type": "ladder",
+          "settings": {
+            "heading": "Milk Ladder Guide",
+            "content": "<p>To be used only in children with mild to moderate Non-IgE Cow’s Milk Allergy, under the supervision of a healthcare professional.</p>"
+          }
+        },
+        "ladder_step_WFn87y": {
+          "type": "ladder_step",
+          "settings": {
+            "title": "cookie/Biscuit",
+            "badge": "Well-baked milk",
+            "description": "<p>Start with 1 and build up to 3. See the Little Monkey Nutrition recipe.</p>",
+            "portion_guide_label": "Portion guide",
+            "portion_guide": "<p>Start with ½, build up by double every 24–48 hours to 1</p>",
+            "watch_for_label": "Watch for",
+            "watch_for": "<p>Tummy, skin or breathing symptoms</p>",
+            "if_tolerated_label": "If tolerated",
+            "if_tolerated": "<p>Top portion given 3 times and tolerated, then move to Step 2</p>",
+            "image": "shopify://shop_images/66fe5bded9f2ef30d67b24ad_optimized_1017_e1076x960-31x0.webp",
+            "open_by_default": false,
+            "show_note": true,
+            "note_icon": "shopify://shop_images/green-checkmark-icon.png",
+            "note_text": "<p>Add an important note for parents here.</p>"
+          }
         }
       },
       "block_order": [
@@ -58,7 +84,9 @@
         "title",
         "share",
         "content",
-        "callout_DneFMw"
+        "callout_DneFMw",
+        "ladder_Rw9YXD",
+        "ladder_step_WFn87y"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
