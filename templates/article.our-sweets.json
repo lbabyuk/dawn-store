@@ -45,6 +45,7 @@
           "type": "callout",
           "settings": {
             "insert_after_paragraph": 3,
+            "icon": "shopify://shop_images/leaf-icon_72873200-1dae-4d97-92f2-5866228e393e.png",
             "summary_text": "<p>If you are not sure if your little one falls into any of these categories, please double check with your HCP</p>",
             "text": "<p>Before we start, it is important to highlight who the milk ladder is NOT suitable for:</p><ul><li>Little ones with immediate CMPA (IgE mediated allergies)</li><li>Severe forms of delayed CMPA such as FPIES (food protein include enterocolitis syndrome) or eosinophilic gastrointestinal food allergies.</li></ul><p>If you are not sure if your little one falls into any of these categories, please double check with your HCP</p>"
           }
