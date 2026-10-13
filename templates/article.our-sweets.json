@@ -60,39 +60,19 @@
         },
         "ladder_step_WFn87y": {
           "type": "ladder_step",
-          "repeater": "{{ article.metafields.custom.ladder_steps.value }}",
           "settings": {
-            "title": "{{ block.repeater.title.value }}",
-            "badge": "{{ block.repeater.badge.value }}",
-            "description": "<p>{{ block.repeater.description | metafield_tag }}</p>",
-            "portion_guide_label": "{{ block.repeater.portion_guide_label.value }}",
-            "portion_guide": "<p>{{ block.repeater.portion_guide_content | metafield_tag }}</p>",
-            "watch_for_label": "{{ block.repeater.watch_for_label.value }}",
-            "watch_for": "<p>{{ block.repeater.watch_for_content | metafield_tag }}</p>",
-            "if_tolerated_label": "{{ block.repeater.if_tolerated_label.value }}",
-            "if_tolerated": "<p>{{ block.repeater.if_tolerated_content | metafield_tag }}</p>",
-            "image": "{{ block.repeater.image.value }}",
+            "title": "",
+            "badge": "",
+            "description": "",
+            "portion_guide_label": "",
+            "portion_guide": "",
+            "watch_for_label": "",
+            "watch_for": "",
+            "if_tolerated_label": "",
+            "if_tolerated": "",
             "open_by_default": "",
             "show_note": "",
-            "note_icon": "{{ block.repeater.note_icon.value }}",
-            "note_text": "<p>{{ block.repeater.note_text | metafield_tag }}</p>"
-          }
-        },
-        "ladder_step_yRAjVL": {
-          "type": "ladder_step",
-          "settings": {
-            "title": "cookie/Biscuits",
-            "badge": "Well-baked milk",
-            "description": "<p>Start with 1 and build up to 3. See the Little Monkey Nutrition recipe.</p>",
-            "portion_guide_label": "Portion guide",
-            "portion_guide": "<p>Start with ½, build up by double every 24–48 hours to 1</p>",
-            "watch_for_label": "Watch for",
-            "watch_for": "<p>Tummy, skin or breathing symptoms</p>",
-            "if_tolerated_label": "If tolerated",
-            "if_tolerated": "<p>Top portion given 3 times and tolerated, then move to Step 2</p>",
-            "open_by_default": "",
-            "show_note": "",
-            "note_text": "<p>Add an important note for parents here.</p>"
+            "note_text": ""
           }
         }
       },
@@ -104,8 +84,7 @@
         "content",
         "callout_DneFMw",
         "ladder_Rw9YXD",
-        "ladder_step_WFn87y",
-        "ladder_step_yRAjVL"
+        "ladder_step_WFn87y"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
