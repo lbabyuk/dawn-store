@@ -61,8 +61,14 @@
               assign step_tolerated = block.settings.if_tolerated
               assign step_tolerated_label = block.settings.if_tolerated_label
               assign step_image = block.settings.image
-              assign step_open = block.settings.open_by_default
-              assign show_note = block.settings.show_note
+              assign step_open = false
+              if block.settings.open_by_default == true or block.settings.open_by_default == 'true'
+                assign step_open = true
+              endif
+              assign show_note = false
+              if block.settings.show_note == true or block.settings.show_note == 'true'
+                assign show_note = true
+              endif
               assign note_text = block.settings.note_text
               assign note_icon = block.settings.note_icon
               if step_title == blank
