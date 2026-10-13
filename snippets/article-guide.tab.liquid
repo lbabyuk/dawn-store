@@ -1,0 +1,69 @@
+{% comment %}
+  Renders a single guide tab button or panel from block settings.
+
+  Accepts:
+  - block: section block (type tab)
+  - part: 'button' | 'panel'
+  - first_tab_id: id of the first tab block (for default active)
+
+  Each tab owns its own before-start content fields.
+{% endcomment %}
+
+{%- liquid
+  assign tab_label = block.settings.tab_label
+  assign tab_heading = block.settings.heading
+  assign tab_content = block.settings.content
+  assign tab_anchor = block.settings.anchor_id | strip
+  assign is_first = false
+
+  if block.id == first_tab_id
+    assign is_first = true
+  endif
+
+  if tab_label == blank
+    assign tab_label = 'Tab'
+  endif
+
+  if tab_anchor == blank
+    assign tab_anchor = tab_label | handleize
+  endif
+
+  if tab_anchor == blank
+    assign tab_anchor = block.id | prepend: 'guide-panel-'
+  endif
+-%}
+
+{%- if part == 'button' -%}
+  <button
+    type="button"
+    role="tab"
+    id="guide-tab-{{ block.id }}"
+    class="guide-tabs__tab{% if is_first %} is-active{% endif %}"
+    data-tab-id="{{ block.id }}"
+    aria-selected="{% if is_first %}true{% else %}false{% endif %}"
+    tabindex="{% if is_first %}0{% else %}-1{% endif %}"
+    aria-controls="{{ tab_anchor | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    {{ tab_label | escape }}
+  </button>
+{%- elsif part == 'panel' -%}
+  <div
+    class="guide-tabs__panel"
+    role="tabpanel"
+    id="{{ tab_anchor | escape }}"
+    data-tab-id="{{ block.id }}"
+    data-anchor="{{ tab_anchor | escape }}"
+    aria-labelledby="guide-tab-{{ block.id }}"
+    {% unless is_first %}hidden{% endunless %}
+  >
+    {%- if tab_heading != blank -%}
+      <h2 class="guide-tabs__heading _richtext-md text-32-alt">{{ tab_heading | escape }}</h2>
+    {%- endif -%}
+    {%- if tab_content != blank -%}
+      <div class="guide-tabs__body  _input-richtext text-14/12">{{ tab_content }}</div>
+    {%- endif -%}
+
+    {% render 'article-guide.before-start', block: block %}
+  </div>
+{%- endif -%}

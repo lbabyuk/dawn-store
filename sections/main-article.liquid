@@ -1,119 +1,431 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'section-article-guide.css' | asset_url | stylesheet_tag }}
+{{ 'section-guide-tabs.css' | asset_url | stylesheet_tag }}
+{{ 'section-guide-ladder.css' | asset_url | stylesheet_tag }}
+{{ 'section-guide-before-start.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-guide-callout-accordion.js' | asset_url }}" defer></script>
+<script src="{{ 'guide-tabs.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign padding_horizontal = section.settings.padding_horizontal | default: 36
+  assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile | default: 16
+  assign callout_radius = section.settings.callout_radius | default: 12
+  assign callout_text_size = section.settings.callout_text_size | default: 16
+  assign callout_text_size_mobile = section.settings.callout_text_size_mobile | default: 16
+  assign color_callout_bg = section.settings.color_callout_bg | default: '#FFE0E0'
+  assign color_callout_text = section.settings.color_callout_text | default: '#2A2E15'
+  assign color_link = section.settings.color_link | default: '#1A1A1A'
+  assign color_bg = section.settings.color_background | default: '#FFFFFF'
+  assign color_heading = section.settings.color_heading | default: '#1A1A1A'
+  assign color_text = section.settings.color_text | default: '#333333'
+  assign color_text_muted = section.settings.color_text_muted | default: '#666666'
+  assign color_divider = section.settings.color_divider | default: '#CCCCCC'
+  assign color_tab = section.settings.color_tab | default: '#2A2E15'
+  assign color_tab_active = section.settings.color_tab_active | default: '#94A857'
+  assign color_tab_border = section.settings.color_tab_border | default: '#E5E5E5'
+  assign color_tab_border_active = section.settings.color_tab_border_active | default: '#94A857'
+  assign color_tab_heading = section.settings.color_tab_heading | default: '#2E2A22'
+  assign color_tab_text = section.settings.color_tab_text | default: '#2A2E15'
+  assign tab_heading_size = section.settings.tab_heading_size | default: 48
+  assign tab_heading_size_mobile = section.settings.tab_heading_size_mobile | default: 32
+  assign tab_body_size = section.settings.tab_body_size | default: 15
+  assign tab_body_size_mobile = section.settings.tab_body_size_mobile | default: 15
+  assign tab_size = section.settings.tab_size | default: 15
+  assign tab_size_mobile = section.settings.tab_size_mobile | default: 14
+  assign author_avatar_border_color = section.settings.author_avatar_border_color | default: '#F5C518'
+  assign author_avatar_border_width = section.settings.author_avatar_border_width | default: 2
+  assign author_name_color = section.settings.author_name_color | default: '#2E2A22'
+  assign author_role_color = section.settings.author_role_color | default: '#5B5646'
+  assign author_meta_color = section.settings.author_meta_color | default: '#4F5D45'
+  assign author_meta_size = section.settings.author_meta_size | default: 15
+  assign author_meta_size_mobile = section.settings.author_meta_size_mobile | default: 12
+  assign before_card_bg = section.settings.before_card_bg | default: '#FBF2E1'
+  assign before_card_border = section.settings.before_card_border | default: '#E7D9C0'
+  assign before_checklist_border = section.settings.before_checklist_border | default: '#E7D9C0'
+  assign before_days_head_bg = section.settings.before_days_head_bg | default: '#FFF0A0'
+  assign before_days_border = section.settings.before_days_border | default: '#D3C4A9'
+  assign before_days_label_color = section.settings.before_days_label_color | default: '#222222'
+  assign before_days_text_color = section.settings.before_days_text_color | default: '#222222'
+  assign before_days_label_size = section.settings.before_days_label_size | default: 20
+  assign before_days_label_size_mobile = section.settings.before_days_label_size_mobile | default: 20
+  assign before_days_text_size = section.settings.before_days_text_size | default: 15
+  assign before_days_text_size_mobile = section.settings.before_days_text_size_mobile | default: 15
+  assign before_warning_bg = section.settings.before_warning_bg | default: '#FFF0A0'
+  assign ladder_heading_color = section.settings.ladder_heading_color | default: '#2E2A22'
+  assign ladder_text_color = section.settings.ladder_text_color | default: '#2A2E15'
+  assign ladder_link_color = section.settings.ladder_link_color | default: '#1A1A1A'
+  assign ladder_desc_color = section.settings.ladder_desc_color | default: '#5B5646'
+  assign ladder_heading_size = section.settings.ladder_heading_size | default: 48
+  assign ladder_heading_size_mobile = section.settings.ladder_heading_size_mobile | default: 32
+  assign ladder_body_size = section.settings.ladder_body_size | default: 15
+  assign ladder_body_size_mobile = section.settings.ladder_body_size_mobile | default: 15
+  assign ladder_item_bg = section.settings.ladder_item_bg | default: '#FBF2E1'
+  assign ladder_num_bg = section.settings.ladder_num_bg | default: '#94A857'
+  assign ladder_num_text = section.settings.ladder_num_text | default: '#FFFFFF'
+  assign ladder_badge_bg = section.settings.ladder_badge_bg | default: '#F5D76E'
+  assign ladder_note_bg = section.settings.ladder_note_bg | default: '#FFF0A0'
+  assign ladder_separator_color = section.settings.ladder_separator_color | default: '#E4DBC7'
+  assign ladder_radius = section.settings.ladder_radius | default: 16
+  assign ladder_radius_mobile = section.settings.ladder_radius_mobile | default: 12
+-%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --ag-pad-x: {{ padding_horizontal }}px;
+    --ag-pad-x-mobile: {{ padding_horizontal_mobile }}px;
+    --ag-callout-radius: {{ callout_radius }}px;
+    --ag-callout-text-size: {{ callout_text_size }}px;
+    --ag-callout-text-size-mobile: {{ callout_text_size_mobile }}px;
+    --ag-callout-bg: {{ color_callout_bg }};
+    --ag-callout-text: {{ color_callout_text }};
+    --ag-link: {{ color_link }};
+    --ag-bg: {{ color_bg }};
+    --ag-heading: {{ color_heading }};
+    --ag-text: {{ color_text }};
+    --ag-text-muted: {{ color_text_muted }};
+    --ag-divider: {{ color_divider }};
+    --ag-author-avatar-border: {{ author_avatar_border_color }};
+    --ag-author-avatar-border-width: {{ author_avatar_border_width }}px;
+    --ag-author-name: {{ author_name_color }};
+    --ag-author-role: {{ author_role_color }};
+    --ag-author-meta: {{ author_meta_color }};
+    --ag-author-meta-size: {{ author_meta_size }}px;
+    --ag-author-meta-size-mobile: {{ author_meta_size_mobile }}px;
+    --gt-pad-x: {{ padding_horizontal }}px;
+    --gt-pad-x-mobile: {{ padding_horizontal_mobile }}px;
+    --gt-heading-size: {{ tab_heading_size }}px;
+    --gt-heading-size-mobile: {{ tab_heading_size_mobile }}px;
+    --gt-body-size: {{ tab_body_size }}px;
+    --gt-body-size-mobile: {{ tab_body_size_mobile }}px;
+    --gt-tab-size: {{ tab_size }}px;
+    --gt-tab-size-mobile: {{ tab_size_mobile }}px;
+    --gt-heading: {{ color_tab_heading }};
+    --gt-text: {{ color_tab_text }};
+    --gt-link: {{ color_link }};
+    --gt-tab: {{ color_tab }};
+    --gt-tab-active: {{ color_tab_active }};
+    --gt-tab-border: {{ color_tab_border }};
+    --gt-tab-border-active: {{ color_tab_border_active }};
+    --gb-card-bg: {{ before_card_bg }};
+    --gb-card-border: {{ before_card_border }};
+    --gb-checklist-border: {{ before_checklist_border }};
+    --gb-days-head-bg: {{ before_days_head_bg }};
+    --gb-days-border: {{ before_days_border }};
+    --gb-days-label: {{ before_days_label_color }};
+    --gb-days-text: {{ before_days_text_color }};
+    --gb-days-label-size: {{ before_days_label_size }}px;
+    --gb-days-label-size-mobile: {{ before_days_label_size_mobile }}px;
+    --gb-days-text-size: {{ before_days_text_size }}px;
+    --gb-days-text-size-mobile: {{ before_days_text_size_mobile }}px;
+    --gb-warning-bg: {{ before_warning_bg }};
+    --gl-heading: {{ ladder_heading_color }};
+    --gl-text: {{ ladder_text_color }};
+    --gl-link: {{ ladder_link_color }};
+    --gl-heading-size: {{ ladder_heading_size }}px;
+    --gl-heading-size-mobile: {{ ladder_heading_size_mobile }}px;
+    --gl-body-size: {{ ladder_body_size }}px;
+    --gl-body-size-mobile: {{ ladder_body_size_mobile }}px;
+    --gl-item-bg: {{ ladder_item_bg }};
+    --gl-num-bg: {{ ladder_num_bg }};
+    --gl-num-text: {{ ladder_num_text }};
+    --gl-badge-bg: {{ ladder_badge_bg }};
+    --gl-note-bg: {{ ladder_note_bg }};
+    --gl-desc: {{ ladder_desc_color }};
+    --gl-radius: {{ ladder_radius }}px;
+    --gl-radius-mobile: {{ ladder_radius_mobile }}px;
+    --gl-separator: {{ ladder_separator_color }};
+  }
+{% endstyle %}
 
 <article class="article-template">
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when '@app' -%}
-        <div class="page-width page-width--narrow">
-          {% render block %}
-        </div>
-      {%- when 'featured_image' -%}
-        {%- if article.image -%}
-          <div
-            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-            {{ block.shopify_attributes }}
-          >
-            <div
-              class="article-template__hero-{{ block.settings.image_height }} media"
-              {% if block.settings.image_height == 'adapt' and article.image %}
-                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+  <div class="article-guide">
+    <div class="article-guide__inner">
+      <div class="article-guide__main">
+        {%- assign guide_tabs_rendered = false -%}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="page-width page-width--narrow">
+                {% render block %}
+              </div>
+            {%- when 'featured_image' -%}
+              {%- if article.image -%}
+                <div
+                  class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  <div
+                    class="article-template__hero-{{ block.settings.image_height }} media"
+                    {% if block.settings.image_height == 'adapt' and article.image %}
+                      style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+                    {% endif %}
+                  >
+                    <img
+                      srcset="
+                        {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                        {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                        {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                        {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                        {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                        {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                        {{ article.image | image_url }} {{ article.image.width }}w
+                      "
+                      sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                      src="{{ article.image | image_url: width: 1100 }}"
+                      loading="eager"
+                      fetchpriority="high"
+                      width="{{ article.image.width }}"
+                      height="{{ article.image.height }}"
+                      alt="{{ article.image.alt | escape }}"
+                    >
+                  </div>
+                </div>
+              {%- endif -%}
+
+            {%- when 'table_content' -%}
+              {% if block.settings.table_content != blank %}
+                {% assign table_rows = block.settings.table_content | newline_to_br | split: '<br />' %}
+
+                <div class="custom-table-wrapper">
+                  <table class="custom-table">
+                    {% assign header = table_rows[0] %}
+                    {% assign header_cells = header | split: '|' %}
+
+                    <thead>
+                      <tr>
+                        {% for cell in header_cells %}
+                          <th scope="col">{{ cell | strip }}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for row in table_rows %}
+                        {% unless forloop.first %}
+                          {% assign cells = row | split: '|' %}
+                          <tr>
+                            {% for cell in cells %}
+                              <td>{{ cell | strip }}</td>
+                            {% endfor %}
+                          </tr>
+                        {% endunless %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
               {% endif %}
-            >
-              <img
-                srcset="
-                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
-                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
-                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
-                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
-                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
-                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
-                  {{ article.image | image_url }} {{ article.image.width }}w
-                "
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="{{ article.image | image_url: width: 1100 }}"
-                loading="eager"
-                fetchpriority="high"
-                width="{{ article.image.width }}"
-                height="{{ article.image.height }}"
-                alt="{{ article.image.alt | escape }}"
+
+            {%- when 'title' -%}
+              <header
+                class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                {{ block.shopify_attributes }}
               >
-            </div>
-          </div>
-        {%- endif -%}
+                <h1
+                  class="article-template__title"
+                >
+                  {{ article.title | escape }}
+                </h1>
+                {%- if block.settings.blog_show_date -%}
+                  <span class="circle-divider caption-with-letter-spacing">
+                    {{- article.published_at | time_tag: format: 'date' -}}
+                  </span>
+                {%- endif -%}
+                {%- if block.settings.blog_show_author -%}
+                  <span class="caption-with-letter-spacing">
+                    <span>{{ article.author }}</span>
+                  </span>
+                {%- endif -%}
+              </header>
 
-    {%- when 'table_content' -%}
-  {% if block.settings.table_content != blank %}
-    {% assign table_rows = block.settings.table_content | newline_to_br | split: '<br />' %}
+            {%- when 'content' -%}
+              <div
+                class="article-template__content page-width page-width--narrow rte article-guide__block article-guide__body{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                data-callout-insert-root
+                {{ block.shopify_attributes }}
+              >
+                {{ article.content }}
+              </div>
 
-    <div class="custom-table-wrapper">
-      <table class="custom-table">
-        {% assign header = table_rows[0] %}
-        {% assign header_cells = header | split: '|' %}
+            {%- when 'share' -%}
+              <div
+                class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {% assign share_url = request.origin | append: article.url %}
+                {% render 'share-button', block: block, share_link: share_url %}
+              </div>
 
-        <thead>
-          <tr>
-            {% for cell in header_cells %}
-              <th scope="col">{{ cell | strip }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
+            {%- when 'author_meta' -%}
+              {%- liquid
+                assign author_name = block.settings.author_name | default: article.author
+                assign author_role = block.settings.author_role
+                assign author_image = block.settings.author_image
+                assign verified_badge = block.settings.verified_badge
+                assign show_date = block.settings.show_date
+                assign show_reading_time = block.settings.show_reading_time
+                assign date_format = block.settings.date_format
+                assign reading_time_label = block.settings.reading_time_label
+                if reading_time_label == blank and block.settings.reading_time_minutes != blank
+                  assign reading_time_label = block.settings.reading_time_minutes | append: ' min to read'
+                endif
+                if reading_time_label == blank and block.settings.auto_reading_time
+                  assign word_count = article.content | strip_html | split: ' ' | size
+                  assign minutes = word_count | divided_by: 200 | at_least: 1
+                  assign reading_time_label = minutes | append: ' min to read'
+                endif
+              -%}
+              <div class="article-guide__block article-guide__author" {{ block.shopify_attributes }}>
+                <div class="article-guide__author-identity">
+                  {%- if author_image != blank -%}
+                    {{
+                      author_image
+                      | image_url: width: 96
+                      | image_tag: class: 'article-guide__avatar', loading: 'lazy', alt: author_name
+                    }}
+                  {%- elsif block.settings.show_avatar_placeholder -%}
+                    <span class="article-guide__avatar-placeholder" aria-hidden="true"></span>
+                  {%- endif -%}
+                  <div class="article-guide__author-copy">
+                    {%- if author_name != blank -%}
+                      <h6 class="article-guide__author-name text-20-bold">
+                        <span>{{ author_name | escape }}</span>
+                        {%- if verified_badge != blank -%}
+                          <span class="article-guide__verified">
+                            {{
+                              verified_badge
+                              | image_url: width: 48
+                              | image_tag:
+                                class: 'article-guide__verified-img',
+                                loading: 'lazy',
+                                widths: '18, 24, 36, 48',
+                                alt: verified_badge.alt
+                            }}
+                          </span>
+                        {%- endif -%}
+                      </h6>
+                    {%- endif -%}
+                    {%- if author_role != blank -%}
+                      <p class="article-guide__author-role text-14/12">{{ author_role | escape }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+                {%- if show_date or show_reading_time -%}
+                  <div class="article-guide__meta">
+                    {%- if show_date -%}
+                      <span class="article-guide__meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                          <path d="M3 9h18M8 3v4M16 3v4"></path>
+                        </svg>
+                        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                          {{ article.published_at | date: date_format }}
+                        </time>
+                      </span>
+                    {%- endif -%}
+                    {%- if show_reading_time and reading_time_label != blank -%}
+                      <span class="article-guide__meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                          <circle cx="12" cy="12" r="9"></circle>
+                          <path d="M12 7v5l3 2"></path>
+                        </svg>
+                        <span>{{ reading_time_label | escape }}</span>
+                      </span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
 
-        <tbody>
-          {% for row in table_rows %}
-            {% unless forloop.first %}
-              {% assign cells = row | split: '|' %}
-              <tr>
-                {% for cell in cells %}
-                  <td>{{ cell | strip }}</td>
-                {% endfor %}
-              </tr>
-            {% endunless %}
-          {% endfor %}
-        </tbody>
-      </table>
+            {%- when 'callout' -%}
+              {%- liquid
+                assign callout_summary = block.settings.summary_text
+                assign callout_body = block.settings.text
+                assign callout_insert_after = block.settings.insert_after_paragraph | default: 2
+                if callout_insert_after < 1
+                  assign callout_insert_after = 2
+                endif
+              -%}
+              {%- if callout_summary != blank or callout_body != blank -%}
+                <div
+                  class="article-guide__block article-guide__callout-acc-source"
+                  data-callout-acc-source
+                  data-callout-insert-after="{{ callout_insert_after }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <details class="article-guide__callout-acc" data-callout-acc>
+                    <summary class="article-guide__callout-acc-summary">
+                      {%- if block.settings.icon != blank -%}
+                        <span class="article-guide__callout-acc-icon" aria-hidden="true">
+                          {{
+                            block.settings.icon
+                            | image_url: width: 68
+                            | image_tag:
+                              class: 'article-guide__callout-acc-icon-img',
+                              loading: 'lazy',
+                              widths: '34, 48, 68',
+                              alt: block.settings.icon.alt
+                          }}
+                        </span>
+                      {%- endif -%}
+                      <span class="article-guide__callout-acc-label">
+                        {%- if callout_summary != blank -%}
+                          {{ callout_summary }}
+                        {%- endif -%}
+                      </span>
+                      <span class="article-guide__callout-acc-toggle" aria-hidden="true">
+                        <svg
+                          class="article-guide__callout-acc-toggle-open"
+                          width="17"
+                          height="20"
+                          viewBox="0 0 17 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path d="M15.814 6.07966L17 10.5031L11.0282 12.1384L12.1518 19.3082L7.65728 20L6.6377 13.2914L1.18605 14.8008L0 10.3774L5.97185 8.74214L4.76499 0.67086L9.19706 0L10.3415 7.54717L15.814 6.07966Z" fill="#7E3253"/>
+                        </svg>
+                        <svg
+                          class="article-guide__callout-acc-toggle-close"
+                          width="17"
+                          height="20"
+                          viewBox="0 0 17 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path d="M1 7H16V13H1V7Z" fill="#7E3253"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    {%- if callout_body != blank -%}
+                      <div class="article-guide__callout-acc-panel">
+                        {{ callout_body }}
+                      </div>
+                    {%- endif -%}
+                  </details>
+                </div>
+              {%- endif -%}
+
+            {%- when 'tab' -%}
+              {%- unless guide_tabs_rendered -%}
+                {%- assign guide_tabs_rendered = true -%}
+                {% render 'article-guide.tabs' %}
+              {%- endunless -%}
+
+            {%- when 'ladder' -%}
+              <div class="article-guide__block" {{ block.shopify_attributes }}>
+                {% render 'article-guide.ladder',
+                  ladder_heading: block.settings.heading,
+                  ladder_disclaimer: block.settings.content
+                %}
+              </div>
+
+            {%- when 'ladder_step' -%}
+              {% comment %} Steps render via article-guide.ladder snippet {% endcomment %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
     </div>
-  {% endif %}
-
-      {%- when 'title' -%}
-        <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <h1
-            class="article-template__title"
-          >
-            {{ article.title | escape }}
-          </h1>
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing">
-              <span>{{ article.author }}</span>
-            </span>
-          {%- endif -%}
-        </header>
-
-      {%- when 'content' -%}
-        <div
-          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          {{ article.content }}
-        </div>
-
-      {%- when 'share' -%}
-        <div
-          class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          {% assign share_url = request.origin | append: article.url %}
-          {% render 'share-button', block: block, share_link: share_url %}
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
+  </div>
 
   <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
@@ -329,7 +641,518 @@
 {
   "name": "t:sections.main-article.name",
   "tag": "section",
-  "class": "section",
+  "class": "section section-article-guide",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sticky CTA anchor"
+    },
+    {
+      "type": "text",
+      "id": "sticky_cta_anchor",
+      "label": "Scroll to anchor",
+      "default": "milk-ladder-guide",
+      "info": "ID of the Milk Ladder title to scroll to (without #)."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 12,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding horizontal (mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "text",
+      "id": "tabs_nav_label",
+      "label": "Tabs aria label",
+      "default": "Guide tabs"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 20,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size_mobile",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab heading size (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "tab_body_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab body size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tab_body_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab body size (mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tab_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab label size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tab_size_mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab label size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Tab colors"
+    },
+    {
+      "type": "color",
+      "id": "color_tab_heading",
+      "label": "Headings & titles",
+      "default": "#2E2A22",
+      "info": "Tab headings"
+    },
+    {
+      "type": "color",
+      "id": "color_tab_text",
+      "label": "Body text",
+      "default": "#2A2E15",
+      "info": "Tab body"
+    },
+    {
+      "type": "color",
+      "id": "color_tab",
+      "label": "Tab text",
+      "default": "#2A2E15"
+    },
+    {
+      "type": "color",
+      "id": "color_tab_active",
+      "label": "Tab text (active)",
+      "default": "#94A857"
+    },
+    {
+      "type": "color",
+      "id": "color_tab_border",
+      "label": "Tab border",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "color",
+      "id": "color_tab_border_active",
+      "label": "Tab border (active)",
+      "default": "#94A857"
+    },
+    {
+      "type": "header",
+      "content": "Before you start card"
+    },
+    {
+      "type": "color",
+      "id": "before_card_bg",
+      "label": "Card background",
+      "default": "#FBF2E1"
+    },
+    {
+      "type": "color",
+      "id": "before_card_border",
+      "label": "Card border",
+      "default": "#E7D9C0"
+    },
+    {
+      "type": "color",
+      "id": "before_checklist_border",
+      "label": "Checklist row border",
+      "default": "#E7D9C0"
+    },
+    {
+      "type": "color",
+      "id": "before_days_head_bg",
+      "label": "Days table header background",
+      "default": "#FFF0A0"
+    },
+    {
+      "type": "color",
+      "id": "before_days_border",
+      "label": "Days table border",
+      "default": "#D3C4A9"
+    },
+    {
+      "type": "color",
+      "id": "before_days_label_color",
+      "label": "Days table label color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "before_days_text_color",
+      "label": "Days table text color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "before_days_label_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Days table label size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "before_days_label_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Days table label size (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "before_days_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Days table text size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "before_days_text_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Days table text size (mobile)",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "before_warning_bg",
+      "label": "Warning background",
+      "default": "#FFF0A0"
+    },
+    {
+      "type": "header",
+      "content": "Milk Ladder accordion"
+    },
+    {
+      "type": "color",
+      "id": "ladder_heading_color",
+      "label": "Headings & titles",
+      "default": "#2E2A22",
+      "info": "Ladder title, step title, meta labels, badge text, note text"
+    },
+    {
+      "type": "color",
+      "id": "ladder_text_color",
+      "label": "Body text",
+      "default": "#2A2E15",
+      "info": "Ladder disclaimer and meta text"
+    },
+    {
+      "type": "color",
+      "id": "ladder_link_color",
+      "label": "Links",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "ladder_desc_color",
+      "label": "Step description",
+      "default": "#5B5646"
+    },
+    {
+      "type": "range",
+      "id": "ladder_heading_size",
+      "min": 20,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "ladder_heading_size_mobile",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "ladder_body_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Body size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "ladder_body_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Body size (mobile)",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "ladder_item_bg",
+      "label": "Step background",
+      "default": "#FBF2E1"
+    },
+    {
+      "type": "color",
+      "id": "ladder_num_bg",
+      "label": "Step number background",
+      "default": "#94A857"
+    },
+    {
+      "type": "color",
+      "id": "ladder_num_text",
+      "label": "Step number text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "ladder_badge_bg",
+      "label": "Badge background",
+      "default": "#F5D76E"
+    },
+    {
+      "type": "color",
+      "id": "ladder_note_bg",
+      "label": "Note background",
+      "default": "#FFF0A0"
+    },
+    {
+      "type": "color",
+      "id": "ladder_separator_color",
+      "label": "Separator",
+      "default": "#E4DBC7"
+    },
+    {
+      "type": "range",
+      "id": "ladder_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Step corner radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "ladder_radius_mobile",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Step corner radius (mobile)",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "color_heading",
+      "label": "Heading",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "color_text_muted",
+      "label": "Muted text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "color_link",
+      "label": "Links",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "color_divider",
+      "label": "Divider",
+      "default": "#CCCCCC"
+    },
+    {
+      "type": "header",
+      "content": "Callout settings"
+    },
+    {
+      "type": "range",
+      "id": "callout_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "callout_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "callout_text_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (mobile)",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "color_callout_bg",
+      "label": "Background",
+      "default": "#FFE0E0"
+    },
+    {
+      "type": "color",
+      "id": "color_callout_text",
+      "label": "Text",
+      "default": "#2A2E15"
+    },
+    {
+      "type": "header",
+      "content": "Author setting"
+    },
+    {
+      "type": "color",
+      "id": "author_avatar_border_color",
+      "label": "Avatar border color",
+      "default": "#F5C518"
+    },
+    {
+      "type": "range",
+      "id": "author_avatar_border_width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "Avatar border width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "author_name_color",
+      "label": "Name color",
+      "default": "#2E2A22"
+    },
+    {
+      "type": "color",
+      "id": "author_role_color",
+      "label": "Occupation color",
+      "default": "#5B5646"
+    },
+    {
+      "type": "color",
+      "id": "author_meta_color",
+      "label": "Date and read time color",
+      "default": "#4F5D45"
+    },
+    {
+      "type": "range",
+      "id": "author_meta_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Date and read time size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "author_meta_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Date and read time size (mobile)",
+      "default": 12
+    }
+  ],
   "blocks": [
     {
       "type": "@app"
@@ -403,16 +1226,440 @@
       ]
     },
     {
-     "type": "table_content",
-    "name": "Table",
-    "settings": [
-      {
-        "type": "text",
-        "id": "table_content",
-        "label": "Table content"
-      }
-    ]
-  }
+      "type": "author_meta",
+      "name": "Author and meta",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_avatar_placeholder",
+          "label": "Show avatar placeholder when no image",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "info": "Leave blank to use the article author."
+        },
+        {
+          "type": "text",
+          "id": "author_role",
+          "label": "Author role"
+        },
+        {
+          "type": "image_picker",
+          "id": "verified_badge",
+          "label": "Verified badge",
+          "info": "Optional. Shown next to the author name. Desktop 24×24, mobile 18×18."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_date",
+          "label": "Show published date",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "date_format",
+          "label": "Date format",
+          "default": "%b %d, %Y"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_reading_time",
+          "label": "Show reading time",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "reading_time_minutes",
+          "label": "Reading time (minutes)",
+          "info": "Optional number. Used when custom label is empty."
+        },
+        {
+          "type": "text",
+          "id": "reading_time_label",
+          "label": "Reading time label",
+          "info": "Example: 10 min to read. Connect a metafield via dynamic source if needed."
+        },
+        {
+          "type": "checkbox",
+          "id": "auto_reading_time",
+          "label": "Estimate reading time from article content",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "name": "Callout",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Placement"
+        },
+        {
+          "type": "number",
+          "id": "insert_after_paragraph",
+          "label": "Insert after paragraph",
+          "default": 2,
+          "info": "Callout is inserted after this paragraph number in the article body (1 = first paragraph)."
+        },
+        {
+          "type": "header",
+          "content": "Accordion header"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Warning icon"
+        },
+        {
+          "type": "richtext",
+          "id": "summary_text",
+          "label": "Header text",
+          "default": "<p>If you are not sure if your little one falls into any of these categories, please double check with your HCP</p>"
+        },
+        {
+          "type": "header",
+          "content": "Accordion content"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Content",
+          "default": "<p>Before we start, it is important to highlight who the milk ladder is NOT suitable for:</p><ul><li>Little ones with immediate CMPA (IgE mediated allergies)</li><li>Severe forms of delayed CMPA such as FPIES (food protein include enterocolitis syndrome) or eosinophilic gastrointestinal food allergies.</li></ul><p>If you are not sure if your little one falls into any of these categories, please double check with your HCP</p>"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "Milk Ladder Guide"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Headline example"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Anchor ID",
+          "info": "Used for deep links (#anchor). Defaults to a handleized tab label if blank."
+        },
+        {
+          "type": "header",
+          "content": "Before you start"
+        },
+        {
+          "type": "text",
+          "id": "before_heading",
+          "label": "Before heading"
+        },
+        {
+          "type": "richtext",
+          "id": "before_intro",
+          "label": "Before intro"
+        },
+        {
+          "type": "richtext",
+          "id": "before_checklist",
+          "label": "Before checklist",
+          "info": "Use a bullet list. Checklist icons are added automatically."
+        },
+        {
+          "type": "header",
+          "content": "How to build up each step"
+        },
+        {
+          "type": "text",
+          "id": "build_heading",
+          "label": "Build-up heading"
+        },
+        {
+          "type": "richtext",
+          "id": "build_intro",
+          "label": "Build-up intro"
+        },
+        {
+          "type": "textarea",
+          "id": "build_days_table",
+          "label": "Days table",
+          "info": "One row per line, columns separated by |. First row is the header. Example: Day | What to give"
+        },
+        {
+          "type": "richtext",
+          "id": "build_footer",
+          "label": "Build-up footer"
+        },
+        {
+          "type": "header",
+          "content": "If you suspect a reaction"
+        },
+        {
+          "type": "text",
+          "id": "reaction_heading",
+          "label": "Reaction heading"
+        },
+        {
+          "type": "richtext",
+          "id": "reaction_text",
+          "label": "Reaction text"
+        },
+        {
+          "type": "image_picker",
+          "id": "reaction_image",
+          "label": "Reaction image"
+        },
+        {
+          "type": "select",
+          "id": "reaction_image_position",
+          "label": "Image position",
+          "options": [
+            { "value": "right", "label": "Right" },
+            { "value": "left", "label": "Left" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "header",
+          "content": "Expert"
+        },
+        {
+          "type": "image_picker",
+          "id": "expert_image",
+          "label": "Expert image"
+        },
+        {
+          "type": "text",
+          "id": "expert_name",
+          "label": "Expert name"
+        },
+        {
+          "type": "text",
+          "id": "expert_role",
+          "label": "Expert role"
+        },
+        {
+          "type": "image_picker",
+          "id": "expert_verified",
+          "label": "Verified badge",
+          "info": "Optional. Shown next to the expert name."
+        },
+        {
+          "type": "checkbox",
+          "id": "expert_show_date",
+          "label": "Show publication date",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "expert_date_format",
+          "label": "Date format",
+          "default": "%b %d, %Y",
+          "visible_if": "{{ block.settings.expert_show_date == true }}"
+        },
+        {
+          "type": "header",
+          "content": "Top tips"
+        },
+        {
+          "type": "text",
+          "id": "tips_heading",
+          "label": "Tips heading"
+        },
+        {
+          "type": "richtext",
+          "id": "tips_list",
+          "label": "Tips list"
+        },
+        {
+          "type": "header",
+          "content": "Support & reassurance"
+        },
+        {
+          "type": "text",
+          "id": "support_heading",
+          "label": "Support heading"
+        },
+        {
+          "type": "richtext",
+          "id": "support_text",
+          "label": "Support text"
+        },
+        {
+          "type": "image_picker",
+          "id": "support_image",
+          "label": "Support image"
+        },
+        {
+          "type": "select",
+          "id": "support_image_position",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "warning_icon",
+          "label": "Warning icon",
+          "info": "Optional. Shown only when an image is selected."
+        },
+        {
+          "type": "richtext",
+          "id": "warning_text",
+          "label": "Warning text"
+        }
+      ]
+    },
+    {
+      "type": "ladder",
+      "name": "Milk Ladder",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Milk Ladder Guide"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>To be used only in children with mild to moderate Non-IgE Cow’s Milk Allergy, under the supervision of a healthcare professional.</p>",
+          "info": "Shown next to the heading. Ladder step blocks below render as the accordion."
+        }
+      ]
+    },
+    {
+      "type": "table_content",
+      "name": "Table",
+      "settings": [
+        {
+          "type": "text",
+          "id": "table_content",
+          "label": "Table content"
+        }
+      ]
+    },
+    {
+      "type": "ladder_step",
+      "name": "Ladder step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "cookie/Biscuit"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Well-baked milk"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Start with 1 and build up to 3. See the Little Monkey Nutrition recipe.</p>"
+        },
+        {
+          "type": "text",
+          "id": "portion_guide_label",
+          "label": "Portion guide label",
+          "default": "Portion guide"
+        },
+        {
+          "type": "richtext",
+          "id": "portion_guide",
+          "label": "Portion guide",
+          "default": "<p>Start with ½, build up by double every 24–48 hours to 1</p>"
+        },
+        {
+          "type": "text",
+          "id": "watch_for_label",
+          "label": "Watch for label",
+          "default": "Watch for"
+        },
+        {
+          "type": "richtext",
+          "id": "watch_for",
+          "label": "Watch for",
+          "default": "<p>Tummy, skin or breathing symptoms</p>"
+        },
+        {
+          "type": "text",
+          "id": "if_tolerated_label",
+          "label": "If tolerated label",
+          "default": "If tolerated"
+        },
+        {
+          "type": "richtext",
+          "id": "if_tolerated",
+          "label": "If tolerated",
+          "default": "<p>Top portion given 3 times and tolerated, then move to Step 2</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Note"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_note",
+          "label": "Show note",
+          "default": false,
+          "info": "Shows below this step when the accordion is open."
+        },
+        {
+          "type": "image_picker",
+          "id": "note_icon",
+          "label": "Note icon",
+          "visible_if": "{{ block.settings.show_note == true }}"
+        },
+        {
+          "type": "richtext",
+          "id": "note_text",
+          "label": "Note text",
+          "default": "<p>Add an important note for parents here.</p>",
+          "visible_if": "{{ block.settings.show_note == true }}"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

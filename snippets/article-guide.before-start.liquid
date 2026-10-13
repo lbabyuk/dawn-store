@@ -1,0 +1,291 @@
+{% comment %}
+  Before you start content for a guide tab.
+  Accepts:
+  - block: tab block whose settings hold the before-start fields
+{% endcomment %}
+
+{%- if block -%}
+  {%- liquid
+    assign before_heading = block.settings.before_heading
+    assign before_intro = block.settings.before_intro
+    assign before_checklist = block.settings.before_checklist
+
+    assign build_heading = block.settings.build_heading
+    assign build_intro = block.settings.build_intro
+    assign build_days = block.settings.build_days_table
+    assign build_footer = block.settings.build_footer
+
+    assign reaction_heading = block.settings.reaction_heading
+    assign reaction_text = block.settings.reaction_text
+    assign reaction_image = block.settings.reaction_image
+    assign reaction_image_position = block.settings.reaction_image_position | default: 'right'
+
+    assign expert_image = block.settings.expert_image
+    assign expert_name = block.settings.expert_name
+    assign expert_role = block.settings.expert_role
+    assign expert_verified = block.settings.expert_verified
+    assign expert_show_date = block.settings.expert_show_date
+    assign expert_date_format = block.settings.expert_date_format | default: '%b %d, %Y'
+
+    assign tips_heading = block.settings.tips_heading
+    assign tips_list = block.settings.tips_list
+
+    assign support_heading = block.settings.support_heading
+    assign support_text = block.settings.support_text
+    assign support_image = block.settings.support_image
+    assign support_image_position = block.settings.support_image_position | default: 'left'
+    assign warning_icon = block.settings.warning_icon
+    assign warning_text = block.settings.warning_text
+
+    assign has_before = false
+    if before_heading != blank or before_intro != blank or before_checklist != blank
+      assign has_before = true
+    endif
+
+    assign has_build = false
+    if build_heading != blank or build_intro != blank or build_days != blank or build_footer != blank
+      assign has_build = true
+    endif
+
+    assign has_reaction = false
+    if reaction_heading != blank or reaction_text != blank or reaction_image != blank
+      assign has_reaction = true
+    endif
+
+    assign has_expert = false
+    if expert_name != blank or expert_role != blank or expert_image != blank
+      assign has_expert = true
+    endif
+
+    assign has_tips = false
+    if tips_heading != blank or tips_list != blank
+      assign has_tips = true
+    endif
+
+    assign has_support = false
+    if support_heading != blank or support_text != blank or support_image != blank or warning_text != blank
+      assign has_support = true
+    endif
+  -%}
+
+  {%- if has_before or has_build or has_reaction or has_expert or has_tips or has_support -%}
+    <div class="guide-before" data-guide-before>
+      {%- if has_before -%}
+        <section class="guide-before__card">
+          {%- if before_heading != blank or before_intro != blank -%}
+            <div class="guide-before__card-head">
+              {%- if before_heading != blank -%}
+                <h2 class="guide-tabs__heading guide-before__title _richtext-md text-32-alt">{{ before_heading | escape }}</h2>
+              {%- endif -%}
+              {%- if before_intro != blank -%}
+                <div class="guide-tabs__body guide-before__intro _input-richtext text-14/12">{{ before_intro }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if before_checklist != blank -%}
+            <div class="guide-tabs__body guide-before__checklist _input-richtext text-14/12">{{ before_checklist }}</div>
+          {%- endif -%}
+        </section>
+      {%- endif -%}
+
+      {%- if has_build -%}
+        <section class="guide-before__section">
+          {%- if build_heading != blank -%}
+            <h2 class="guide-tabs__heading guide-before__title _richtext-md text-32-alt">{{ build_heading | escape }}</h2>
+          {%- endif -%}
+          {%- if build_intro != blank -%}
+            <div class="guide-tabs__body guide-before__intro _input-richtext text-14/12">{{ build_intro }}</div>
+          {%- endif -%}
+
+          {%- if build_days != blank -%}
+            <div class="guide-before__days">
+              <div class="guide-before__days-table">
+                {%- if build_days contains '<table' -%}
+                  {{ build_days }}
+                {%- else -%}
+                  {%- liquid
+                    assign days_rows = build_days | newline_to_br | replace: '<br/>', '<br />' | replace: '<br>', '<br />' | split: '<br />'
+                    assign days_header_done = false
+                    assign days_thead = ''
+                    assign days_tbody = ''
+                  -%}
+                  {%- for row in days_rows -%}
+                    {%- assign row = row | strip_html | strip -%}
+                    {%- if row != blank -%}
+                      {%- assign cells = row | split: '|' -%}
+                      {%- if days_header_done == false -%}
+                        {%- capture days_thead -%}
+                          <thead>
+                            <tr>
+                              {%- for c in cells -%}
+                                <th>{{ c | strip | escape }}</th>
+                              {%- endfor -%}
+                            </tr>
+                          </thead>
+                        {%- endcapture -%}
+                        {%- assign days_header_done = true -%}
+                      {%- else -%}
+                        {%- capture days_tbody -%}
+                          {{ days_tbody }}
+                          <tr>
+                            {%- for c in cells -%}
+                              <td>{{ c | strip | escape }}</td>
+                            {%- endfor -%}
+                          </tr>
+                        {%- endcapture -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <table>
+                    {{ days_thead }}
+                    {%- if days_tbody != blank -%}
+                      <tbody>{{ days_tbody }}</tbody>
+                    {%- endif -%}
+                  </table>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if build_footer != blank -%}
+            <div class="guide-tabs__body guide-before__footer _input-richtext text-14/12">{{ build_footer }}</div>
+          {%- endif -%}
+        </section>
+      {%- endif -%}
+
+      {%- if has_reaction -%}
+        <section class="guide-before__split{% if reaction_image == blank %} guide-before__split--solo{% elsif reaction_image_position == 'left' %} guide-before__split--reverse{% endif %}">
+          <div class="guide-before__split-copy">
+            {%- if reaction_heading != blank -%}
+              <h2 class="guide-tabs__heading guide-before__title _richtext-md text-32-alt">{{ reaction_heading | escape }}</h2>
+            {%- endif -%}
+            {%- if reaction_text != blank -%}
+              <div class="guide-tabs__body _input-richtext text-14/12">{{ reaction_text }}</div>
+            {%- endif -%}
+          </div>
+          {%- if reaction_image != blank -%}
+            <div class="guide-before__media">
+              {{
+                reaction_image
+                | image_url: width: 800
+                | image_tag:
+                  class: 'guide-before__image',
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(max-width: 1023px) 100vw, 40vw',
+                  alt: reaction_heading
+              }}
+            </div>
+          {%- endif -%}
+        </section>
+      {%- endif -%}
+
+      {%- if has_expert -%}
+        <div class="guide-before__expert">
+          <div class="guide-before__expert-identity">
+          {%- if expert_image != blank -%}
+            {{
+              expert_image
+              | image_url: width: 96
+              | image_tag:
+                class: 'guide-before__expert-avatar',
+                loading: 'lazy',
+                widths: '48, 72, 96',
+                alt: expert_name
+            }}
+          {%- endif -%}
+          <div class="guide-before__expert-copy">
+            {%- if expert_name != blank -%}
+              <h6 class="guide-before__expert-name _richtext-md text-20-bold">
+                <span>{{ expert_name | escape }}</span>
+                {%- if expert_verified != blank -%}
+                  <span class="guide-before__expert-verified">
+                    {{
+                      expert_verified
+                      | image_url: width: 48
+                      | image_tag:
+                        class: 'guide-before__expert-verified-img',
+                        loading: 'lazy',
+                        widths: '18, 24, 36, 48',
+                        alt: ''
+                    }}
+                  </span>
+                {%- endif -%}
+              </h6>
+            {%- endif -%}
+            {%- if expert_role != blank -%}
+              <p class="guide-before__expert-role _input-richtext">{{ expert_role | escape }}</p>
+            {%- endif -%}
+          </div>
+          </div>
+          {%- if expert_show_date -%}
+            <div class="guide-before__expert-meta">
+              <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                {{ article.published_at | date: expert_date_format }}
+              </time>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if has_tips -%}
+        <section class="guide-before__section">
+          {%- if tips_heading != blank -%}
+            <h2 class="guide-tabs__heading guide-before__title _richtext-md text-32-alt">{{ tips_heading | escape }}</h2>
+          {%- endif -%}
+          {%- if tips_list != blank -%}
+            <div class="guide-tabs__body guide-before__tips _input-richtext text-14/12">{{ tips_list }}</div>
+          {%- endif -%}
+        </section>
+      {%- endif -%}
+
+      {%- if has_support -%}
+        <section class="guide-before__section guide-before__support">
+          <div class="guide-before__split{% if support_image == blank %} guide-before__split--solo{% elsif support_image_position == 'left' %} guide-before__split--reverse{% endif %}">
+            <div class="guide-before__split-copy">
+              {%- if support_heading != blank -%}
+                <h2 class="guide-tabs__heading guide-before__title _richtext-md text-32-alt">{{ support_heading | escape }}</h2>
+              {%- endif -%}
+              {%- if support_text != blank -%}
+                <div class="guide-tabs__body _input-richtext text-14/12">{{ support_text }}</div>
+              {%- endif -%}
+
+              {%- if warning_text != blank -%}
+                <div class="guide-before__warning">
+                  {%- if warning_icon != blank -%}
+                    <span class="guide-before__warning-icon" aria-hidden="true">
+                      {{
+                        warning_icon
+                        | image_url: width: 56
+                        | image_tag:
+                          class: 'guide-before__warning-icon-img',
+                          loading: 'lazy',
+                          widths: '28, 42, 56',
+                          alt: ''
+                      }}
+                    </span>
+                  {%- endif -%}
+                  <div class="guide-tabs__body guide-before__warning-text _input-richtext text-14/12">{{ warning_text }}</div>
+                </div>
+              {%- endif -%}
+            </div>
+            {%- if support_image != blank -%}
+              <div class="guide-before__media">
+                {{
+                  support_image
+                  | image_url: width: 800
+                  | image_tag:
+                    class: 'guide-before__image',
+                    loading: 'lazy',
+                    widths: '320, 480, 640, 800',
+                    sizes: '(max-width: 1023px) 100vw, 40vw',
+                    alt: support_heading
+                }}
+              </div>
+            {%- endif -%}
+          </div>
+        </section>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

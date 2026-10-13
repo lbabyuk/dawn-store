@@ -1,0 +1,47 @@
+{% comment %}
+  Renders all tab blocks from the current section as a tabs UI.
+  One block type "tab" = one tab (customizer fields).
+  Does not own sticky CTA anchor — that stays on the ladder in luna-milk.
+{% endcomment %}
+
+{%- liquid
+  assign first_tab_id = ''
+  assign tab_count = 0
+  for block in section.blocks
+    if block.type == 'tab'
+      assign tab_count = tab_count | plus: 1
+      if first_tab_id == blank
+        assign first_tab_id = block.id
+      endif
+    endif
+  endfor
+-%}
+
+{%- if tab_count > 0 -%}
+  <div
+    class="article-guide__block guide-tabs"
+    data-guide-tabs
+    data-active-tab="{{ first_tab_id }}"
+  >
+    <div
+      class="guide-tabs__nav"
+      role="tablist"
+      aria-orientation="horizontal"
+      aria-label="{{ section.settings.tabs_nav_label | escape }}"
+    >
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab' -%}
+          {% render 'article-guide.tab', block: block, part: 'button', first_tab_id: first_tab_id %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="guide-tabs__panels">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab' -%}
+          {% render 'article-guide.tab', block: block, part: 'panel', first_tab_id: first_tab_id %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
