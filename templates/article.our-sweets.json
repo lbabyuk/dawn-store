@@ -41,14 +41,12 @@
           "type": "content",
           "settings": {}
         },
-        "callout_9cm7rf": {
+        "callout_DneFMw": {
           "type": "callout",
-          "source": "{{ article.metafields.custom.cellout.value }}",
           "settings": {
-            "insert_after_paragraph": "{{ article.metafields.custom.cellout.value.insert_after_paragraph.value }}",
-            "icon": "{{ article.metafields.custom.cellout.value.warning_icon.value }}",
-            "summary_text": "{{ article.metafields.custom.cellout.value.header_text | metafield_tag }}",
-            "text": "<p>{{ article.metafields.custom.cellout.value.blog_post_name.value }}</p>"
+            "insert_after_paragraph": "2",
+            "summary_text": "<p>I</p>",
+            "text": ""
           }
         }
       },
@@ -58,7 +56,7 @@
         "title",
         "share",
         "content",
-        "callout_9cm7rf"
+        "callout_DneFMw"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
