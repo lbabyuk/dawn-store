@@ -88,37 +88,17 @@
         "tab_zVe9q4": {
           "type": "tab",
           "settings": {
-            "tab_label": "Milk Ladder Guide",
-            "heading": "Headline example",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+            "tab_label": "",
+            "heading": "",
+            "content": "",
             "anchor_id": "",
             "before_heading": "",
             "before_intro": "",
             "before_checklist": "",
             "build_heading": "",
             "build_intro": "",
-            "build_days_table": "",
             "build_footer": "",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
-          }
-        },
-        "ladder_Rw9YXD": {
-          "type": "ladder",
-          "settings": {
-            "heading": "Milk Ladder Guide",
-            "content": "<p>To be used only in children with mild to moderate Non-IgE Cow’s Milk Allergy, under the supervision of a healthcare professional.</p>"
+            "reaction_text": ""
           }
         },
         "ladder_step_WFn87y": {
@@ -152,7 +132,6 @@
         "tab_ALpRHr",
         "tab_BCxaGf",
         "tab_zVe9q4",
-        "ladder_Rw9YXD",
         "ladder_step_WFn87y"
       ],
       "settings": {
