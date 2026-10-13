@@ -12,6 +12,12 @@
     "main": {
       "type": "main-article",
       "blocks": {
+        "table_content_DT4daP": {
+          "type": "table_content",
+          "settings": {
+            "table_content": ""
+          }
+        },
         "featured_image": {
           "type": "featured_image",
           "settings": {
@@ -34,20 +40,14 @@
         "content": {
           "type": "content",
           "settings": {}
-        },
-        "table_content_iBVTKz": {
-          "type": "table_content",
-          "settings": {
-            "table_content": "Product|Size|Price Bread|Small|10 Bread|Medium|15 Bread|Large|20 Milk|1L|5"
-          }
         }
       },
       "block_order": [
+        "table_content_DT4daP",
         "featured_image",
         "title",
         "share",
-        "content",
-        "table_content_iBVTKz"
+        "content"
       ],
       "settings": {}
     },
@@ -165,6 +165,7 @@
         "sponge_JiFYJd",
         "sponge_Dj7dCt"
       ],
+      "disabled": true,
       "name": "Sweets builder",
       "settings": {
         "heading": "Build your dream cupcake",
