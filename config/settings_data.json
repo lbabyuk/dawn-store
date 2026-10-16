@@ -147,6 +147,23 @@
         "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
         "disabled": false,
         "settings": {}
+      },
+      "16798170927650018749": {
+        "type": "shopify://apps/recharge-subscriptions/blocks/storefront-experiences/371eed76-0b44-4869-9813-730372ea378e",
+        "disabled": true,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "widget_type": "review-widget"
+        }
       }
     },
     "color_schemes": {
