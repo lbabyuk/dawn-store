@@ -1,0 +1,163 @@
+{% comment %}
+  Free printable tracker lead-magnet for Article guide.
+  Form → Klaviyo list subscribe (marketing consent) → success popup → PDF download.
+
+  Accepts:
+  - block: section block with settings
+{% endcomment %}
+
+{%- liquid
+  assign ft_heading = block.settings.heading
+  assign ft_description = block.settings.description
+  assign ft_placeholder = block.settings.email_placeholder
+  assign ft_button = block.settings.button_label
+  assign ft_disclaimer = block.settings.disclaimer
+  assign ft_sticker_image = block.settings.sticker_image
+  assign ft_image = block.settings.image
+  assign ft_image_alt = block.settings.image.alt | default: ft_heading
+  assign ft_pdf = block.settings.pdf_url
+  assign ft_company_id = block.settings.klaviyo_company_id | strip
+  assign ft_list_id = block.settings.klaviyo_list_id | strip
+  assign ft_tag = block.settings.klaviyo_tag | strip | default: 'milk-ladder-tracker'
+  assign ft_source = block.settings.klaviyo_source | strip | default: 'Milk Ladder Free Tracker'
+  assign ft_success_heading = block.settings.success_heading
+  assign ft_success_text = block.settings.success_text
+  assign ft_download_label = block.settings.download_label
+  assign ft_success_note = block.settings.success_note
+  assign ft_error_text = block.settings.error_text
+  assign ft_invalid_text = block.settings.invalid_email_text
+  assign ft_loading_text = block.settings.loading_text
+  assign ft_uid = 'ft-' | append: section.id | append: '-' | append: block.id
+-%}
+
+<div
+  class="free-tracker"
+  data-free-tracker
+  data-ft-id="{{ ft_uid }}"
+  data-company-id="{{ ft_company_id | escape }}"
+  data-list-id="{{ ft_list_id | escape }}"
+  data-tag="{{ ft_tag | escape }}"
+  data-source="{{ ft_source | escape }}"
+  data-pdf-url="{{ ft_pdf | escape }}"
+  data-error-text="{{ ft_error_text | escape }}"
+  data-invalid-text="{{ ft_invalid_text | escape }}"
+  data-loading-text="{{ ft_loading_text | escape }}"
+  data-success-text-template="{{ ft_success_text | escape }}"
+  data-popup-delay="{{ block.settings.popup_delay_seconds | default: 5 }}"
+  {% if request.design_mode %}data-design-mode="true"{% endif %}
+  style="
+    --ft-bg: {{ block.settings.color_bg }};
+    --ft-heading: {{ block.settings.color_heading }};
+    --ft-text: {{ block.settings.color_text }};
+    --ft-muted: {{ block.settings.color_muted }};
+    --ft-button-bg: {{ block.settings.color_button_bg }};
+    --ft-button-text: {{ block.settings.color_button_text }};
+    --ft-input-bg: {{ block.settings.color_input_bg }};
+    --ft-input-border: {{ block.settings.color_input_border }};
+    --ft-input-text: {{ block.settings.color_input_text }};
+    --ft-overlay: {{ block.settings.color_overlay }};
+    --ft-heading-size: {{ block.settings.heading_size }}px;
+    --ft-heading-size-mobile: {{ block.settings.heading_size_mobile }}px;
+    --ft-body-size: {{ block.settings.body_size }}px;
+    --ft-body-size-mobile: {{ block.settings.body_size_mobile }}px;
+    --ft-popup-heading-size: {{ block.settings.popup_heading_size }}px;
+    --ft-popup-heading-size-mobile: {{ block.settings.popup_heading_size_mobile }}px;
+    --ft-popup-body-size: {{ block.settings.popup_body_size }}px;
+    --ft-popup-body-size-mobile: {{ block.settings.popup_body_size_mobile }}px;
+    --ft-radius: {{ block.settings.radius_desktop }}px;
+    --ft-radius-mobile: {{ block.settings.radius_mobile }}px;
+    --ft-gap: {{ block.settings.gap_desktop }}px;
+  "
+>
+  <div class="free-tracker__panel">
+    <div class="free-tracker__media">
+      {%- if ft_image != blank -%}
+        {{
+          ft_image
+          | image_url: width: 900
+          | image_tag:
+            class: 'free-tracker__image',
+            loading: 'lazy',
+            widths: '280, 360, 480, 640, 900',
+            sizes: '(min-width: 1024px) 280px, 70vw',
+            alt: ft_image_alt
+        }}
+      {%- else -%}
+        <div class="free-tracker__image-placeholder" aria-hidden="true"></div>
+      {%- endif -%}
+
+      {%- if ft_sticker_image != blank -%}
+        <div class="free-tracker__sticker" aria-hidden="true">
+          {{
+            ft_sticker_image
+            | image_url: width: 214
+            | image_tag:
+              class: 'free-tracker__sticker-img',
+              loading: 'lazy',
+              widths: '107, 160, 214',
+              sizes: '107px',
+              alt: ft_sticker_image.alt
+          }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="free-tracker__content">
+      {%- if ft_heading != blank -%}
+        <h2 class="free-tracker__heading _richtext-md text-32-alt">{{ ft_heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if ft_description != blank -%}
+        <div class="free-tracker__description rte _richtext-md text-14/12">{{ ft_description }}</div>
+      {%- endif -%}
+
+      <form class="free-tracker__form" data-ft-form novalidate>
+        <label class="sr-only" for="{{ ft_uid }}-email">
+          {{ ft_placeholder | default: 'Email' | escape }}
+        </label>
+        <input
+          id="{{ ft_uid }}-email"
+          class="free-tracker__input"
+          type="email"
+          name="email"
+          autocomplete="email"
+          autocapitalize="off"
+          spellcheck="false"
+          inputmode="email"
+          placeholder="{{ ft_placeholder | escape }}"
+          required
+          aria-describedby="{{ ft_uid }}-email-error"
+          data-ft-email
+        >
+        <button type="submit" class="free-tracker__button text-20-bold" data-ft-submit>
+          <span data-ft-submit-label>{{ ft_button | escape }}</span>
+        </button>
+      </form>
+
+      <p id="{{ ft_uid }}-email-error" class="free-tracker__message" data-ft-message hidden role="alert"></p>
+
+      {%- if ft_disclaimer != blank -%}
+        <p class="free-tracker__disclaimer">
+          <span class="free-tracker__disclaimer-icon" aria-hidden="true"></span>
+          <span>{{ ft_disclaimer | escape }}</span>
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {% render 'article-guide.free-tracker-popup',
+    ft_uid: ft_uid,
+    ft_image: ft_image,
+    ft_image_alt: ft_image_alt,
+    ft_sticker_image: ft_sticker_image,
+    ft_heading: ft_heading,
+    ft_description: ft_description,
+    ft_placeholder: ft_placeholder,
+    ft_button: ft_button,
+    ft_disclaimer: ft_disclaimer,
+    ft_success_heading: ft_success_heading,
+    ft_download_label: ft_download_label,
+    ft_success_note: ft_success_note,
+    ft_pdf: ft_pdf
+  %}
+</div>
