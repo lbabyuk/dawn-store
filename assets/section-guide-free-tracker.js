@@ -316,15 +316,16 @@
       setLoading(controls, true);
 
       var subscribePromise;
-      if (!config.companyId || !config.listId) {
-        if (config.designMode) {
-          subscribePromise = Promise.resolve(true);
-        } else {
-          subscribePromise = Promise.reject(new Error('missing-klaviyo-config'));
-        }
-      } else {
-        subscribePromise = subscribeKlaviyo(email, config);
-      }
+      // if (!config.companyId || !config.listId) {
+      //   if (config.designMode) {
+      //     subscribePromise = Promise.resolve(true);
+      //   } else {
+      //     subscribePromise = Promise.reject(new Error('missing-klaviyo-config'));
+      //   }
+      // } else {
+      //   subscribePromise = subscribeKlaviyo(email, config);
+      // }
+      subscribePromise = Promise.resolve(true); // TEST: без Klaviyo
 
       subscribePromise
         .then(function () {
