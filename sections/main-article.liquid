@@ -3,6 +3,8 @@
 {{ 'section-guide-tabs.css' | asset_url | stylesheet_tag }}
 {{ 'section-guide-ladder.css' | asset_url | stylesheet_tag }}
 {{ 'section-guide-before-start.css' | asset_url | stylesheet_tag }}
+{{ 'section-guide-free-tracker.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-guide-free-tracker.js' | asset_url }}" defer></script>
 <script src="{{ 'section-guide-callout-accordion.js' | asset_url }}" defer></script>
 <script src="{{ 'guide-tabs.js' | asset_url }}" defer></script>
 
@@ -236,6 +238,11 @@
                   </span>
                 {%- endif -%}
               </header>
+
+              {%- when 'free_tracker' -%}
+                <div class="article-guide__block" {{ block.shopify_attributes }}>
+                  {% render 'article-guide.free-tracker', block: block %}
+                </div>
 
             {%- when 'content' -%}
               <div
@@ -1335,6 +1342,340 @@
           "id": "text",
           "label": "Content",
           "default": "<p>Before we start, it is important to highlight who the milk ladder is NOT suitable for:</p><ul><li>Little ones with immediate CMPA (IgE mediated allergies)</li><li>Severe forms of delayed CMPA such as FPIES (food protein include enterocolitis syndrome) or eosinophilic gastrointestinal food allergies.</li></ul><p>If you are not sure if your little one falls into any of these categories, please double check with your HCP</p>"
+        }
+      ]
+    },
+    {
+      "type": "free_tracker",
+      "name": "Free tracker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Block image"
+        },
+        {
+          "type": "image_picker",
+          "id": "sticker_image",
+          "label": "Sticker image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Get A Free Printable Tracker"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Pop your email in and we'll send the free PDF straight over — plus keep you posted on new allergen guides.</p>"
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email placeholder",
+          "default": "Add your email here"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "GET THE TRACKER"
+        },
+        {
+          "type": "text",
+          "id": "disclaimer",
+          "label": "Disclaimer",
+          "default": "One-click unsubscribe. No spam, ever."
+        },
+        {
+          "type": "url",
+          "id": "pdf_url",
+          "label": "PDF download URL",
+          "info": "Upload the PDF to Content → Files and paste the URL here."
+        },
+        {
+          "type": "header",
+          "content": "Timed section popup"
+        },
+        {
+          "type": "range",
+          "id": "popup_delay_seconds",
+          "min": 0,
+          "max": 60,
+          "step": 1,
+          "unit": "s",
+          "label": "Show section as popup after",
+          "default": 5,
+          "info": "0 = disabled. Same content as the section form."
+        },
+        {
+          "type": "header",
+          "content": "Success popup"
+        },
+        {
+          "type": "text",
+          "id": "success_heading",
+          "label": "Success heading",
+          "default": "Your tracker is ready"
+        },
+        {
+          "type": "text",
+          "id": "success_text",
+          "label": "Success text",
+          "default": "We've also sent a copy to [email] so you've always got it handy.",
+          "info": "Use [email] to insert the submitted address."
+        },
+        {
+          "type": "text",
+          "id": "download_label",
+          "label": "Download button",
+          "default": "DOWNLOAD THE TRACKER"
+        },
+        {
+          "type": "text",
+          "id": "success_note",
+          "label": "Success note",
+          "default": "Didn't get the email? Check spam, or try again."
+        },
+        {
+          "type": "header",
+          "content": "Form messages"
+        },
+        {
+          "type": "text",
+          "id": "invalid_email_text",
+          "label": "Invalid email message",
+          "default": "Please enter a valid email address."
+        },
+        {
+          "type": "text",
+          "id": "error_text",
+          "label": "Error message",
+          "default": "Something went wrong. Please try again."
+        },
+        {
+          "type": "text",
+          "id": "loading_text",
+          "label": "Loading button text",
+          "default": "Sending…"
+        },
+        {
+          "type": "header",
+          "content": "Klaviyo"
+        },
+        {
+          "type": "paragraph",
+          "content": "Uses the Klaviyo Client Subscriptions API (same pattern as onsite forms). Requires the public company ID and list ID. Marketing consent is set by list subscription."
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_company_id",
+          "label": "Company ID (public API key)",
+          "info": "Found in Klaviyo → Settings → Account → API Keys (Public key)."
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_list_id",
+          "label": "List ID",
+          "info": "The list subscribers are added to (e.g. milk-ladder-tracker list)."
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_tag",
+          "label": "Profile tag / property",
+          "default": "milk-ladder-tracker",
+          "info": "Saved on the profile as tracker_tag for segmentation."
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_source",
+          "label": "Custom source",
+          "default": "Milk Ladder Free Tracker"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "color_bg",
+          "label": "Panel background",
+          "default": "#F1B5B5"
+        },
+        {
+          "type": "color",
+          "id": "color_heading",
+          "label": "Heading",
+          "default": "#7E3253"
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": "Body text",
+          "default": "#2A2E15"
+        },
+        {
+          "type": "color",
+          "id": "color_muted",
+          "label": "Muted text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "color_button_bg",
+          "label": "Button background",
+          "default": "#7E3253"
+        },
+        {
+          "type": "color",
+          "id": "color_button_text",
+          "label": "Button text",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "color_input_bg",
+          "label": "Input background",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "color_input_border",
+          "label": "Input border",
+          "default": "#B9869C"
+        },
+        {
+          "type": "color",
+          "id": "color_input_text",
+          "label": "Input text",
+          "default": "#2A2E15"
+        },
+        {
+          "type": "color",
+          "id": "color_overlay",
+          "label": "Popup overlay",
+          "default": "#2A2E15"
+        },
+        {
+          "type": "header",
+          "content": "Typography & layout"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 24,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading size",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "heading_size_mobile",
+          "min": 20,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading size (mobile)",
+          "default": 32
+        },
+        {
+          "type": "range",
+          "id": "body_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Body size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "body_size_mobile",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Body size (mobile)",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "popup_heading_size",
+          "min": 24,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "label": "Popup heading size",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "popup_heading_size_mobile",
+          "min": 20,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Popup heading size (mobile)",
+          "default": 32
+        },
+        {
+          "type": "range",
+          "id": "popup_body_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Popup body size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "popup_body_size_mobile",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Popup body size (mobile)",
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "radius_desktop",
+          "min": 0,
+          "max": 32,
+          "step": 2,
+          "unit": "px",
+          "label": "Corner radius (desktop)",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "radius_mobile",
+          "min": 0,
+          "max": 24,
+          "step": 2,
+          "unit": "px",
+          "label": "Corner radius (mobile)",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "gap_desktop",
+          "min": 12,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "label": "Gap (desktop)",
+          "default": 32
         }
       ]
     },
