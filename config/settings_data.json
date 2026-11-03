@@ -139,6 +139,22 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "enabled": true,
+          "threshold": 50,
+          "text_progress": "Add [amount] more for free shipping",
+          "text_unlocked": "You unlocked free shipping 🎉",
+          "upsell_heading": "Recommended for you",
+          "add_button_label": "Add",
+          "adding_label": "Adding…",
+          "upsell_empty": "Select a collection in the section settings.",
+          "upsell_source": "collection",
+          "upsell_collection": "",
+          "products_to_show": 3
+        }
       }
     },
     "content_for_index": [],
@@ -153,21 +169,21 @@
         "disabled": true,
         "settings": {}
       },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "13047258039897440615": {
         "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "widget_type": "review-widget"
         }
       },
-      "855628211100114053": {
-        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
         "settings": {}
       }
     },
