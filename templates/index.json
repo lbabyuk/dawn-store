@@ -328,7 +328,7 @@
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
             "link": "shopify://products/chocolate-velvet-cake-copy",
-            "tooltip": "Tooltip info"
+            "tooltip": ""
           }
         },
         "image_block_bQ8DdG": {
@@ -336,7 +336,7 @@
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
             "link": "shopify://products/berry-cheesecake",
-            "tooltip": "Tooltip info"
+            "tooltip": ""
           }
         },
         "image_block_iwUgmc": {
@@ -344,7 +344,7 @@
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
             "link": "shopify://products/chocolate-velvet-cake",
-            "tooltip": "Tooltip info"
+            "tooltip": ""
           }
         }
       },
@@ -567,7 +567,9 @@
           "type": "image_block",
           "source": "{{ metaobjects.text.dfgdfgdf }}",
           "settings": {
-            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}"
+            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}",
+            "link": "",
+            "tooltip": "<p>Tooltip info</p>"
           }
         },
         "image_block_rQ98xe": {
@@ -576,7 +578,7 @@
           "settings": {
             "image": "{{ metaobjects.text.dfgdfgdf.image.value }}",
             "link": "",
-            "tooltip": "Tooltip info"
+            "tooltip": "<p>Tooltip info</p>"
           }
         },
         "image_block_4NTF69": {
@@ -584,7 +586,7 @@
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
             "link": "shopify://products/chocolate-velvet-cake",
-            "tooltip": "Tooltip info"
+            "tooltip": "<p>Tooltip info</p>"
           }
         }
       },
