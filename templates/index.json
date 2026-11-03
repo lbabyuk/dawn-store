@@ -565,28 +565,26 @@
       "blocks": {
         "image_block_XryMj3": {
           "type": "image_block",
-          "source": "{{ metaobjects.text.dfgdfgdf }}",
           "settings": {
-            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}",
+            "image": "shopify://shop_images/icon7.svg",
             "link": "",
-            "tooltip": "<p>Tooltip info</p>"
+            "tooltip": ""
           }
         },
         "image_block_rQ98xe": {
           "type": "image_block",
-          "source": "{{ metaobjects.text.dfgdfgdf }}",
           "settings": {
-            "image": "{{ metaobjects.text.dfgdfgdf.image.value }}",
+            "image": "shopify://shop_images/icon6.svg",
             "link": "",
-            "tooltip": "<p>Tooltip info</p>"
+            "tooltip": ""
           }
         },
         "image_block_4NTF69": {
           "type": "image_block",
           "settings": {
-            "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
+            "image": "shopify://shop_images/icon5.svg",
             "link": "shopify://products/chocolate-velvet-cake",
-            "tooltip": "<p>Tooltip info</p>"
+            "tooltip": ""
           }
         }
       },
