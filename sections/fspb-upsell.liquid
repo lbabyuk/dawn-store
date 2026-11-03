@@ -1,0 +1,101 @@
+{% comment %}
+  Section Rendering target for Product Recommendations API.
+  Loaded by fspb-free-shipping.js:
+  /recommendations/products?product_id=ID&limit=N&section_id=fspb-upsell
+{% endcomment %}
+
+{%- liquid
+  assign text_add = section.settings.add_button_label | default: 'Add'
+  assign products_to_show = section.settings.products_to_show | default: 3
+
+  assign cart_product_ids = ''
+  for item in cart.items
+    assign cart_product_ids = cart_product_ids | append: item.product_id | append: ','
+  endfor
+-%}
+
+<div class="fspb-upsell-section" data-fspb-upsell-section>
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <ul class="fspb__list" role="list">
+      {%- assign shown = 0 -%}
+      {%- for product in recommendations.products -%}
+        {%- if shown >= products_to_show -%}
+          {%- break -%}
+        {%- endif -%}
+
+        {%- assign in_cart = false -%}
+        {%- assign pid_token = product.id | append: ',' -%}
+        {%- if cart_product_ids contains pid_token -%}
+          {%- assign in_cart = true -%}
+        {%- endif -%}
+
+        {%- if in_cart == false and product.available -%}
+          {%- assign variant = product.selected_or_first_available_variant -%}
+          <li class="fspb__item" data-fspb-item data-product-id="{{ product.id }}">
+            <a href="{{ product.url }}" class="fspb__media" tabindex="-1" aria-hidden="true">
+              {%- if product.featured_media -%}
+                <img
+                  class="fspb__image"
+                  src="{{ product.featured_media | image_url: width: 120 }}"
+                  srcset="{{ product.featured_media | image_url: width: 60 }} 60w, {{ product.featured_media | image_url: width: 120 }} 120w"
+                  sizes="60px"
+                  alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="60"
+                  height="60"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'fspb__image fspb__image--placeholder' }}
+              {%- endif -%}
+            </a>
+            <div class="fspb__meta">
+              <a href="{{ product.url }}" class="fspb__title">{{ product.title | escape }}</a>
+              <div class="fspb__price">
+                {%- if variant.compare_at_price > variant.price -%}
+                  <span class="fspb__price-sale">{{ variant.price | money }}</span>
+                  <s class="fspb__price-compare">{{ variant.compare_at_price | money }}</s>
+                {%- else -%}
+                  <span>{{ variant.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+            <button
+              type="button"
+              class="fspb__add button button--secondary"
+              data-fspb-add
+              data-variant-id="{{ variant.id }}"
+              {% unless variant.available %}disabled{% endunless %}
+            >
+              <span data-fspb-add-label>{{ text_add }}</span>
+              <span class="fspb__spinner" aria-hidden="true"></span>
+            </button>
+          </li>
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "FSPB Upsell (API)",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3,
+      "label": "Products to show"
+    },
+    {
+      "type": "text",
+      "id": "add_button_label",
+      "label": "Add button label",
+      "default": "Add"
+    }
+  ]
+}
+{% endschema %}

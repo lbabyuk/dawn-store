@@ -1,0 +1,160 @@
+{{ 'fspb-free-shipping.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'fspb-free-shipping.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="fspb-section color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+  id="FspbFreeShipping-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="page-width">
+    {% render 'fspb-free-shipping', fspb_settings: section.settings, fspb_context: 'page' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Free shipping progress",
+  "tag": "section",
+  "class": "section fspb-section-wrapper",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable free shipping bar",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "Free shipping threshold",
+      "info": "Amount in store currency (e.g. 50 for $50.00).",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Texts"
+    },
+    {
+      "type": "text",
+      "id": "text_progress",
+      "label": "Progress message",
+      "info": "Use [amount] as a placeholder for the remaining money value.",
+      "default": "Add [amount] more for free shipping"
+    },
+    {
+      "type": "text",
+      "id": "text_unlocked",
+      "label": "Unlocked message",
+      "default": "You unlocked free shipping 🎉"
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Upsell heading",
+      "default": "Recommended for you"
+    },
+    {
+      "type": "text",
+      "id": "add_button_label",
+      "label": "Add button label",
+      "default": "Add"
+    },
+    {
+      "type": "text",
+      "id": "adding_label",
+      "label": "Adding label",
+      "default": "Adding…"
+    },
+    {
+      "type": "text",
+      "id": "upsell_empty",
+      "label": "Empty upsell message",
+      "default": "Select a collection in the section settings."
+    },
+    {
+      "type": "header",
+      "content": "Upsell products"
+    },
+    {
+      "type": "select",
+      "id": "upsell_source",
+      "label": "Product source",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection"
+        },
+        {
+          "value": "recommendations",
+          "label": "Product Recommendations API"
+        }
+      ],
+      "default": "collection"
+    },
+    {
+      "type": "collection",
+      "id": "upsell_collection",
+      "label": "Upsell collection",
+      "info": "Used when source is Collection."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3,
+      "label": "Products to show"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Free shipping progress"
+    }
+  ]
+}
+{% endschema %}

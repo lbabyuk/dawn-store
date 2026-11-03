@@ -46,6 +46,10 @@
                 {{ 'general.continue_shopping' | t }}
               </a>
 
+              {%- if fspb_settings != blank -%}
+                {% render 'fspb-free-shipping', fspb_settings: fspb_settings, fspb_context: 'drawer' %}
+              {%- endif -%}
+
               {%- if shop.customer_accounts_enabled and customer == null -%}
                 <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
                 <p class="cart__login-paragraph">
@@ -309,7 +313,7 @@
                                     value="{{ item.quantity }}"
                                     {% # theme-check-disable %}
                                     data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
-                                    min="0"
+                                    min="{{ item.variant.quantity_rule.min }}"
                                     data-min="{{ item.variant.quantity_rule.min }}"
                                     {% if item.variant.quantity_rule.max != null %}
                                       max="{{ item.variant.quantity_rule.max }}"
@@ -475,6 +479,10 @@
         </form>
       </cart-drawer-items>
       <div class="drawer__footer">
+        {%- if fspb_settings != blank -%}
+          {% render 'fspb-free-shipping', fspb_settings: fspb_settings, fspb_context: 'drawer' %}
+        {%- endif -%}
+
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>

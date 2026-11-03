@@ -1,0 +1,210 @@
+{% comment %}
+  Free shipping progress bar + mini upsell (fspb).
+
+  Accepts:
+  - fspb_settings: section.settings (or equivalent settings drop)
+  - fspb_context: 'drawer' | 'page'
+{% endcomment %}
+
+{%- liquid
+  assign fspb = fspb_settings
+  assign fspb_context = fspb_context | default: 'page'
+  assign fspb_enabled = fspb.enabled
+  if fspb_enabled == nil
+    assign fspb_enabled = true
+  endif
+
+  assign threshold_value = fspb.threshold | default: 50
+  assign threshold_cents = threshold_value | times: 100
+  assign cart_total = cart.total_price
+  assign remaining_cents = threshold_cents | minus: cart_total
+  if remaining_cents < 0
+    assign remaining_cents = 0
+  endif
+
+  assign is_unlocked = false
+  if threshold_cents <= 0 or cart_total >= threshold_cents
+    assign is_unlocked = true
+  endif
+
+  if threshold_cents > 0
+    assign progress_pct = cart_total | times: 100.0 | divided_by: threshold_cents
+  else
+    assign progress_pct = 100
+  endif
+  if progress_pct > 100
+    assign progress_pct = 100
+  endif
+  if progress_pct < 0
+    assign progress_pct = 0
+  endif
+
+  if settings.currency_code_enabled
+    assign remaining_money = remaining_cents | money_with_currency
+    assign money_format = shop.money_with_currency_format
+  else
+    assign remaining_money = remaining_cents | money
+    assign money_format = shop.money_format
+  endif
+
+  assign text_progress = fspb.text_progress | default: 'Add [amount] more for free shipping'
+  assign text_unlocked = fspb.text_unlocked | default: 'You unlocked free shipping 🎉'
+  assign text_upsell_heading = fspb.upsell_heading | default: 'Recommended for you'
+  assign text_add = fspb.add_button_label | default: 'Add'
+  assign text_adding = fspb.adding_label | default: 'Adding…'
+  assign text_upsell_empty = fspb.upsell_empty | default: 'Select a collection in the section settings.'
+
+  assign progress_message = text_progress | replace: '[amount]', remaining_money
+
+  assign upsell_source = fspb.upsell_source | default: 'collection'
+  assign products_to_show = fspb.products_to_show | default: 3
+  assign upsell_collection = fspb.upsell_collection
+
+  # Upsell only when cart has items and free shipping is not unlocked yet.
+  assign show_upsell = false
+  if is_unlocked == false and cart.item_count > 0
+    assign show_upsell = true
+  endif
+
+  assign seed_product_id = ''
+  if cart.item_count > 0
+    assign seed_product_id = cart.items.first.product_id
+  endif
+
+  assign cart_product_ids = ''
+  for item in cart.items
+    assign cart_product_ids = cart_product_ids | append: item.product_id | append: ','
+  endfor
+-%}
+
+{%- if fspb_enabled -%}
+  <fspb-shipping-bar
+    class="fspb fspb--{{ fspb_context }}{% if is_unlocked %} fspb--unlocked{% endif %}{% if cart == empty %} fspb--empty-cart{% endif %}"
+    data-threshold="{{ threshold_cents }}"
+    data-cart-total="{{ cart_total }}"
+    data-progress="{{ progress_pct }}"
+    data-unlocked="{{ is_unlocked }}"
+    data-money-format="{{ money_format | escape }}"
+    data-text-progress="{{ text_progress | escape }}"
+    data-text-unlocked="{{ text_unlocked | escape }}"
+    data-text-adding="{{ text_adding | escape }}"
+    data-text-add="{{ text_add | escape }}"
+    data-upsell-source="{{ upsell_source }}"
+    data-products-to-show="{{ products_to_show }}"
+    data-seed-product-id="{{ seed_product_id }}"
+    data-cart-product-ids="{{ cart_product_ids | escape }}"
+    data-section-upsell="fspb-upsell"
+    data-context="{{ fspb_context }}"
+    style="--fspb-progress: {{ progress_pct }}%;"
+    aria-live="polite"
+  >
+    <div class="fspb__progress" data-fspb-progress>
+      <p class="fspb__message" data-fspb-message>
+        {%- if is_unlocked -%}
+          {{ text_unlocked }}
+        {%- else -%}
+          {{ progress_message }}
+        {%- endif -%}
+      </p>
+      <div
+        class="fspb__track"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="{{ progress_pct | round }}"
+        aria-label="{{ text_progress | escape }}"
+        data-fspb-track
+      >
+        <div class="fspb__fill" data-fspb-fill>&nbsp;</div>
+      </div>
+    </div>
+
+    <div
+      class="fspb__upsell{% unless show_upsell %} fspb__upsell--hidden{% endunless %}"
+      data-fspb-upsell
+      {% unless show_upsell %}hidden{% endunless %}
+    >
+      <p class="fspb__upsell-heading">{{ text_upsell_heading }}</p>
+
+      {%- if upsell_source == 'collection' and upsell_collection != blank -%}
+        <ul class="fspb__list" role="list" data-fspb-list>
+          {%- assign shown = 0 -%}
+          {%- for product in upsell_collection.products -%}
+            {%- if shown >= products_to_show -%}
+              {%- break -%}
+            {%- endif -%}
+
+            {%- assign in_cart = false -%}
+            {%- assign pid_token = product.id | append: ',' -%}
+            {%- if cart_product_ids contains pid_token -%}
+              {%- assign in_cart = true -%}
+            {%- endif -%}
+
+            {%- if in_cart == false and product.available -%}
+              {%- assign variant = product.selected_or_first_available_variant -%}
+              <li class="fspb__item" data-fspb-item data-product-id="{{ product.id }}">
+                <a href="{{ product.url }}" class="fspb__media" tabindex="-1" aria-hidden="true">
+                  {%- if product.featured_media -%}
+                    <img
+                      class="fspb__image"
+                      src="{{ product.featured_media | image_url: width: 120 }}"
+                      srcset="{{ product.featured_media | image_url: width: 60 }} 60w, {{ product.featured_media | image_url: width: 120 }} 120w"
+                      sizes="60px"
+                      alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                      loading="lazy"
+                      width="60"
+                      height="60"
+                    >
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'fspb__image fspb__image--placeholder' }}
+                  {%- endif -%}
+                </a>
+                <div class="fspb__meta">
+                  <a href="{{ product.url }}" class="fspb__title">{{ product.title | escape }}</a>
+                  <div class="fspb__price">
+                    {%- if variant.compare_at_price > variant.price -%}
+                      <span class="fspb__price-sale">{{ variant.price | money }}</span>
+                      <s class="fspb__price-compare">{{ variant.compare_at_price | money }}</s>
+                    {%- else -%}
+                      <span>{{ variant.price | money }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="fspb__add button button--secondary"
+                  data-fspb-add
+                  data-variant-id="{{ variant.id }}"
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  <span data-fspb-add-label>{{ text_add }}</span>
+                  <span class="fspb__spinner" aria-hidden="true"></span>
+                </button>
+              </li>
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- elsif upsell_source == 'recommendations' -%}
+        {%- if seed_product_id != blank -%}
+          <ul class="fspb__list fspb__list--loading" role="list" data-fspb-list data-fspb-recs-target>
+            {%- for i in (1..products_to_show) -%}
+              <li class="fspb__item fspb__item--skeleton" aria-hidden="true">
+                <div class="fspb__media fspb__skeleton"></div>
+                <div class="fspb__meta">
+                  <div class="fspb__skeleton fspb__skeleton--text"></div>
+                  <div class="fspb__skeleton fspb__skeleton--price"></div>
+                </div>
+                <div class="fspb__skeleton fspb__skeleton--btn"></div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- else -%}
+          <p class="fspb__upsell-empty">{{ text_upsell_empty }}</p>
+        {%- endif -%}
+      {%- else -%}
+        <p class="fspb__upsell-empty">{{ text_upsell_empty }}</p>
+      {%- endif -%}
+    </div>
+  </fspb-shipping-bar>
+{%- endif -%}

@@ -1,1 +1,109 @@
-{%- render 'cart-drawer' -%}
+{{ 'fspb-free-shipping.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'fspb-free-shipping.js' | asset_url }}" defer></script>
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    height: 0;
+  }
+{%- endstyle -%}
+{%- render 'cart-drawer', fspb_settings: section.settings -%}
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Free shipping progress"
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable free shipping bar",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "Free shipping threshold",
+      "info": "Amount in store currency (e.g. 50 for $50.00).",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Texts"
+    },
+    {
+      "type": "text",
+      "id": "text_progress",
+      "label": "Progress message",
+      "info": "Use [amount] as a placeholder for the remaining money value.",
+      "default": "Add [amount] more for free shipping"
+    },
+    {
+      "type": "text",
+      "id": "text_unlocked",
+      "label": "Unlocked message",
+      "default": "You unlocked free shipping 🎉"
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Upsell heading",
+      "default": "Recommended for you"
+    },
+    {
+      "type": "text",
+      "id": "add_button_label",
+      "label": "Add button label",
+      "default": "Add"
+    },
+    {
+      "type": "text",
+      "id": "adding_label",
+      "label": "Adding label",
+      "default": "Adding…"
+    },
+    {
+      "type": "text",
+      "id": "upsell_empty",
+      "label": "Empty upsell message",
+      "default": "Select a collection in the section settings."
+    },
+    {
+      "type": "header",
+      "content": "Upsell products"
+    },
+    {
+      "type": "select",
+      "id": "upsell_source",
+      "label": "Product source",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection"
+        },
+        {
+          "value": "recommendations",
+          "label": "Product Recommendations API"
+        }
+      ],
+      "default": "collection"
+    },
+    {
+      "type": "collection",
+      "id": "upsell_collection",
+      "label": "Upsell collection",
+      "info": "Used when source is Collection."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3,
+      "label": "Products to show"
+    }
+  ]
+}
+{% endschema %}
