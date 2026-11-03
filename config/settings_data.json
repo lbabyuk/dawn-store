@@ -11,9 +11,9 @@
   "current": {
     "logo": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
     "logo_width": 80,
-    "type_header_font": "cormorant_n4",
+    "type_header_font": "serif",
     "heading_scale": 100,
-    "type_body_font": "cormorant_n4",
+    "type_body_font": "serif",
     "body_scale": 100,
     "page_width": 1400,
     "spacing_sections": 0,
