@@ -325,6 +325,67 @@
         "padding_bottom": 32
       }
     },
+    "moment_of_happiness_ERNbkB": {
+      "type": "moment-of-happiness",
+      "blocks": {
+        "feature_CAxRVK": {
+          "type": "feature",
+          "settings": {
+            "icon": "coffee",
+            "title": "Your morning treat",
+            "description": "A sweet start to your day"
+          }
+        },
+        "feature_ftt8w9": {
+          "type": "feature",
+          "settings": {
+            "icon": "cake",
+            "title": "A sweet afternoon break",
+            "description": "Take a moment just for you"
+          }
+        },
+        "feature_UXj8Kk": {
+          "type": "feature",
+          "settings": {
+            "icon": "gift",
+            "title": "Something to share",
+            "description": "Make every moment special"
+          }
+        },
+        "feature_rD8mff": {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "title": "A little reward",
+            "description": "Because you deserve it"
+          }
+        }
+      },
+      "block_order": [
+        "feature_CAxRVK",
+        "feature_ftt8w9",
+        "feature_UXj8Kk",
+        "feature_rD8mff"
+      ],
+      "name": "A little moment of happiness",
+      "settings": {
+        "eyebrow": "A sweet little escape",
+        "heading": "A little moment of happiness",
+        "description": "<p>More than just dessert — it's a sweet pause in your day.</p>",
+        "main_image": "shopify://shop_images/berry-cheesecake.jpg",
+        "top_image": "shopify://shop_images/cupcake-cream-cheese-icing.jpg",
+        "bottom_image": "shopify://shop_images/coffee-and-cake.jpg",
+        "left_image": "shopify://shop_images/womans-hand-liting-birthday-candles.jpg",
+        "button_label": "Explore our treats",
+        "button_link": "",
+        "background_color": "#F8EFE5",
+        "text_color": "#492514",
+        "accent_color": "#89552F",
+        "image_radius": 12,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "quick_order_list_nfPY3a": {
       "type": "quick-order-list",
       "disabled": true,
@@ -363,21 +424,24 @@
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake-copy"
+            "link": "shopify://products/chocolate-velvet-cake-copy",
+            "tooltip": "<p>Tooltip info</p>"
           }
         },
         "image_block_imwFTn": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/berry-cheesecake"
+            "link": "shopify://products/berry-cheesecake",
+            "tooltip": "<p>Tooltip info</p>"
           }
         },
         "image_block_k6xHQm": {
           "type": "image_block",
           "settings": {
             "image": "shopify://shop_images/logo-2_e40014a1-ea9d-47e6-a5b3-44d3b8cb6cd7.png",
-            "link": "shopify://products/chocolate-velvet-cake"
+            "link": "shopify://products/chocolate-velvet-cake",
+            "tooltip": "<p>Tooltip info</p>"
           }
         }
       },
@@ -506,6 +570,7 @@
   "order": [
     "main",
     "redesign_why_love",
+    "moment_of_happiness_ERNbkB",
     "quick_order_list_nfPY3a",
     "related-products",
     "marquee_section_bJzNPe",
