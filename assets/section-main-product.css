@@ -1500,3 +1500,6 @@ a.product__text {
 recharge-subscription-widget {
   max-width: 100%;
 }
+.product-form__buttons {
+  max-width: 100%;
+}
