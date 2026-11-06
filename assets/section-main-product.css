@@ -1496,3 +1496,7 @@ a.product__text {
 .shopify-block.shopify-app-block.recharge-subscription-widget {
   justify-content: flex-start !important;
 }
+
+recharge-subscription-widget {
+  max-width: 100%;
+}
