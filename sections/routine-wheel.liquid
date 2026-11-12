@@ -1,0 +1,785 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+  assign total = section.blocks.size
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ s.padding_top }}px;
+    margin-bottom: {{ s.padding_bottom }}px;
+  }
+</style>
+
+{%- if total == 0 -%}
+  <div class="page-width" style="padding: 4rem 0; text-align: center;">
+    Add at least one "Step" block to this section.
+  </div>
+{%- else -%}
+  <routine-wheel
+    id="RoutineWheel-{{ section.id }}"
+    class="rw"
+    data-autoplay="{{ s.autoplay }}"
+    style="
+      --rw-accent: {{ s.accent }};
+      --rw-text: {{ s.text_color }};
+      --rw-title: {{ s.title_color }};
+      --rw-line: {{ s.line_color }};
+      --rw-radius: {{ s.radius }}px;
+      --rw-media-h: {{ s.media_height }}px;
+      --rw-media-h-m: {{ s.media_height_mobile }}px;
+      --rw-overlay: {{ s.overlay | divided_by: 100.0 }};
+    "
+  >
+    <div class="page-width">
+      <div class="rw__grid">
+        {%- comment -%} 1. WHEEL {%- endcomment -%}
+        <div class="rw__wheel" role="tablist" aria-label="{{ s.label | escape }}">
+          <span class="rw__arc" aria-hidden="true"></span>
+          <span class="rw__label">{{ s.label }}</span>
+          {%- for block in section.blocks -%}
+            <button
+              type="button"
+              class="rw__num{% if forloop.first %} is-active{% endif %}"
+              role="tab"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              style="--o: {{ forloop.index0 }};"
+            >
+              <span class="rw__num-inner">
+                {%- if forloop.index < 10 %}0{% endif %}{{ forloop.index -}}
+              </span>
+            </button>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} 2. PRODUCT CARDS (Dawn card-product) {%- endcomment -%}
+        <div class="rw__cards">
+          {%- for block in section.blocks -%}
+            {%- assign product = block.settings.product -%}
+            <div class="rw__card{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+              {%- if product != blank -%}
+                <div class="rw__card-inner">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: s.card_ratio,
+                    image_shape: 'default',
+                    show_secondary_image: false,
+                    show_vendor: false,
+                    show_rating: false,
+                    show_quick_add: false,
+                    section_id: section.id
+                  %}
+
+                  {%- if s.hover_action != 'none' -%}
+                    <div class="rw__actions">
+                      {%- if s.hover_action != 'link' and product.available and product.variants.size == 1 -%}
+                        <button
+                          type="button"
+                          class="rw__btn rw__btn--cart"
+                          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                          aria-label="{{ 'products.product.add_to_cart' | t }}: {{ product.title | escape }}"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                        </button>
+                      {%- endif -%}
+                      {%- if s.hover_action == 'link' or s.hover_action == 'both' or product.variants.size > 1 or product.available == false -%}
+                        <a
+                          href="{{ product.url }}"
+                          class="rw__btn rw__btn--link"
+                          aria-label="{{ 'products.product.view_full_details' | t }}: {{ product.title | escape }}"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                        </a>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} 3. BIG MEDIA + CAPTIONS {%- endcomment -%}
+        <div class="rw__media">
+          {%- for block in section.blocks -%}
+            <div
+              class="rw__slide{% if forloop.first %} is-active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.media_type == 'video' and block.settings.video != blank -%}
+                {{
+                  block.settings.video
+                  | video_tag: image_size: '1600x', loop: true, muted: true, playsinline: true, controls: false, class: 'rw__asset rw__video'
+                }}
+              {%- elsif block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1800
+                  | image_tag: loading: 'lazy', class: 'rw__asset', widths: '600, 900, 1200, 1800', sizes: '(min-width: 990px) 60vw, 100vw'
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'rw__asset rw__placeholder' }}
+              {%- endif -%}
+
+              <div class="rw__caption">
+                <span class="rw__big">{%- if forloop.index < 10 %}0{% endif %}{{ forloop.index -}}</span>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="rw__title">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="rw__text">{{ block.settings.text | escape }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </routine-wheel>
+{%- endif -%}
+
+{% stylesheet %}
+  .rw {
+    --rw-cx: 56px;
+    --rw-r: 124px;
+    --rw-angle: 24deg;
+    color: var(--rw-text);
+    overflow: hidden;
+  }
+
+  .rw__grid {
+    display: grid;
+    grid-template-columns: auto minmax(220px, 270px) minmax(0, 1fr);
+    gap: 2.4rem;
+    align-items: center;
+  }
+
+  /* ---------- Wheel ---------- */
+  .rw__wheel {
+    position: relative;
+    width: calc(var(--rw-cx) + var(--rw-r) + 5rem);
+    height: 36rem;
+  }
+
+  .rw__arc {
+    position: absolute;
+    left: calc(var(--rw-cx) - var(--rw-r));
+    top: 50%;
+    width: calc(var(--rw-r) * 2);
+    height: calc(var(--rw-r) * 2);
+    margin-top: calc(var(--rw-r) * -1);
+    border: 1px solid var(--rw-line);
+    border-radius: 50%;
+    clip-path: inset(0 0 0 50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .rw__label {
+    position: absolute;
+    left: var(--rw-cx);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .rw__num {
+    position: absolute;
+    left: var(--rw-cx);
+    top: 50%;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    color: var(--rw-accent);
+    font: inherit;
+    cursor: pointer;
+    overflow: visible;
+    transform:
+      rotate(calc(var(--o) * var(--rw-angle)))
+      translateX(var(--rw-r))
+      rotate(calc(var(--o) * var(--rw-angle) * -1));
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease;
+  }
+
+  .rw__num-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transform: translate(-4px, -50%);
+    font-size: 22px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .rw__num-inner::before {
+    content: '';
+    box-sizing: border-box;
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: var(--rw-bg, #fff);
+    transition: background-color 0.4s ease;
+  }
+
+  .rw__num.is-active .rw__num-inner::before {
+    background: currentColor;
+  }
+
+  .rw__num.is-active {
+    opacity: 1;
+  }
+
+  .rw__num[data-dist='1'] { opacity: 0.65; }
+  .rw__num[data-dist='2'] { opacity: 0.3; }
+  .rw__num[data-dist='3'] { opacity: 0; pointer-events: none; }
+
+  .rw__num:focus-visible .rw__num-inner {
+    outline: 2px solid var(--rw-accent);
+    outline-offset: 4px;
+  }
+
+  /* ---------- Product card ---------- */
+  .rw__cards {
+    display: grid;
+  }
+
+  .rw__card {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease, visibility 0s linear 0.55s;
+  }
+
+  .rw__card.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0.15s, 0.15s, 0s;
+  }
+
+  .rw__card .card-wrapper,
+  .rw__card .card {
+    height: auto;
+  }
+
+  .rw__card .card--standard.card--media .card__inner,
+  .rw__card .card__inner {
+    border-radius: 2.4rem;
+  }
+
+  .rw__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    min-height: 3.2rem;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .rw__card:hover .rw__actions,
+  .rw__card:focus-within .rw__actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (hover: none) {
+    .rw__actions { opacity: 1; transform: none; }
+  }
+
+  .rw__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0;
+    border: 0;
+    background: var(--rw-accent);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .rw__btn:hover { transform: translateY(-2px); }
+  .rw__btn.is-loading { opacity: 0.5; pointer-events: none; }
+  .rw__btn:focus-visible { outline: 2px solid var(--rw-text); outline-offset: 2px; }
+
+  /* ---------- Big media ---------- */
+  .rw__media {
+    display: grid;
+    min-width: 0;
+  }
+
+  .rw__slide {
+    grid-area: 1 / 1;
+    position: relative;
+    height: var(--rw-media-h);
+    border-radius: var(--rw-radius);
+    overflow: hidden;
+    background: #d9d6d6;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease, visibility 0s linear 0.7s;
+  }
+
+  .rw__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+    z-index: 1;
+  }
+
+  .rw__asset {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.06);
+    transition: transform 1.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  .rw__slide.is-active .rw__asset { transform: scale(1); }
+
+  .rw__slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, var(--rw-overlay)) 0%, rgba(0, 0, 0, 0) 55%);
+    pointer-events: none;
+  }
+
+  .rw__caption {
+    position: absolute;
+    z-index: 2;
+    left: 2.4rem;
+    bottom: 2.4rem;
+    max-width: min(38rem, 70%);
+    color: #fff;
+  }
+
+  .rw__caption > * {
+    margin: 0;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .rw__slide.is-active .rw__caption > * { opacity: 1; transform: none; }
+  .rw__slide.is-active .rw__caption > :nth-child(1) { transition-delay: 0.25s; }
+  .rw__slide.is-active .rw__caption > :nth-child(2) { transition-delay: 0.35s; }
+  .rw__slide.is-active .rw__caption > :nth-child(3) { transition-delay: 0.45s; }
+
+  .rw__big {
+    display: block;
+    font-size: 3.2rem;
+    line-height: 1.1;
+  }
+
+  .rw__title {
+    color: var(--rw-title, #fff);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+  }
+
+  .rw__text {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin-top: 0.4rem;
+  }
+
+  /* ---------- Tablet ---------- */
+  @media screen and (max-width: 989px) {
+    .rw {
+      --rw-cx: 46px;
+      --rw-r: 100px;
+      --rw-angle: 26deg;
+    }
+
+    .rw__grid {
+      grid-template-columns: 14rem minmax(0, 1fr);
+      grid-template-areas:
+        'wheel cards'
+        'media media';
+      gap: 1.6rem 1.2rem;
+      align-items: start;
+    }
+
+    .rw__wheel { grid-area: wheel; width: 14rem; height: 28rem; align-self: center; }
+    .rw__cards { grid-area: cards; }
+    .rw__media { grid-area: media; }
+
+    .rw__slide { height: calc((var(--rw-media-h) + var(--rw-media-h-m)) / 2); }
+    .rw__caption { left: 2rem; bottom: 2rem; max-width: 75%; }
+  }
+
+  /* ---------- Mobile ---------- */
+  @media screen and (max-width: 749px) {
+    .rw {
+      --rw-cx: 38px;
+      --rw-r: 78px;
+      --rw-angle: 28deg;
+    }
+
+    .rw__grid {
+      grid-template-columns: 12.5rem minmax(0, 1fr);
+      gap: 1.6rem 1rem;
+    }
+
+    .rw__wheel { width: 12.5rem; height: 26rem; }
+
+    .rw__label { font-size: 1.3rem; }
+    .rw__num-inner { font-size: 1.6rem; }
+    .rw__slide { height: var(--rw-media-h-m); }
+    .rw__caption { left: 1.6rem; bottom: 1.6rem; max-width: 85%; }
+    .rw__big { font-size: 2.4rem; }
+    .rw__title { font-size: 1.5rem; }
+    .rw__text { font-size: 1.2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rw__num, .rw__card, .rw__slide, .rw__asset, .rw__caption > * {
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('routine-wheel')) {
+    class RoutineWheel extends HTMLElement {
+      connectedCallback() {
+        this.nums = [...this.querySelectorAll('.rw__num')];
+        this.cards = [...this.querySelectorAll('.rw__card')];
+        this.slides = [...this.querySelectorAll('.rw__slide')];
+        this.active = 0;
+        this.autoplayDelay = (parseInt(this.dataset.autoplay, 10) || 0) * 1000;
+        this.timer = null;
+        this.hovering = false;
+        this.visible = false;
+
+        this.nums.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            this.stopAutoplay(true);
+            this.go(parseInt(btn.dataset.index, 10));
+          });
+        });
+
+        this.querySelector('.rw__wheel')?.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            this.stopAutoplay(true);
+            this.go(Math.min(this.active + 1, this.nums.length - 1), true);
+          } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            this.stopAutoplay(true);
+            this.go(Math.max(this.active - 1, 0), true);
+          }
+        });
+
+        this.querySelectorAll('.rw__btn--cart').forEach((btn) => {
+          btn.addEventListener('click', () => this.addToCart(btn));
+        });
+
+        // theme editor: jump to the selected block
+        this.addEventListener('shopify:block:select', (e) => {
+          const i = this.slides.indexOf(e.target.closest('.rw__slide'));
+          if (i > -1) {
+            this.stopAutoplay(true);
+            this.go(i);
+          }
+        });
+
+        this.addEventListener('mouseenter', () => (this.hovering = true));
+        this.addEventListener('mouseleave', () => (this.hovering = false));
+
+        this.go(0);
+
+        if (this.autoplayDelay && this.nums.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          this.io = new IntersectionObserver(([entry]) => {
+            this.visible = entry.isIntersecting;
+            this.syncVideos();
+          });
+          this.io.observe(this);
+          this.timer = setInterval(() => {
+            if (this.hovering || !this.visible) return;
+            this.go((this.active + 1) % this.nums.length);
+          }, this.autoplayDelay);
+        } else {
+          this.io = new IntersectionObserver(([entry]) => {
+            this.visible = entry.isIntersecting;
+            this.syncVideos();
+          });
+          this.io.observe(this);
+        }
+      }
+
+      disconnectedCallback() {
+        this.stopAutoplay(true);
+        this.io?.disconnect();
+      }
+
+      stopAutoplay(permanent) {
+        if (this.timer && permanent) {
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+
+      go(index, focus) {
+        this.active = index;
+
+        this.nums.forEach((btn, k) => {
+          const o = k - index;
+          btn.style.setProperty('--o', o);
+          btn.dataset.dist = Math.min(Math.abs(o), 3);
+          btn.classList.toggle('is-active', o === 0);
+          btn.setAttribute('aria-selected', o === 0 ? 'true' : 'false');
+          btn.tabIndex = o === 0 ? 0 : -1;
+          if (o === 0 && focus) btn.focus();
+        });
+
+        this.cards.forEach((card, k) => {
+          const on = k === index;
+          card.classList.toggle('is-active', on);
+          card.setAttribute('aria-hidden', on ? 'false' : 'true');
+          card.querySelectorAll('a, button').forEach((el) => (el.tabIndex = on ? 0 : -1));
+        });
+
+        this.slides.forEach((slide, k) => {
+          slide.classList.toggle('is-active', k === index);
+        });
+
+        this.syncVideos();
+      }
+
+      syncVideos() {
+        this.slides.forEach((slide, k) => {
+          const video = slide.querySelector('video');
+          if (!video) return;
+          if (k === this.active && this.visible !== false) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }
+
+      async addToCart(btn) {
+        if (btn.classList.contains('is-loading')) return;
+        btn.classList.add('is-loading');
+
+        const cart = document.querySelector('cart-drawer') || document.querySelector('cart-notification');
+        const config =
+          typeof fetchConfig === 'function'
+            ? fetchConfig('javascript')
+            : { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' } };
+
+        const payload = { id: parseInt(btn.dataset.variantId, 10), quantity: 1 };
+        if (cart && typeof cart.getSectionsToRender === 'function') {
+          payload.sections = cart.getSectionsToRender().map((s) => s.id).join(',');
+          payload.sections_url = window.location.pathname;
+        }
+        config.body = JSON.stringify(payload);
+
+        try {
+          const res = await fetch(window.routes?.cart_add_url || '/cart/add', config);
+          const state = await res.json();
+          if (state.status) throw new Error(state.description || state.message);
+
+          if (cart && typeof cart.renderContents === 'function') {
+            cart.renderContents(state);
+          } else {
+            window.location.href = window.routes?.cart_url || '/cart';
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          btn.classList.remove('is-loading');
+        }
+      }
+    }
+
+    customElements.define('routine-wheel', RoutineWheel);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Routine wheel",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "header", "content": "General" },
+    { "type": "text", "id": "label", "label": "Wheel label", "default": "Routine" },
+    {
+      "type": "range",
+      "id": "autoplay",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay (0 = off)",
+      "default": 0
+    },
+
+    { "type": "header", "content": "Product card" },
+    {
+      "type": "select",
+      "id": "card_ratio",
+      "label": "Card image ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "select",
+      "id": "hover_action",
+      "label": "Button on hover",
+      "options": [
+        { "value": "cart", "label": "Add to cart (link if product has variants)" },
+        { "value": "link", "label": "Go to product page" },
+        { "value": "both", "label": "Both" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "cart"
+    },
+
+    { "type": "header", "content": "Media" },
+    {
+      "type": "range",
+      "id": "media_height",
+      "min": 300,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "label": "Height (desktop)",
+      "default": 470
+    },
+    {
+      "type": "range",
+      "id": "media_height_mobile",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Height (mobile)",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Dark overlay under text",
+      "default": 35
+    },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "accent", "label": "Accent (active step, buttons)", "default": "#6b4b46" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#000000" },
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#ffffff" },
+    { "type": "color", "id": "line_color", "label": "Arc line", "default": "#cdb9b5" },
+
+    { "type": "header", "content": "Spacing" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Cleanse & Refresh" },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Start with a gentle cleanser to remove impurities, excess oil, and buildup."
+        },
+        { "type": "product", "id": "product", "label": "Product" },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ],
+          "default": "image"
+        },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video (Shopify-hosted)",
+          "info": "Used when Media type is Video. Plays muted and looped while this step is active."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Routine wheel",
+      "blocks": [
+        { "type": "step", "settings": { "heading": "Cleanse & Refresh", "text": "Start with a gentle cleanser to remove impurities, excess oil, and buildup." } },
+        { "type": "step", "settings": { "heading": "Treat & Nourish", "text": "Apply a serum to target your skin concerns and deliver active ingredients." } },
+        { "type": "step", "settings": { "heading": "Hydrate & Protect", "text": "Finish with a moisturizer to lock in hydration and keep your skin soft, supple, and beautifully nourished throughout the day." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
