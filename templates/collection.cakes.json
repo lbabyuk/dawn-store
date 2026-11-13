@@ -209,12 +209,70 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "routine_wheel_DVEQXz": {
+      "type": "routine-wheel",
+      "blocks": {
+        "step_cQGjhG": {
+          "type": "step",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "product": "chocolate-velvet-cake",
+            "media_type": "image",
+            "image": "shopify://shop_images/chocolate-velvet-cake-a-slice-of-cak.png"
+          }
+        },
+        "step_tVi9BU": {
+          "type": "step",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "product": "fluffy-classic-pancakes",
+            "media_type": "image",
+            "image": "shopify://shop_images/white-bowl-with-mini-pancakes-with-cut-strawberries.jpg"
+          }
+        },
+        "step_nQhaWH": {
+          "type": "step",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "product": "chocolate-velvet-cake-copy",
+            "media_type": "image",
+            "image": "shopify://shop_images/stroberrtart.png"
+          }
+        }
+      },
+      "block_order": [
+        "step_cQGjhG",
+        "step_tVi9BU",
+        "step_nQhaWH"
+      ],
+      "name": "Routine wheel",
+      "settings": {
+        "label": "Routine",
+        "autoplay": 0,
+        "card_ratio": "square",
+        "hover_action": "cart",
+        "media_height": 470,
+        "media_height_mobile": 300,
+        "radius": 24,
+        "overlay": 35,
+        "accent": "#6b4b46",
+        "text_color": "#000000",
+        "title_color": "#ffffff",
+        "line_color": "#cdb9b5",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
     "custom_faq_image_nhfexN",
-    "video_testimonials_slider_w4FD8r"
+    "video_testimonials_slider_w4FD8r",
+    "routine_wheel_DVEQXz"
   ]
 }
