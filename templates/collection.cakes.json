@@ -23,7 +23,7 @@
         "products_per_page": 16,
         "columns_desktop": 3,
         "columns_mobile": "1",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -33,61 +33,6 @@
         "enable_filtering": true,
         "filter_type": "vertical",
         "enable_sorting": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "routine_wheel_GLhBJ9": {
-      "type": "routine-wheel",
-      "blocks": {
-        "step_XKiXTL": {
-          "type": "step",
-          "settings": {
-            "heading": "Cleanse & Refresh",
-            "text": "Start with a gentle cleanser to remove impurities, excess oil, and buildup.",
-            "product": "chocolate-velvet-cake-copy",
-            "media_type": "image",
-            "image": "shopify://shop_images/1_e89c826a-282d-445c-8516-e93a2e1453fe.png"
-          }
-        },
-        "step_qtXXUa": {
-          "type": "step",
-          "settings": {
-            "heading": "Treat & Nourish",
-            "text": "Apply a serum to target your skin concerns and deliver active ingredients.",
-            "product": "",
-            "media_type": "image"
-          }
-        },
-        "step_qwhkKE": {
-          "type": "step",
-          "settings": {
-            "heading": "Hydrate & Protect",
-            "text": "Finish with a moisturizer to lock in hydration and keep your skin soft, supple, and beautifully nourished throughout the day.",
-            "product": "",
-            "media_type": "image"
-          }
-        }
-      },
-      "block_order": [
-        "step_XKiXTL",
-        "step_qtXXUa",
-        "step_qwhkKE"
-      ],
-      "name": "Routine wheel",
-      "settings": {
-        "label": "Routine",
-        "autoplay": 0,
-        "card_ratio": "square",
-        "hover_action": "cart",
-        "media_height": 470,
-        "media_height_mobile": 300,
-        "radius": 24,
-        "overlay": 35,
-        "accent": "#6b4b46",
-        "text_color": "#000000",
-        "title_color": "#ffffff",
-        "line_color": "#cdb9b5",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -269,7 +214,6 @@
   "order": [
     "banner",
     "product-grid",
-    "routine_wheel_GLhBJ9",
     "custom_faq_image_nhfexN",
     "video_testimonials_slider_w4FD8r"
   ]
