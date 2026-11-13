@@ -257,7 +257,7 @@
         "hover_action": "cart",
         "media_height": 470,
         "media_height_mobile": 300,
-        "radius": 24,
+        "radius": 4,
         "overlay": 35,
         "accent": "#6b4b46",
         "text_color": "#000000",
