@@ -688,6 +688,8 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'nutriscore' -%}
+                {% render 'product-nutriscore', block: block %}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2394,6 +2396,31 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "nutriscore",
+      "name": "Nutriscore",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Nutriscore"
+        },
+        {
+          "type": "text",
+          "id": "info_text",
+          "label": "Info tooltip",
+          "default": "Nutritional rating system demonstrating the overall nutritional value of food products."
+        },
+        {
+          "type": "text",
+          "id": "score",
+          "label": "Score (A–E)",
+          "default": "C",
+          "info": "Connect a product metafield via dynamic source in the theme editor."
         }
       ]
     }

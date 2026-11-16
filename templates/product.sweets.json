@@ -66,6 +66,14 @@
             "swatch_shape": "circle"
           }
         },
+        "nutriscore_aGPKfi": {
+          "type": "nutriscore",
+          "settings": {
+            "heading": "Nutri-score",
+            "info_text": "Nutritional rating system demonstrating the overall nutritional value of food products.",
+            "score": "{{ product.metafields.custom.nutriscore.value }}"
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -192,6 +200,7 @@
         "inventory_V9a9rc",
         "description",
         "variant_picker",
+        "nutriscore_aGPKfi",
         "quantity_selector",
         "recharge_subscriptions_subscription_widget_v2_7FmtXE",
         "buy_buttons",
@@ -860,8 +869,8 @@
         "section_bg": "#ffffff",
         "card_bg": "#f2eee5",
         "media_bg": "#cfc7b1",
-        "heading_color": "#4A2C2A",
-        "text_color": "#4A2C2A",
+        "heading_color": "#4a2c2a",
+        "text_color": "#4a2c2a",
         "quote_color": "#c9c6b8",
         "star_color": "#f5a800",
         "star_off_color": "#d9d4c5",

@@ -1,0 +1,184 @@
+{% comment %}
+  Product Nutriscore block for PDP product info.
+  Accepts: block {Object}
+  Settings: heading, info_text, score (A–E; connect metafield via dynamic source)
+{% endcomment %}
+{%- liquid
+  assign heading = block.settings.heading | default: 'Nutriscore'
+  assign info_text = block.settings.info_text
+  assign score_raw = block.settings.score | strip | upcase
+  assign score = score_raw | slice: 0, 1
+  assign score_index = -1
+
+  case score
+    when 'A'
+      assign score_index = 0
+    when 'B'
+      assign score_index = 1
+    when 'C'
+      assign score_index = 2
+    when 'D'
+      assign score_index = 3
+    when 'E'
+      assign score_index = 4
+  endcase
+-%}
+{%- if score_index > -1 -%}
+  <div
+    class="product-nutriscore"
+    style="--nutri-index: {{ score_index }};"
+    {{ block.shopify_attributes }}
+  >
+    <div class="product-nutriscore__head">
+      {%- if heading != blank -%}
+        <p class="product-nutriscore__heading">{{ heading | escape }}</p>
+      {%- endif -%}
+      {%- if info_text != blank -%}
+        <span class="product-nutriscore__info" tabindex="0" aria-describedby="NutriscoreTooltip-{{ block.id }}">
+          <svg width="14" height="14" viewBox="0 0 15 14" fill="none" aria-hidden="true" focusable="false">
+            <path fill="currentColor" fill-opacity=".75" fill-rule="evenodd" d="M14.5 7a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-7 6.174A6.174 6.174 0 1 0 7.5.826a6.174 6.174 0 0 0 0 12.348" clip-rule="evenodd"/>
+            <path fill="currentColor" fill-opacity=".75" fill-rule="evenodd" d="M8.192 3.554c0-.39-.276-.725-.69-.725-.41 0-.696.329-.696.725 0 .392.29.719.696.719.411 0 .69-.332.69-.72" clip-rule="evenodd"/>
+            <path fill="currentColor" fill-opacity=".75" d="M6.971 5.724a.33.33 0 0 1 .33-.33H7.7a.33.33 0 0 1 .33.33v5.123a.33.33 0 0 1-.33.33h-.397a.33.33 0 0 1-.33-.33z"/>
+          </svg>
+          <span id="NutriscoreTooltip-{{ block.id }}" class="product-nutriscore__tooltip" role="tooltip">
+            {{ info_text | escape }}
+          </span>
+        </span>
+      {%- endif -%}
+    </div>
+
+    <div class="product-nutriscore__body" role="img" aria-label="Nutriscore {{ score | escape }}">
+      <div class="product-nutriscore__marker" aria-hidden="true"></div>
+      <div class="product-nutriscore__bar" aria-hidden="true">
+        <span class="product-nutriscore__seg product-nutriscore__seg--a"></span>
+        <span class="product-nutriscore__seg product-nutriscore__seg--b"></span>
+        <span class="product-nutriscore__seg product-nutriscore__seg--c"></span>
+        <span class="product-nutriscore__seg product-nutriscore__seg--d"></span>
+        <span class="product-nutriscore__seg product-nutriscore__seg--e"></span>
+      </div>
+      <div class="product-nutriscore__letters" aria-hidden="true">
+        {%- assign nutri_letters = 'A,B,C,D,E' | split: ',' -%}
+        {%- for letter in nutri_letters -%}
+          <span class="product-nutriscore__letter{% if forloop.index0 == score_index %} is-active{% endif %}">
+            {{ letter }}
+          </span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .product-nutriscore {
+      margin: 1.6rem 0;
+      width: 100%;
+      max-width: none;
+      border: 1px solid rgba(var(--color-foreground), 0.12);
+      border-radius: 1.2rem;
+      background: rgba(var(--color-foreground), 0.03);
+      overflow: visible;
+    }
+    .product-nutriscore__head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+      border-radius: 1.2rem 1.2rem 0 0;
+    }
+    .product-nutriscore__heading {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .product-nutriscore__info {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      color: rgba(var(--color-foreground), 0.65);
+      cursor: help;
+    }
+    .product-nutriscore__tooltip {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: min(24rem, 50vw);
+      padding: 1rem 1.2rem;
+      border-radius: 0.6rem;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.35;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      z-index: 5;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+    .product-nutriscore__tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #1a1a1a;
+    }
+    .product-nutriscore__info:hover .product-nutriscore__tooltip,
+    .product-nutriscore__info:focus-visible .product-nutriscore__tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    .product-nutriscore__body {
+      position: relative;
+      padding: 1.8rem 1.4rem 1.2rem;
+      border-radius: 0 0 1.2rem 1.2rem;
+      overflow: hidden;
+    }
+    .product-nutriscore__marker {
+      position: absolute;
+      top: 0.8rem;
+      left: calc(1.4rem + (var(--nutri-index) + 0.5) * ((100% - 2.8rem) / 5));
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid rgb(var(--color-foreground));
+      transform: translateX(-50%);
+    }
+    .product-nutriscore__bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      height: 1.2rem;
+      border-radius: 0.4rem;
+      overflow: hidden;
+    }
+    .product-nutriscore__seg--a { background: #038141; }
+    .product-nutriscore__seg--b { background: #85bb2f; }
+    .product-nutriscore__seg--c { background: #fecb02; }
+    .product-nutriscore__seg--d { background: #ee8100; }
+    .product-nutriscore__seg--e { background: #e63e11; }
+    .product-nutriscore__letters {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      margin-top: 0.6rem;
+      text-align: center;
+    }
+    .product-nutriscore__letter {
+      font-size: 1.3rem;
+      line-height: 1.2;
+      color: rgba(var(--color-foreground), 0.55);
+    }
+    .product-nutriscore__letter.is-active {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: rgb(var(--color-foreground));
+    }
+  </style>
+{%- endif -%}

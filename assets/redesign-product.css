@@ -222,7 +222,7 @@
 
 .product--redesign .product__description {
   color: rgba(var(--color-foreground), 0.78);
-  max-width: 42rem;
+  max-width: 100%;
   line-height: 1.55;
 }
 
