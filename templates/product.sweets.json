@@ -782,6 +782,98 @@
         "padding_top": 64,
         "padding_bottom": 64
       }
+    },
+    "reviews_slider_VMzFDF": {
+      "type": "reviews-slider",
+      "blocks": {
+        "review_HwV8xk": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/waffles-and-fruit-breakfast.jpg",
+            "review_title": "<p>Weekend brunch perfection</p>",
+            "review_text": "<p>These waffles are light, fluffy, and absolutely delicious! I topped them with fresh berries and maple syrup, and they tasted incredible. Such a simple recipe that feels like a special treat!</p>",
+            "name": "Carie H.",
+            "rating": 5,
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_VFmWDQ": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/white-bowl-with-mini-pancakes-with-cut-strawberries.jpg",
+            "review_title": "<p>The best pancakes I've ever made</p>",
+            "review_text": "<p>These pancakes turn out so fluffy and delicious every single time! The recipe is easy to follow, and the results taste like something from a cozy little café. My whole family loves them!</p>",
+            "avatar": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "name": "Carie H.",
+            "rating": 5,
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_twncec": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/cutting-birthday-cake.jpg",
+            "review_title": "<p>A cake worth celebrating</p>",
+            "review_text": "<p>I made this cake for a family birthday, and everyone asked for seconds! The texture was perfectly soft, the flavor was amazing, and it looked beautiful too. Definitely adding this to my favorite recipes!</p>",
+            "avatar": "shopify://shop_images/user-4.png",
+            "name": "Carie H.",
+            "rating": 5,
+            "verified_label": "Verified Customer"
+          }
+        },
+        "review_kcdfzq": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/cookies-stacked-in-two-piles-on-white.jpg",
+            "review_title": "<p>My new favorite cookie recipe</p>",
+            "review_text": "<p>Crispy on the outside, soft and chewy in the middle — just perfect! These cookies disappeared within minutes. I've already made them three times, and they never disappoint!</p>",
+            "name": "Jessica L.",
+            "rating": 5,
+            "verified_label": "Verified Customer"
+          }
+        }
+      },
+      "block_order": [
+        "review_HwV8xk",
+        "review_VFmWDQ",
+        "review_twncec",
+        "review_kcdfzq"
+      ],
+      "name": "Reviews slider",
+      "settings": {
+        "eyebrow": "<p>Loved by 1k+ Dessert Lovers</p>",
+        "heading": "<p><em>Sweet Moments, Happy Customers</em></p>",
+        "media_position": "left",
+        "max_width": 1200,
+        "card_height": 390,
+        "mobile_media_height": 340,
+        "content_padding": 72,
+        "card_radius": 20,
+        "head_gap": 28,
+        "padding_top": 32,
+        "padding_bottom": 48,
+        "accent_font": "playfair_display_n4",
+        "accent_italic": true,
+        "heading_size": 38,
+        "review_title_size": 22,
+        "text_size": 14,
+        "section_bg": "#ffffff",
+        "card_bg": "#f2eee5",
+        "media_bg": "#cfc7b1",
+        "heading_color": "#4A2C2A",
+        "text_color": "#4A2C2A",
+        "quote_color": "#c9c6b8",
+        "star_color": "#f5a800",
+        "star_off_color": "#d9d4c5",
+        "line_color": "#cfcabb",
+        "show_quote_icon": true,
+        "show_progress": true,
+        "show_arrows": true,
+        "autoplay": false,
+        "autoplay_delay": 5,
+        "speed": 700,
+        "enable_animation": true
+      }
     }
   },
   "order": [
@@ -794,6 +886,7 @@
     "multicolumn_animated_EdNbAR",
     "multicolumn_JzicmM",
     "custom_faq_image_diPtVk",
-    "product_tabs_animated_YcQCDV"
+    "product_tabs_animated_YcQCDV",
+    "reviews_slider_VMzFDF"
   ]
 }

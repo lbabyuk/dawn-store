@@ -1,0 +1,922 @@
+{%- comment -%}
+  sections/reviews-slider.liquid
+  Reviews section: image on one side + review slider on the other (Swiper).
+  Swiping the text or the image changes both the slide and the image.
+{%- endcomment -%}
+
+{%- style -%}
+  {{ section.settings.accent_font | font_face: font_display: 'swap' }}
+{%- endstyle -%}
+
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sid = section.id
+  assign total = section.blocks.size
+  assign anim = section.settings.enable_animation
+-%}
+
+<style>
+  #Reviews-{{ sid }} {
+    --rv-section-bg: {{ section.settings.section_bg }};
+    --rv-card-bg: {{ section.settings.card_bg }};
+    --rv-media-bg: {{ section.settings.media_bg }};
+    --rv-text: {{ section.settings.text_color }};
+    --rv-heading: {{ section.settings.heading_color }};
+    --rv-quote: {{ section.settings.quote_color }};
+    --rv-star: {{ section.settings.star_color }};
+    --rv-star-off: {{ section.settings.star_off_color }};
+    --rv-line: {{ section.settings.line_color }};
+    --rv-radius: {{ section.settings.card_radius }}px;
+    --rv-min-h: {{ section.settings.card_height }}px;
+    --rv-mobile-media-h: {{ section.settings.mobile_media_height }}px;
+    --rv-pad-x: {{ section.settings.content_padding }}px;
+    --rv-pad-top: {{ section.settings.padding_top }}px;
+    --rv-pad-bottom: {{ section.settings.padding_bottom }}px;
+    --rv-heading-size: {{ section.settings.heading_size }}px;
+    --rv-title-size: {{ section.settings.review_title_size }}px;
+    --rv-text-size: {{ section.settings.text_size }}px;
+    --rv-speed: {{ section.settings.speed }}ms;
+    --rv-font-accent: {{ section.settings.accent_font.family }}, {{ section.settings.accent_font.fallback_families }};
+    --rv-accent-style: {% if section.settings.accent_italic %}italic{% else %}normal{% endif %};
+    --rv-ease: cubic-bezier(.22, .8, .24, 1);
+    background: var(--rv-section-bg);
+    padding: var(--rv-pad-top) 0 var(--rv-pad-bottom);
+    color: var(--rv-text);
+    overflow: hidden;
+  }
+
+  #Reviews-{{ sid }} .rv__container {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #Reviews-{{ sid }} .rv__head {
+    text-align: center;
+    margin-bottom: {{ section.settings.head_gap }}px;
+  }
+
+  #Reviews-{{ sid }} .rv__eyebrow,
+  #Reviews-{{ sid }} .rv__eyebrow p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--rv-text);
+  }
+
+  #Reviews-{{ sid }} .rv__heading,
+  #Reviews-{{ sid }} .rv__heading p {
+    margin: 0;
+    font-family: var(--rv-font-accent);
+    font-style: var(--rv-accent-style);
+    font-weight: 400;
+    font-size: calc(var(--rv-heading-size) * .65);
+    line-height: 1.15;
+    color: var(--rv-heading);
+  }
+
+  #Reviews-{{ sid }} .rv__heading { margin-top: 8px; }
+
+  #Reviews-{{ sid }} .rv__card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--rv-card-bg);
+    border-radius: var(--rv-radius);
+    overflow: hidden;
+    /* Safari fix: border-radius + overflow with transforms */
+    isolation: isolate;
+  }
+
+  /* ---------- Media ---------- */
+  #Reviews-{{ sid }} .rv__media {
+    position: relative;
+    min-width: 0;
+    height: var(--rv-mobile-media-h);
+    background: var(--rv-media-bg);
+  }
+
+  #Reviews-{{ sid }} .rv__media .swiper,
+  #Reviews-{{ sid }} .rv__media .swiper-wrapper,
+  #Reviews-{{ sid }} .rv__media .swiper-slide {
+    height: 100%;
+  }
+
+  #Reviews-{{ sid }} .rv__media img,
+  #Reviews-{{ sid }} .rv__media svg.placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #Reviews-{{ sid }} .rv__media svg.placeholder {
+    background: var(--rv-media-bg);
+    opacity: .6;
+  }
+
+  /* ---------- Content ---------- */
+  #Reviews-{{ sid }} .rv__content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 24px 32px;
+  }
+
+  #Reviews-{{ sid }} .rv__text-swiper {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #Reviews-{{ sid }} .rv__text-swiper .swiper-slide { height: auto; }
+
+  #Reviews-{{ sid }} .rv__quote-icon {
+    display: block;
+    width: 44px;
+    height: auto;
+    fill: var(--rv-quote);
+    margin-bottom: 22px;
+  }
+
+  #Reviews-{{ sid }} .rv__title,
+  #Reviews-{{ sid }} .rv__title p {
+    margin: 0;
+    font-family: var(--rv-font-accent);
+    font-style: var(--rv-accent-style);
+    font-weight: 400;
+    font-size: var(--rv-title-size);
+    line-height: 1.25;
+    color: var(--rv-heading);
+  }
+
+  #Reviews-{{ sid }} .rv__body { margin-top: 12px; }
+
+  #Reviews-{{ sid }} .rv__body,
+  #Reviews-{{ sid }} .rv__body p {
+    font-size: var(--rv-text-size);
+    line-height: 1.65;
+    color: var(--rv-text);
+  }
+
+  #Reviews-{{ sid }} .rv__body p { margin: 0 0 .6em; }
+  #Reviews-{{ sid }} .rv__body p:last-child { margin-bottom: 0; }
+
+  #Reviews-{{ sid }} .rv__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  #Reviews-{{ sid }} .rv__avatar {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--rv-media-bg);
+  }
+
+  #Reviews-{{ sid }} .rv__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  #Reviews-{{ sid }} .rv__stars { display: flex; gap: 2px; margin-bottom: 3px; }
+  #Reviews-{{ sid }} .rv__star { width: 12px; height: 12px; fill: var(--rv-star-off); }
+  #Reviews-{{ sid }} .rv__star.is-on { fill: var(--rv-star); }
+
+  #Reviews-{{ sid }} .rv__meta { display: flex; align-items: center; gap: 8px; font-size: 13px; flex-wrap: wrap; }
+  #Reviews-{{ sid }} .rv__name { color: var(--rv-heading); }
+  #Reviews-{{ sid }} .rv__verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-style: italic;
+    font-size: 12px;
+    opacity: .85;
+  }
+  #Reviews-{{ sid }} .rv__verified svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* ---------- Controls ---------- */
+  #Reviews-{{ sid }} .rv__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  #Reviews-{{ sid }} .rv__progress {
+    position: relative;
+    flex: 1 1 auto;
+    max-width: 224px;
+    height: 1px;
+    background: var(--rv-line);
+    opacity: .9;
+  }
+
+  #Reviews-{{ sid }} .rv__progress-bar {
+    position: absolute;
+    inset: 0;
+    background: var(--rv-heading);
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform var(--rv-speed) var(--rv-ease);
+  }
+
+  #Reviews-{{ sid }} .rv__arrows { display: flex; gap: 10px; margin-left: auto; }
+
+  #Reviews-{{ sid }} .rv__arrow {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    border: 1px solid var(--rv-line);
+    background: transparent;
+    color: var(--rv-heading);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s var(--rv-ease);
+  }
+
+  #Reviews-{{ sid }} .rv__arrow:hover { background: var(--rv-heading); color: var(--rv-card-bg); border-color: var(--rv-heading); }
+  #Reviews-{{ sid }} .rv__arrow:active { transform: scale(.92); }
+  #Reviews-{{ sid }} .rv__arrow:focus-visible { outline: 2px solid var(--rv-heading); outline-offset: 3px; }
+  #Reviews-{{ sid }} .rv__arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+  /* ---------- Desktop ---------- */
+  @media (min-width: 750px) {
+    #Reviews-{{ sid }} .rv__heading,
+    #Reviews-{{ sid }} .rv__heading p { font-size: var(--rv-heading-size); }
+
+    #Reviews-{{ sid }} .rv__card { grid-template-columns: 1fr 1fr; min-height: var(--rv-min-h); }
+    #Reviews-{{ sid }} .rv__card.rv--media-right .rv__media { order: 2; }
+    #Reviews-{{ sid }} .rv__media { height: auto; min-height: var(--rv-min-h); }
+    #Reviews-{{ sid }} .rv__media .swiper { position: absolute; inset: 0; }
+    #Reviews-{{ sid }} .rv__content { padding: 40px var(--rv-pad-x); }
+  }
+
+  /* ---------- Animation ---------- */
+  {%- if anim %}
+  #Reviews-{{ sid }}.rv--anim .rv__head > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .8s var(--rv-ease), transform .8s var(--rv-ease);
+  }
+  #Reviews-{{ sid }}.rv--anim .rv__head > *:nth-child(2) { transition-delay: .12s; }
+  #Reviews-{{ sid }}.rv--anim.is-inview .rv__head > * { opacity: 1; transform: none; }
+
+  /* Card reveals bottom to top (clip-path) */
+  #Reviews-{{ sid }}.rv--anim .rv__card {
+    clip-path: inset(14% 6% 0 6% round var(--rv-radius));
+    opacity: 0;
+    transition: clip-path 1.1s var(--rv-ease) .15s, opacity .6s ease .15s;
+  }
+  #Reviews-{{ sid }}.rv--anim.is-inview .rv__card {
+    clip-path: inset(0 0 0 0 round var(--rv-radius));
+    opacity: 1;
+  }
+
+  /* Image: smooth zoom-out on the active slide */
+  #Reviews-{{ sid }}.rv--anim .rv__media img {
+    transform: scale(1.14);
+    transition: transform 1.6s var(--rv-ease);
+  }
+  #Reviews-{{ sid }}.rv--anim.is-inview .rv__media .swiper-slide-active img { transform: scale(1); }
+
+  /* Text: staggered reveal of the active slide's elements */
+  #Reviews-{{ sid }}.rv--anim [data-rv-item] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .7s var(--rv-ease);
+    transition-delay: 0s;
+  }
+  #Reviews-{{ sid }}.rv--anim.is-inview .rv__text-swiper .swiper-slide-active [data-rv-item] {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--i, 0) * 90ms + 250ms);
+  }
+
+  #Reviews-{{ sid }}.rv--anim .rv__controls {
+    opacity: 0;
+    transition: opacity .8s ease .7s;
+  }
+  #Reviews-{{ sid }}.rv--anim.is-inview .rv__controls { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #Reviews-{{ sid }}.rv--anim .rv__head > *,
+    #Reviews-{{ sid }}.rv--anim .rv__card,
+    #Reviews-{{ sid }}.rv--anim .rv__media img,
+    #Reviews-{{ sid }}.rv--anim [data-rv-item],
+    #Reviews-{{ sid }}.rv--anim .rv__controls {
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      transition: none !important;
+    }
+  }
+  {%- endif %}
+</style>
+
+<section
+  id="Reviews-{{ sid }}"
+  class="rv{% if anim %} rv--anim{% endif %}"
+  data-section-id="{{ sid }}"
+  data-total="{{ total }}"
+  data-speed="{{ section.settings.speed }}"
+  data-autoplay="{% if section.settings.autoplay and request.design_mode == false %}{{ section.settings.autoplay_delay | times: 1000 }}{% else %}0{% endif %}"
+>
+  <div class="rv__container">
+
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="rv__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="rv__eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <div class="rv__heading">{{ section.settings.heading }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if total > 0 -%}
+      <div class="rv__card{% if section.settings.media_position == 'right' %} rv--media-right{% endif %}">
+
+        {%- comment -%} Image {%- endcomment -%}
+        <div class="rv__media">
+          <div class="swiper rv__image-swiper" data-rv-image-swiper>
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                <div class="swiper-slide" data-index="{{ forloop.index0 }}">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1400
+                      | image_tag:
+                        widths: '500, 700, 900, 1100, 1400',
+                        sizes: '(min-width: 750px) 50vw, 100vw',
+                        loading: 'lazy',
+                        alt: block.settings.image.alt
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+
+        {%- comment -%} Reviews {%- endcomment -%}
+        <div class="rv__content">
+          <div class="swiper rv__text-swiper" data-rv-text-swiper>
+            <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                <div class="swiper-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+
+                  {%- if section.settings.show_quote_icon -%}
+                    <svg class="rv__quote-icon" data-rv-item style="--i:0" viewBox="0 0 56 34" aria-hidden="true" focusable="false">
+                      <path d="M15 0h19L19 34H0z"/>
+                      <path d="M37 0h19L41 34H22z"/>
+                    </svg>
+                  {%- endif -%}
+
+                  {%- if block.settings.review_title != blank -%}
+                    <div class="rv__title" data-rv-item style="--i:1">{{ block.settings.review_title }}</div>
+                  {%- endif -%}
+
+                  {%- if block.settings.review_text != blank -%}
+                    <div class="rv__body" data-rv-item style="--i:2">{{ block.settings.review_text }}</div>
+                  {%- endif -%}
+
+                  <div class="rv__author" data-rv-item style="--i:3">
+                    {%- if block.settings.avatar != blank -%}
+                      <div class="rv__avatar">
+                        {{
+                          block.settings.avatar
+                          | image_url: width: 120
+                          | image_tag: width: 44, height: 44, loading: 'lazy', alt: block.settings.name
+                        }}
+                      </div>
+                    {%- endif -%}
+                    <div>
+                      {%- if block.settings.rating > 0 -%}
+                        <div class="rv__stars" role="img" aria-label="{{ block.settings.rating }} / 5">
+                          {%- for i in (1..5) -%}
+                            <svg class="rv__star{% if i <= block.settings.rating %} is-on{% endif %}" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+                      <div class="rv__meta">
+                        {%- if block.settings.name != blank -%}
+                          <span class="rv__name">{{ block.settings.name }}</span>
+                        {%- endif -%}
+                        {%- if block.settings.verified_label != blank -%}
+                          <span class="rv__verified">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                            {{ block.settings.verified_label | escape }}
+                          </span>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+
+          {%- if total > 1 -%}
+            <div class="rv__controls">
+              {%- if section.settings.show_progress -%}
+                <div class="rv__progress" aria-hidden="true"><span class="rv__progress-bar" data-rv-progress></span></div>
+              {%- endif -%}
+              {%- if section.settings.show_arrows -%}
+                <div class="rv__arrows">
+                  <button type="button" class="rv__arrow" data-rv-prev aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous' }}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+                  </button>
+                  <button type="button" class="rv__arrow" data-rv-next aria-label="{{ 'general.slider.next_slide' | t | default: 'Next' }}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('Reviews-{{ sid }}');
+    if (!root) return;
+
+    var SWIPER_JS = {{ 'swiper-bundle.min.js' | asset_url | json }};
+
+    function loadSwiper() {
+      if (window.Swiper) return Promise.resolve();
+      if (!window.__rvSwiperPromise) {
+        window.__rvSwiperPromise = new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = SWIPER_JS;
+          s.async = true;
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+      return window.__rvSwiperPromise;
+    }
+
+    var textSwiper, imageSwiper, observer;
+
+    function init() {
+      var textEl = root.querySelector('[data-rv-text-swiper]');
+      var imgEl = root.querySelector('[data-rv-image-swiper]');
+      if (!textEl || !imgEl) return;
+
+      var total = parseInt(root.dataset.total, 10) || 1;
+      var speed = parseInt(root.dataset.speed, 10) || 700;
+      var autoplayDelay = parseInt(root.dataset.autoplay, 10) || 0;
+      var bar = root.querySelector('[data-rv-progress]');
+      var prev = root.querySelector('[data-rv-prev]');
+      var next = root.querySelector('[data-rv-next]');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      imageSwiper = new Swiper(imgEl, {
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        speed: speed,
+        rewind: true,
+        grabCursor: total > 1,
+        allowTouchMove: total > 1
+      });
+
+      textSwiper = new Swiper(textEl, {
+        speed: speed,
+        rewind: true,
+        spaceBetween: 24,
+        grabCursor: total > 1,
+        allowTouchMove: total > 1,
+        autoplay: autoplayDelay && !reduce ? {
+          delay: autoplayDelay,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        } : false
+      });
+
+      function setProgress() {
+        if (!bar) return;
+        bar.style.transform = 'scaleX(' + ((textSwiper.activeIndex + 1) / total) + ')';
+      }
+
+      // Two-way sync: swiping the text changes the image, and vice versa
+      textSwiper.on('slideChange', function () {
+        if (imageSwiper.activeIndex !== textSwiper.activeIndex) {
+          imageSwiper.slideTo(textSwiper.activeIndex, speed);
+        }
+        setProgress();
+      });
+
+      imageSwiper.on('slideChange', function () {
+        if (textSwiper.activeIndex !== imageSwiper.activeIndex) {
+          textSwiper.slideTo(imageSwiper.activeIndex, speed);
+        }
+      });
+
+      if (prev) prev.addEventListener('click', function () { textSwiper.slidePrev(); });
+      if (next) next.addEventListener('click', function () { textSwiper.slideNext(); });
+
+      setProgress();
+
+      // Start the reveal animation when the section enters the viewport
+      if (!root.classList.contains('rv--anim') || window.Shopify && Shopify.designMode) {
+        root.classList.add('is-inview');
+      } else if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              root.classList.add('is-inview');
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(root);
+      } else {
+        root.classList.add('is-inview');
+      }
+    }
+
+    function destroy() {
+      if (observer) observer.disconnect();
+      if (textSwiper) textSwiper.destroy(true, true);
+      if (imageSwiper) imageSwiper.destroy(true, true);
+    }
+
+    loadSwiper().then(init).catch(function () {
+      root.classList.add('is-inview');
+    });
+
+    // Theme editor: jump to the selected block and clean up
+    document.addEventListener('shopify:block:select', function (e) {
+      if (!root.contains(e.target) || !textSwiper) return;
+      var slide = e.target.closest('.swiper-slide');
+      if (!slide) return;
+      textSwiper.slideTo(parseInt(slide.dataset.index, 10) || 0);
+      if (textSwiper.autoplay && textSwiper.autoplay.running) textSwiper.autoplay.stop();
+    });
+
+    document.addEventListener('shopify:section:unload', function (e) {
+      if (e.target && e.target.contains(root)) destroy();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Reviews slider",
+  "tag": "div",
+  "class": "section-reviews-slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "eyebrow",
+      "label": "Small text above heading",
+      "default": "<p>Loved by 17k+ Customers</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>A Gentler Way to Glow</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Card height (desktop)",
+      "min": 320,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 390
+    },
+    {
+      "type": "range",
+      "id": "mobile_media_height",
+      "label": "Image height (mobile)",
+      "min": 220,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 340
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Text side padding (desktop)",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "head_gap",
+      "label": "Space between heading and card",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "accent_font",
+      "label": "Heading font (serif)",
+      "default": "playfair_display_n4"
+    },
+    {
+      "type": "checkbox",
+      "id": "accent_italic",
+      "label": "Italic headings",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "review_title_size",
+      "label": "Review title size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Review text size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Text card background",
+      "default": "#f2eee5"
+    },
+    {
+      "type": "color",
+      "id": "media_bg",
+      "label": "Image area background",
+      "default": "#cfc7b1"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1f1d1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#4a4640"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote icon color",
+      "default": "#c9c6b8"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#f5a800"
+    },
+    {
+      "type": "color",
+      "id": "star_off_color",
+      "label": "Inactive star color",
+      "default": "#d9d4c5"
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line and button border color",
+      "default": "#cfcabb"
+    },
+    {
+      "type": "header",
+      "content": "Slider elements"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quote_icon",
+      "label": "Show quote icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress",
+      "label": "Show progress line",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Slider and animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "info": "Disabled in the theme editor",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Autoplay interval",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Slide transition speed",
+      "min": 300,
+      "max": 1500,
+      "step": 100,
+      "unit": "ms",
+      "default": 700
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_animation",
+      "label": "Section animation",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (changes together with the slide)"
+        },
+        {
+          "type": "richtext",
+          "id": "review_title",
+          "label": "Review title",
+          "default": "<p>Keeps my skin glowing</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "<p>This serum feels light and absorbs quickly without any greasy finish. I use it after showering, and my skin feels smoother, hydrated, and naturally glowing throughout the day.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Author avatar"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Author name",
+          "default": "Carie H."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "verified_label",
+          "label": "\"Verified customer\" label",
+          "info": "Leave empty to hide",
+          "default": "Verified Customer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Reviews slider",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}
