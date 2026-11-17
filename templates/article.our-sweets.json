@@ -110,6 +110,51 @@
             "support_image_position": "left",
             "warning_text": ""
           }
+        },
+        "free_tracker_BN6e4B": {
+          "type": "free_tracker",
+          "settings": {
+            "image": "shopify://shop_images/69e73176664ca1c320aa41a5_optimized_1140_c1140x1140-0x0.webp",
+            "heading": "Stay a Little Sweeter",
+            "description": "<p>Get a little sweetness in your inbox! Subscribe for delicious recipes, backing inspirations and exclusive treats</p>",
+            "email_placeholder": "Enter your email address",
+            "button_label": "Count me in",
+            "disclaimer": "Sweet surprises, no spam. Pinky promise!",
+            "pdf_url": "",
+            "popup_delay_seconds": 5,
+            "success_heading": "Your tracker is ready",
+            "success_text": "We've also sent a copy to [email] so you've always got it handy.",
+            "download_label": "DOWNLOAD THE TRACKER",
+            "success_note": "Didn't get the email? Check spam, or try again.",
+            "invalid_email_text": "Please enter a valid email address.",
+            "error_text": "Something went wrong. Please try again.",
+            "loading_text": "Sending…",
+            "klaviyo_company_id": "",
+            "klaviyo_list_id": "",
+            "klaviyo_tag": "milk-ladder-tracker",
+            "klaviyo_source": "Milk Ladder Free Tracker",
+            "color_bg": "#FFFAF6",
+            "color_heading": "#4A2C2A",
+            "color_text": "#2a2e15",
+            "color_muted": "#000000",
+            "color_button_bg": "#4A2C2A",
+            "color_button_text": "#ffffff",
+            "color_input_bg": "#ffffff",
+            "color_input_border": "#b9869c",
+            "color_input_text": "#2a2e15",
+            "color_overlay": "#2a2e15",
+            "heading_size": 40,
+            "heading_size_mobile": 32,
+            "body_size": 16,
+            "body_size_mobile": 15,
+            "popup_heading_size": 50,
+            "popup_heading_size_mobile": 32,
+            "popup_body_size": 16,
+            "popup_body_size_mobile": 15,
+            "radius_desktop": 16,
+            "radius_mobile": 8,
+            "gap_desktop": 32
+          }
         }
       },
       "block_order": [
@@ -120,7 +165,8 @@
         "content",
         "callout_DneFMw",
         "tab_jP99UG",
-        "tab_zajwKL"
+        "tab_zajwKL",
+        "free_tracker_BN6e4B"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
