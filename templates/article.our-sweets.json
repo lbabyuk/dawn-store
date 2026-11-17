@@ -41,76 +41,6 @@
           "type": "content",
           "settings": {}
         },
-        "callout_DneFMw": {
-          "type": "callout",
-          "source": "{{ article.metafields.custom.cellout.value }}",
-          "settings": {
-            "insert_after_paragraph": "{{ article.metafields.custom.cellout.value.insert_after_paragraph.value }}",
-            "icon": "{{ article.metafields.custom.cellout.value.warning_icon.value }}",
-            "summary_text": "{{ article.metafields.custom.cellout.value.header_text | metafield_tag }}",
-            "text": "{{ article.metafields.custom.cellout.value.content | metafield_tag }}"
-          }
-        },
-        "tab_jP99UG": {
-          "type": "tab",
-          "source": "{{ article.metafields.custom.tab_1.value }}",
-          "settings": {
-            "tab_label": "{{ article.metafields.custom.tab_1.value.tab_label.value }}",
-            "heading": "{{ article.metafields.custom.tab_1.value.heading.value }}",
-            "content": "{{ article.metafields.custom.tab_1.value.content | metafield_tag }}",
-            "anchor_id": "{{ article.metafields.custom.tab_1.value.anchor_id.value }}",
-            "before_heading": "",
-            "before_intro": "",
-            "before_checklist": "",
-            "build_heading": "",
-            "build_intro": "",
-            "build_days_table": "",
-            "build_footer": "",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
-          }
-        },
-        "tab_zajwKL": {
-          "type": "tab",
-          "source": "{{ article.metafields.custom.tab2.value }}",
-          "settings": {
-            "tab_label": "{{ article.metafields.custom.tab2.value.tab_label.value }}",
-            "heading": "{{ article.metafields.custom.tab2.value.heading.value }}",
-            "content": "{{ article.metafields.custom.tab2.value.content | metafield_tag }}",
-            "anchor_id": "{{ article.metafields.custom.tab2.value.anchor_id.value }}",
-            "before_heading": "",
-            "before_intro": "",
-            "before_checklist": "",
-            "build_heading": "",
-            "build_intro": "",
-            "build_days_table": "",
-            "build_footer": "",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
-          }
-        },
         "free_tracker_BN6e4B": {
           "type": "free_tracker",
           "settings": {
@@ -131,8 +61,8 @@
             "loading_text": "Sending…",
             "klaviyo_company_id": "",
             "klaviyo_list_id": "",
-            "klaviyo_tag": "milk-ladder-tracker",
-            "klaviyo_source": "Milk Ladder Free Tracker",
+            "klaviyo_tag": "",
+            "klaviyo_source": "Little Sweeter",
             "color_bg": "#FFFAF6",
             "color_heading": "#4A2C2A",
             "color_text": "#2a2e15",
@@ -163,9 +93,6 @@
         "title",
         "share",
         "content",
-        "callout_DneFMw",
-        "tab_jP99UG",
-        "tab_zajwKL",
         "free_tracker_BN6e4B"
       ],
       "settings": {
