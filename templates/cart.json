@@ -19,6 +19,7 @@
     },
     "fspb-free-shipping": {
       "type": "fspb-free-shipping",
+      "disabled": true,
       "settings": {
         "enabled": true,
         "threshold": 50,
@@ -29,6 +30,7 @@
         "adding_label": "Adding…",
         "upsell_empty": "Select a collection in the section settings.",
         "upsell_source": "collection",
+        "upsell_collection": "",
         "products_to_show": 3,
         "color_scheme": "scheme-1",
         "padding_top": 24,
@@ -37,27 +39,25 @@
     },
     "cart-footer": {
       "type": "main-cart-footer",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 20,
-        "padding_bottom": 40
-      },
       "blocks": {
         "subtotal": {
           "type": "subtotal",
-          "settings": {
-          }
+          "settings": {}
         },
         "buttons": {
           "type": "buttons",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
         "subtotal",
         "buttons"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [

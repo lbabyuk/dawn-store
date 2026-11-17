@@ -110,36 +110,6 @@
             "support_image_position": "left",
             "warning_text": ""
           }
-        },
-        "tab_3PDRte": {
-          "type": "tab",
-          "source": "{{ article.metafields.custom.tab_3.value }}",
-          "settings": {
-            "tab_label": "{{ article.metafields.custom.tab_3.value.tab_label.value }}",
-            "heading": "{{ article.metafields.custom.tab_3.value.build_up_heading.value }}",
-            "content": "{{ article.metafields.custom.tab_3.value.content | metafield_tag }}",
-            "anchor_id": "{{ article.metafields.custom.tab_3.value.before_heading.value }}",
-            "before_heading": "{{ article.metafields.custom.tab_3.value.heading.value }}",
-            "before_intro": "{{ article.metafields.custom.tab_3.value.before_intro | metafield_tag }}",
-            "before_checklist": "{{ article.metafields.custom.tab_3.value.before_checklist | metafield_tag }}",
-            "build_heading": "",
-            "build_intro": "{{ article.metafields.custom.tab_3.value.build_up_intro | metafield_tag }}",
-            "build_days_table": "{{ article.metafields.custom.tab_3.value.days_table | metafield_tag }}",
-            "build_footer": "{{ article.metafields.custom.tab_3.value.build_up_footer | metafield_tag }}",
-            "reaction_heading": "",
-            "reaction_text": "",
-            "reaction_image_position": "right",
-            "expert_name": "",
-            "expert_role": "",
-            "expert_show_date": true,
-            "expert_date_format": "%b %d, %Y",
-            "tips_heading": "",
-            "tips_list": "",
-            "support_heading": "",
-            "support_text": "",
-            "support_image_position": "left",
-            "warning_text": ""
-          }
         }
       },
       "block_order": [
@@ -150,8 +120,7 @@
         "content",
         "callout_DneFMw",
         "tab_jP99UG",
-        "tab_zajwKL",
-        "tab_3PDRte"
+        "tab_zajwKL"
       ],
       "settings": {
         "sticky_cta_anchor": "milk-ladder-guide",
