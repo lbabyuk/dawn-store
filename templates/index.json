@@ -1085,10 +1085,10 @@
         "include_margins": true
       }
     },
-    "bundle_builder_QCdqEq": {
+    "bundle_builder_nMTzrM": {
       "type": "bundle-builder",
       "blocks": {
-        "step_h3zmjp": {
+        "step_wHQ7AN": {
           "type": "step",
           "settings": {
             "title": "Prep Your Skin",
@@ -1096,33 +1096,33 @@
             "products": [
               "berry-cheesecake",
               "chocolate-cake-with-toffee-sauced",
-              "fluffy-classic-pancakes"
+              "chocolate-velvet-cake"
             ],
             "min_items": 1,
             "max_items": 0
           }
         },
-        "step_7efxyT": {
+        "step_xeeDPP": {
           "type": "step",
           "settings": {
             "title": "Treat & Nourish",
             "icon": "moon",
             "products": [
+              "chocolate-velvet-cake-copy",
               "fluffy-classic-pancakes",
-              "chocolate-velvet-cake",
-              "berry-cheesecake"
+              "chocolate-velvet-cake"
             ],
             "min_items": 1,
-            "max_items": 4
+            "max_items": 0
           }
         },
-        "step_3NQHAC": {
+        "step_9Criq3": {
           "type": "step",
           "settings": {
             "title": "Lock the Glow",
             "icon": "sparkle",
             "products": [
-              "chocolate-velvet-cake-copy",
+              "chocolate-velvet-cake",
               "chocolate-cake-with-toffee-sauced",
               "fluffy-classic-pancakes"
             ],
@@ -1132,9 +1132,9 @@
         }
       },
       "block_order": [
-        "step_h3zmjp",
-        "step_7efxyT",
-        "step_3NQHAC"
+        "step_wHQ7AN",
+        "step_xeeDPP",
+        "step_9Criq3"
       ],
       "name": "Bundle builder",
       "settings": {
@@ -1187,6 +1187,6 @@
     "character_builder_ycJ3Xx",
     "sweets_builder_mAnrfe",
     "179494603559db27cd",
-    "bundle_builder_QCdqEq"
+    "bundle_builder_nMTzrM"
   ]
 }
