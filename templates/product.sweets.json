@@ -56,17 +56,18 @@
           "type": "set_unlock_bonus",
           "source": "{{ product.metafields.custom.bonus_one.value }}",
           "settings": {
-            "title": "{{ product.metafields.custom.bonus_one.value.subtitle.value }}",
-            "subtitle": "{{ product.metafields.custom.bonus_one.value.title.value }}",
+            "title": "{{ product.metafields.custom.bonus_one.value.title.value }}",
+            "subtitle": "{{ product.metafields.custom.bonus_one.value.subtitle.value }}",
             "is_free_shipping": "{{ product.metafields.custom.bonus_one.value.free_shipping_bonus.value }}"
           }
         },
         "set_unlock_bonus_CRb7yf": {
           "type": "set_unlock_bonus",
+          "source": "{{ product.metafields.custom.bonus_two.value }}",
           "settings": {
-            "title": "",
-            "subtitle": "",
-            "is_free_shipping": ""
+            "title": "{{ product.metafields.custom.bonus_two.value.title.value }}",
+            "subtitle": "{{ product.metafields.custom.bonus_two.value.subtitle.value }}",
+            "is_free_shipping": "{{ product.metafields.custom.bonus_two.value.free_shipping_bonus.value }}"
           }
         },
         "set_unlock_bonus_Nt7866": {
