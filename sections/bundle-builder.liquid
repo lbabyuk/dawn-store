@@ -396,17 +396,25 @@
         if (!S || this.swipersReady) return;
         this.swipersReady = true;
 
-        // Tabs are swipeable
+        // Tabs: swipe/drag + arrows. No freeMode, so the arrows move slide by slide.
         this.tabsSwiper = new S(this.querySelector('[data-bb-tabs]'), {
           slidesPerView: 'auto',
           spaceBetween: 24,
-          freeMode: true,
+          slidesPerGroupAuto: true,
           watchOverflow: true,
+          observer: true,
+          observeParents: true,
+          observeSlideChildren: true,
           navigation: {
             prevEl: this.querySelector('[data-bb-tabs-prev]'),
             nextEl: this.querySelector('[data-bb-tabs-next]'),
           },
         });
+
+        // Recalculate widths once web fonts are loaded (tab widths change)
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(() => this.tabsSwiper && this.tabsSwiper.update());
+        }
 
         // Products: slider on mobile/tablet, disabled on desktop (CSS grid)
         this.sliders = [...this.querySelectorAll('[data-bb-slider]')].map(
