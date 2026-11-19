@@ -1138,9 +1138,9 @@
       ],
       "name": "Bundle builder",
       "settings": {
-        "heading_accent": "Unbeatable prices",
-        "heading": "with bundle.",
-        "subheading": "Create your personalized sweets and unlock exclusive savings.",
+        "heading_accent": "Sweet savings",
+        "heading": "with every box.",
+        "subheading": "Build your own box of cakes, cupcakes and treats, and unlock bigger discounts with every sweet you add.",
         "tier_1_qty": 2,
         "tier_1_percent": 5,
         "tier_1_code": "",
