@@ -54,26 +54,29 @@
         },
         "set_unlock_bonus_xLz8PF": {
           "type": "set_unlock_bonus",
+          "source": "{{ metaobjects.set_unlock_bonus[\"1\"] }}",
           "settings": {
-            "title": "Free shipping",
-            "subtitle": "orders $90+",
-            "is_free_shipping": true
+            "title": "{{ metaobjects.set_unlock_bonus[\"1\"].subtitle.value }}",
+            "subtitle": "{{ metaobjects.set_unlock_bonus[\"1\"].title.value }}",
+            "is_free_shipping": "{{ metaobjects.set_unlock_bonus[\"1\"].free_shipping_bonus.value }}"
           }
         },
         "set_unlock_bonus_CRb7yf": {
           "type": "set_unlock_bonus",
+          "disabled": true,
           "settings": {
             "title": "Free shipping",
             "subtitle": "orders $90+",
-            "is_free_shipping": false
+            "is_free_shipping": ""
           }
         },
         "set_unlock_bonus_Nt7866": {
           "type": "set_unlock_bonus",
+          "disabled": true,
           "settings": {
             "title": "Free shipping",
             "subtitle": "orders $90+",
-            "is_free_shipping": false
+            "is_free_shipping": ""
           }
         },
         "price": {
