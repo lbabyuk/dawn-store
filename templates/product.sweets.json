@@ -57,7 +57,7 @@
           "settings": {
             "title": "Free shipping",
             "subtitle": "orders $90+",
-            "is_free_shipping": false
+            "is_free_shipping": true
           }
         },
         "set_unlock_bonus_CRb7yf": {
