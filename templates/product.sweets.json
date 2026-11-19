@@ -54,10 +54,11 @@
         },
         "set_unlock_bonus_xLz8PF": {
           "type": "set_unlock_bonus",
+          "source": "{{ product.metafields.custom.bonus_one.value }}",
           "settings": {
-            "title": "",
-            "subtitle": "",
-            "is_free_shipping": ""
+            "title": "{{ product.metafields.custom.bonus_one.value.subtitle.value }}",
+            "subtitle": "{{ product.metafields.custom.bonus_one.value.title.value }}",
+            "is_free_shipping": "{{ product.metafields.custom.bonus_one.value.free_shipping_bonus.value }}"
           }
         },
         "set_unlock_bonus_CRb7yf": {
