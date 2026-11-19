@@ -43,6 +43,39 @@
             "font_size": 14
           }
         },
+        "set_unlocks_PmnXAx": {
+          "type": "set_unlocks",
+          "settings": {
+            "heading": "This set unlocks",
+            "background_color": "#f2e6df",
+            "show_divider": true,
+            "free_shipping_threshold": 90
+          }
+        },
+        "set_unlock_bonus_xLz8PF": {
+          "type": "set_unlock_bonus",
+          "settings": {
+            "title": "Free shipping",
+            "subtitle": "orders $90+",
+            "is_free_shipping": false
+          }
+        },
+        "set_unlock_bonus_CRb7yf": {
+          "type": "set_unlock_bonus",
+          "settings": {
+            "title": "Free shipping",
+            "subtitle": "orders $90+",
+            "is_free_shipping": false
+          }
+        },
+        "set_unlock_bonus_Nt7866": {
+          "type": "set_unlock_bonus",
+          "settings": {
+            "title": "Free shipping",
+            "subtitle": "orders $90+",
+            "is_free_shipping": false
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -196,6 +229,10 @@
         "vendor",
         "title",
         "redesign_editorial_rating",
+        "set_unlocks_PmnXAx",
+        "set_unlock_bonus_xLz8PF",
+        "set_unlock_bonus_CRb7yf",
+        "set_unlock_bonus_Nt7866",
         "price",
         "inventory_V9a9rc",
         "description",
