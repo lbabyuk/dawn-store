@@ -211,6 +211,11 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+                {%- when 'set_unlocks' -%}
+                  {% render 'product-set-unlocks', product: product, block: block, section: section %}
+
+                {%- when 'set_unlock_bonus' -%}
+                  {% comment %} Rendered inside set_unlocks {% endcomment %}
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -2421,6 +2426,64 @@
           "label": "Score (A–E)",
           "default": "C",
           "info": "Connect a product metafield via dynamic source in the theme editor."
+        }
+      ]
+    },
+     {
+      "type": "set_unlocks",
+      "name": "This set unlocks",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "This set unlocks"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#F2E6DF"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show divider",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "free_shipping_threshold",
+          "label": "Free shipping threshold",
+          "info": "Hide Set unlock bonus blocks marked as Free shipping when the set price is below this amount (store currency, e.g. 90).",
+          "default": 90
+        }
+      ]
+    },
+    {
+      "type": "set_unlock_bonus",
+      "name": "Set unlock bonus",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "orders $90+"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_free_shipping",
+          "label": "Free shipping bonus",
+          "info": "Hide this bonus when the set price is below the Free shipping threshold on the This set unlocks block.",
+          "default": false
         }
       ]
     }

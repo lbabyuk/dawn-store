@@ -1,0 +1,58 @@
+{% comment %}
+  This set unlocks — container block + separate set_unlock_bonus blocks (max 3).
+  Free-shipping bonuses hide when set price is below free_shipping_threshold on this block.
+{% endcomment %}
+{{ 'component-product-set-unlocks.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bonus_blocks = section.blocks | where: 'type', 'set_unlock_bonus'
+  assign shipping_threshold = block.settings.free_shipping_threshold
+  assign shipping_threshold_cents = shipping_threshold | times: 100
+  assign product_price = product.selected_or_first_available_variant.price
+  assign bg = block.settings.background_color
+  assign heading = block.settings.heading
+  assign visible_count = 0
+-%}
+
+{%- for bonus in bonus_blocks -%}
+  {%- if bonus.settings.title != blank -%}
+    {%- unless bonus.settings.is_free_shipping and product_price < shipping_threshold_cents -%}
+      {%- assign visible_count = visible_count | plus: 1 -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if visible_count > 0 -%}
+  <div
+    class="product-set-unlocks"
+    style="background-color: {{ bg }};"
+    {{ block.shopify_attributes }}
+  >
+    {%- if heading != blank -%}
+      <p class="product-set-unlocks__heading">{{ heading | escape }}</p>
+    {%- endif -%}
+    {%- if block.settings.show_divider -%}
+      <hr class="product-set-unlocks__divider" aria-hidden="true">
+    {%- endif -%}
+
+    <ul class="product-set-unlocks__list">
+      {%- for bonus in bonus_blocks -%}
+        {%- if bonus.settings.title != blank -%}
+          {%- unless bonus.settings.is_free_shipping and product_price < shipping_threshold_cents -%}
+            <li class="product-set-unlocks__item" {{ bonus.shopify_attributes }}>
+              <div class="product-set-unlocks__title-row">
+                <span class="product-set-unlocks__icon" aria-hidden="true">
+                  {% render 'icon' with 'checkmark', class: 'product-set-unlocks__check' %}
+                </span>
+                <p class="product-set-unlocks__title">{{ bonus.settings.title | escape }}</p>
+              </div>
+              {%- if bonus.settings.subtitle != blank -%}
+                <p class="product-set-unlocks__subtitle">{{ bonus.settings.subtitle | escape }}</p>
+              {%- endif -%}
+            </li>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
