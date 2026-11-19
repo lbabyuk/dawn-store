@@ -1,7 +1,11 @@
 {%- comment -%}
   sections/bundle-builder.liquid
-  Bundle builder для Dawn. Потребує Swiper (CSS + JS), які вже підключені в темі (глобальний `window.Swiper`).
+  Bundle builder for Dawn.
+  Swiper 11 is loaded from theme assets: swiper-bundle.min.css and swiper-bundle.min.js
+  (rename the two files below if yours are called differently).
 {%- endcomment -%}
+
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 <style>
   .bb {
@@ -66,7 +70,7 @@
   .bb-empty { padding: 32px 0; text-align: center; color: var(--bb-muted); }
 
   @media (min-width: 990px) {
-    /* десктоп: сітка 3 колонки замість слайдера */
+    /* Desktop: 3-column grid instead of a slider */
     .bb-slider .swiper-wrapper { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 16px; transform: none !important; height: auto !important; }
     .bb-slider .swiper-slide { width: auto !important; margin: 0 !important; }
     .bb-card__zoom { display: none; }
@@ -129,13 +133,13 @@
     .bb-sum__contents { display: block; }
   }
 
-  /* ---------- Mobile: sticky bundle, продукти скролляться під ним ---------- */
+  /* ---------- Mobile: sticky bundle, products scroll underneath ---------- */
   @media (max-width: 989px) {
     .bb-sum {
       position: sticky;
       bottom: 0;
       z-index: 20;
-      background: #fff; /* непрозорий фон, щоб блок з продуктами ховався під ним */
+      background: #fff; /* opaque background so products hide underneath */
       padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
       box-shadow: 0 -10px 24px rgba(20, 30, 60, .14);
     }
@@ -161,6 +165,7 @@
     {
       "currency": {{ cart.currency.iso_code | json }},
       "locale": {{ request.locale.iso_code | json }},
+      "swiperUrl": {{ 'swiper-bundle.min.js' | asset_url | json }},
       "tiers": [
         { "qty": {{ section.settings.tier_1_qty }}, "percent": {{ section.settings.tier_1_percent }}, "code": {{ section.settings.tier_1_code | json }} },
         { "qty": {{ section.settings.tier_2_qty }}, "percent": {{ section.settings.tier_2_percent }}, "code": {{ section.settings.tier_2_code | json }} },
@@ -230,16 +235,16 @@
           </div>
         </div>
 
-        {%- comment -%} PANELS (по одній на крок) {%- endcomment -%}
+        {%- comment -%} PANELS (one per step) {%- endcomment -%}
         {%- for block in section.blocks -%}
           <div class="bb-panel" role="tabpanel" data-panel="{{ block.id }}" {% unless forloop.first %}hidden{% endunless %}>
-            {%- assign coll = block.settings.collection -%}
-            {%- if coll == blank or coll.products_count == 0 -%}
-              <p class="bb-empty">Select a collection with products for this step.</p>
+            {%- assign step_products = block.settings.products -%}
+            {%- if step_products == blank -%}
+              <p class="bb-empty">Select products for this step.</p>
             {%- else -%}
               <div class="swiper bb-slider" data-bb-slider>
                 <div class="swiper-wrapper">
-                  {%- for product in coll.products limit: block.settings.products_limit -%}
+                  {%- for product in step_products -%}
                     {%- assign variant = product.selected_or_first_available_variant -%}
                     <div class="swiper-slide">
                       <div class="bb-card"
@@ -343,6 +348,22 @@
     const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const tpl = (str, vars) => String(str).replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? ''));
 
+    // Loads Swiper from theme assets once, even with several sections on the page
+    let swiperPromise;
+    const loadSwiper = (url) => {
+      if (window.Swiper) return Promise.resolve(window.Swiper);
+      if (!swiperPromise) {
+        swiperPromise = new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = url;
+          s.onload = () => resolve(window.Swiper);
+          s.onerror = () => reject(new Error('Swiper failed to load'));
+          document.head.appendChild(s);
+        });
+      }
+      return swiperPromise;
+    };
+
     class BundleBuilder extends HTMLElement {
       connectedCallback() {
         if (this.ready) return;
@@ -364,9 +385,9 @@
         this.bind();
         this.render();
 
-        if (window.Swiper) this.initSwipers();
-        else if (document.readyState === 'complete') console.warn('[bundle-builder] window.Swiper not found');
-        else window.addEventListener('load', () => this.initSwipers(), { once: true });
+        loadSwiper(this.cfg.swiperUrl)
+          .then(() => this.initSwipers())
+          .catch((err) => console.warn('[bundle-builder]', err));
       }
 
       /* ---------- Swiper ---------- */
@@ -375,7 +396,7 @@
         if (!S || this.swipersReady) return;
         this.swipersReady = true;
 
-        // Таби — свайпаються
+        // Tabs are swipeable
         this.tabsSwiper = new S(this.querySelector('[data-bb-tabs]'), {
           slidesPerView: 'auto',
           spaceBetween: 24,
@@ -387,7 +408,7 @@
           },
         });
 
-        // Продукти — слайдер на моб/планшеті, на десктопі вимкнений (CSS-сітка)
+        // Products: slider on mobile/tablet, disabled on desktop (CSS grid)
         this.sliders = [...this.querySelectorAll('[data-bb-slider]')].map(
           (el) =>
             new S(el, {
@@ -652,7 +673,7 @@
           const data = await res.json();
           if (!res.ok || data.status) throw new Error(data.description || data.message || this.cfg.text.error);
 
-          // Код знижки (опційно) — застосовується через /discount/CODE
+          // Optional discount code, applied via /discount/CODE
           if (tier && tier.code) {
             window.location.href = '/discount/' + encodeURIComponent(tier.code) + '?redirect=' + encodeURIComponent('/cart');
             return;
@@ -695,7 +716,7 @@
     { "type": "header", "content": "Discount tiers (items in bundle)" },
     { "type": "range", "id": "tier_1_qty", "label": "Tier 1: items", "min": 1, "max": 20, "step": 1, "default": 3 },
     { "type": "range", "id": "tier_1_percent", "label": "Tier 1: % off", "min": 1, "max": 90, "step": 1, "default": 5 },
-    { "type": "text", "id": "tier_1_code", "label": "Tier 1: discount code (optional)", "info": "Застосовується через /discount/CODE після додавання в кошик." },
+    { "type": "text", "id": "tier_1_code", "label": "Tier 1: discount code (optional)", "info": "Applied via /discount/CODE after adding to cart." },
     { "type": "range", "id": "tier_2_qty", "label": "Tier 2: items", "min": 1, "max": 20, "step": 1, "default": 5 },
     { "type": "range", "id": "tier_2_percent", "label": "Tier 2: % off", "min": 1, "max": 90, "step": 1, "default": 10 },
     { "type": "text", "id": "tier_2_code", "label": "Tier 2: discount code (optional)" },
@@ -740,10 +761,9 @@
           ],
           "default": "sun"
         },
-        { "type": "collection", "id": "collection", "label": "Collection" },
-        { "type": "range", "id": "products_limit", "label": "Max products", "min": 1, "max": 24, "step": 1, "default": 6 },
+        { "type": "product_list", "id": "products", "label": "Products", "limit": 24 },
         { "type": "range", "id": "min_items", "label": "Minimum items (0 = optional)", "min": 0, "max": 10, "step": 1, "default": 1 },
-        { "type": "range", "id": "max_items", "label": "Maximum items (0 = unlimited)", "min": 0, "max": 20, "step": 1, "default": 0, "info": "Якщо max = min, показується «N item(s) required»." }
+        { "type": "range", "id": "max_items", "label": "Maximum items (0 = unlimited)", "min": 0, "max": 20, "step": 1, "default": 0, "info": "If max equals min, the label shows \"N item(s) required\"." }
       ]
     }
   ],
