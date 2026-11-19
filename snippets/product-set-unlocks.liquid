@@ -16,7 +16,7 @@
 
 {%- for bonus in bonus_blocks -%}
   {%- if bonus.settings.title != blank -%}
-    {%- unless bonus.settings.is_free_shipping and product_price < shipping_threshold_cents -%}
+    {%- unless bonus.settings.is_free_shipping == 'true' and product_price < shipping_threshold_cents -%}
       {%- assign visible_count = visible_count | plus: 1 -%}
     {%- endunless -%}
   {%- endif -%}
@@ -38,11 +38,11 @@
     <ul class="product-set-unlocks__list">
       {%- for bonus in bonus_blocks -%}
         {%- if bonus.settings.title != blank -%}
-          {%- unless bonus.settings.is_free_shipping and product_price < shipping_threshold_cents -%}
+          {%- unless bonus.settings.is_free_shipping == 'true' and product_price < shipping_threshold_cents -%}
             <li class="product-set-unlocks__item" {{ bonus.shopify_attributes }}>
               <div class="product-set-unlocks__title-row">
                 <span class="product-set-unlocks__icon" aria-hidden="true">
-                  +
+                  {% render 'icon' with 'checkmark', class: 'product-set-unlocks__check' %}
                 </span>
                 <p class="product-set-unlocks__title">{{ bonus.settings.title | escape }}</p>
               </div>
