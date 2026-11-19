@@ -1084,6 +1084,79 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "bundle_builder_QCdqEq": {
+      "type": "bundle-builder",
+      "blocks": {
+        "step_h3zmjp": {
+          "type": "step",
+          "settings": {
+            "title": "Prep Your Skin",
+            "icon": "sun",
+            "collection": "cakes",
+            "products_limit": 6,
+            "min_items": 1,
+            "max_items": 0
+          }
+        },
+        "step_7efxyT": {
+          "type": "step",
+          "settings": {
+            "title": "Treat & Nourish",
+            "icon": "moon",
+            "collection": "cakes",
+            "products_limit": 6,
+            "min_items": 1,
+            "max_items": 0
+          }
+        },
+        "step_3NQHAC": {
+          "type": "step",
+          "settings": {
+            "title": "Lock the Glow",
+            "icon": "sparkle",
+            "collection": "cakes",
+            "products_limit": 6,
+            "min_items": 1,
+            "max_items": 0
+          }
+        }
+      },
+      "block_order": [
+        "step_h3zmjp",
+        "step_7efxyT",
+        "step_3NQHAC"
+      ],
+      "name": "Bundle builder",
+      "settings": {
+        "heading_accent": "Unbeatable prices",
+        "heading": "with bundle.",
+        "subheading": "Create your personalized skincare ritual and unlock exclusive savings.",
+        "tier_1_qty": 3,
+        "tier_1_percent": 5,
+        "tier_1_code": "",
+        "tier_2_qty": 5,
+        "tier_2_percent": 10,
+        "tier_2_code": "",
+        "tier_3_qty": 7,
+        "tier_3_percent": 15,
+        "tier_3_code": "",
+        "summary_title": "Bundle Contents",
+        "text_add_more": "Add {count} more to get {percent}% off.",
+        "text_unlocked": "Congratulations! You’ve unlocked all rewards in your bundle!",
+        "text_required": "{count} item(s) required",
+        "text_at_least": "At least {count} item(s)",
+        "text_optional": "Optional",
+        "text_added": "{count} item(s) added",
+        "text_total": "Total",
+        "text_button": "Add all to cart",
+        "text_error": "Could not add the bundle to the cart. Please try again.",
+        "accent_color": "#1f3a7d",
+        "ok_color": "#7a9a3a",
+        "warn_color": "#d9573b",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -1104,6 +1177,7 @@
     "shape_sorter_game_nGJhGM",
     "character_builder_ycJ3Xx",
     "sweets_builder_mAnrfe",
-    "179494603559db27cd"
+    "179494603559db27cd",
+    "bundle_builder_QCdqEq"
   ]
 }
