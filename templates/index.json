@@ -1105,7 +1105,7 @@
         "step_xeeDPP": {
           "type": "step",
           "settings": {
-            "title": "T Add Cupcakes",
+            "title": "Add Cupcakes",
             "icon": "sun",
             "products": [
               "chocolate-velvet-cake-copy",
