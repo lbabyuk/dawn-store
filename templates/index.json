@@ -1093,8 +1093,11 @@
           "settings": {
             "title": "Prep Your Skin",
             "icon": "sun",
-            "collection": "cakes",
-            "products_limit": 6,
+            "products": [
+              "berry-cheesecake",
+              "chocolate-cake-with-toffee-sauced",
+              "fluffy-classic-pancakes"
+            ],
             "min_items": 1,
             "max_items": 0
           }
@@ -1104,10 +1107,13 @@
           "settings": {
             "title": "Treat & Nourish",
             "icon": "moon",
-            "collection": "cakes",
-            "products_limit": 6,
+            "products": [
+              "fluffy-classic-pancakes",
+              "chocolate-velvet-cake",
+              "berry-cheesecake"
+            ],
             "min_items": 1,
-            "max_items": 0
+            "max_items": 4
           }
         },
         "step_3NQHAC": {
@@ -1115,8 +1121,11 @@
           "settings": {
             "title": "Lock the Glow",
             "icon": "sparkle",
-            "collection": "cakes",
-            "products_limit": 6,
+            "products": [
+              "chocolate-velvet-cake-copy",
+              "chocolate-cake-with-toffee-sauced",
+              "fluffy-classic-pancakes"
+            ],
             "min_items": 1,
             "max_items": 0
           }
