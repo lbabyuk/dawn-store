@@ -72,10 +72,11 @@
         },
         "set_unlock_bonus_Nt7866": {
           "type": "set_unlock_bonus",
+          "source": "{{ product.metafields.custom.bonus_three.value }}",
           "settings": {
-            "title": "",
-            "subtitle": "",
-            "is_free_shipping": ""
+            "title": "{{ product.metafields.custom.bonus_three.value.title.value }}",
+            "subtitle": "{{ product.metafields.custom.bonus_three.value.subtitle.value }}",
+            "is_free_shipping": "{{ product.metafields.custom.bonus_three.value.free_shipping_bonus.value }}"
           }
         },
         "price": {
