@@ -48,11 +48,15 @@
   .bb-tabs__nav { display: none; gap: 8px; flex: none; }
   .bb-tabs__arrow { width: 30px; height: 30px; border-radius: 50%; border: 0; background: #c9ccd6; color: #fff; display: grid; place-items: center; cursor: pointer; padding: 0; }
   .bb-tabs__arrow svg { width: 14px; height: 14px; }
-  .bb-tabs__arrow.swiper-button-disabled { background: #eceef3; color: #b5b9c6; pointer-events: none; }
+  .bb-tabs__arrow { transition: background .2s, color .2s; }
+  .bb-tabs__arrow:not(:disabled):hover { background: var(--bb-accent); }
+  .bb-tabs__arrow:disabled { background: #eceef3; color: #b5b9c6; cursor: default; }
   @media (min-width: 750px) { .bb-tabs__nav { display: flex; } }
 
   /* ---------- Products ---------- */
   .bb-panel[hidden] { display: none !important; }
+  .bb-panel:not([hidden]) { animation: bb-fade .3s ease; }
+  @keyframes bb-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   .bb-slider { overflow: hidden; }
   .bb-slider .swiper-slide { height: auto; }
   .bb-card__media { position: relative; display: block; aspect-ratio: 1 / 1; background: var(--bb-surface); border-radius: 10px; overflow: hidden; }
@@ -86,18 +90,21 @@
   .bb-sum.is-open .bb-sum__toggle svg { transform: rotate(45deg); }
 
   .bb-progress { position: relative; margin: 14px 0 0; padding-bottom: 24px; }
-  .bb-progress__track { position: relative; height: 4px; border-radius: 4px; background: #d3d7e2; }
-  .bb-progress__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 4px; background: var(--bb-accent); transition: width .35s ease; }
-  .bb-node { position: absolute; top: 50%; width: 18px; height: 18px; border-radius: 50%; transform: translate(-50%, -50%); background: #fff; border: 2px solid #d3d7e2; display: grid; place-items: center; color: #fff; transition: background .25s, border-color .25s; }
+  .bb-progress__track { position: relative; height: 6px; border-radius: 6px; background: #d3d7e2; }
+  .bb-progress__fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 6px 0 0 6px; background: var(--bb-accent); transform: scaleX(0); transform-origin: left center; transition: transform .35s ease; z-index: 0; }
+  .bb-node { position: absolute; z-index: 1; top: 50%; width: 18px; height: 18px; border-radius: 50%; transform: translate(-50%, -50%); background: #fff; border: 2px solid #d3d7e2; display: grid; place-items: center; color: #fff; transition: background .25s, border-color .25s; }
   .bb-node svg { width: 10px; height: 10px; opacity: 0; }
   .bb-node.is-reached { background: var(--bb-accent); border-color: var(--bb-accent); }
   .bb-node.is-reached svg { opacity: 1; }
   .bb-node__label { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--bb-muted); white-space: nowrap; }
 
-  .bb-sum__contents { display: none; margin-top: 4px; }
+  .bb-sum__contents { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  .bb-sum__contents-inner { min-height: 0; overflow: hidden; }
   .bb-group { border: 1px solid var(--bb-border); border-radius: 8px; margin-top: 12px; overflow: hidden; }
   .bb-group.is-open { border-color: #c2c8d8; }
   .bb-group__head { width: 100%; display: grid; grid-template-columns: 1fr auto 16px; grid-template-areas: 'title count chev' 'req req req'; column-gap: 8px; align-items: center; text-align: left; border: 0; background: none; padding: 10px 12px; cursor: pointer; }
+  .bb-group { transition: border-color .25s ease; }
+  .bb-group__head { transition: background-color .25s ease; }
   .bb-group.is-open .bb-group__head { background: #e6e9f0; }
   .bb-group__title { grid-area: title; font-size: 12px; color: #3a4050; }
   .bb-group__count { grid-area: count; font-size: 12px; color: var(--bb-muted); }
@@ -106,9 +113,12 @@
   .bb-group__chev { grid-area: chev; width: 14px; height: 14px; color: #6b7280; transition: transform .2s; }
   .bb-group.is-open .bb-group__chev { transform: rotate(180deg); }
   .bb-group__req { grid-area: req; font-size: 10px; color: var(--bb-muted); font-style: italic; margin-top: 2px; }
-  .bb-group__body { display: none; padding: 12px; }
-  .bb-group.is-open .bb-group__body { display: block; }
-  .bb-group__body:empty { padding: 0; }
+  .bb-group__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  .bb-group.is-open .bb-group__body { grid-template-rows: 1fr; }
+  .bb-group__inner { min-height: 0; overflow: hidden; }
+  .bb-group:not(.is-open) .bb-group__inner { visibility: hidden; transition: visibility 0s .3s; }
+  .bb-group__list { padding: 12px; }
+  .bb-group__list:empty { padding: 0; }
 
   .bb-item { display: flex; align-items: center; gap: 14px; }
   .bb-item + .bb-item { margin-top: 12px; }
@@ -130,7 +140,7 @@
 
   @media (min-width: 990px) {
     .bb-sum { position: sticky; top: 20px; }
-    .bb-sum__contents { display: block; }
+    .bb-sum__contents { grid-template-rows: 1fr; }
   }
 
   /* ---------- Mobile: sticky bundle, products scroll underneath ---------- */
@@ -144,7 +154,8 @@
       box-shadow: 0 -10px 24px rgba(20, 30, 60, .14);
     }
     .bb-sum__toggle { display: block; }
-    .bb-sum.is-open .bb-sum__contents { display: block; max-height: 32vh; overflow-y: auto; overscroll-behavior: contain; }
+    .bb-sum.is-open .bb-sum__contents { grid-template-rows: 1fr; }
+    .bb-sum.is-open .bb-sum__contents-inner { max-height: 32vh; overflow-y: auto; overscroll-behavior: contain; }
     .bb-sum__total { margin: 12px 0 10px; }
     .bb-progress { margin-top: 10px; }
   }
@@ -156,7 +167,8 @@
   .bb-zoom__close { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .9); font-size: 20px; line-height: 1; cursor: pointer; }
 
   @media (prefers-reduced-motion: reduce) {
-    .bb-progress__fill, .bb-node, .bb-sum__toggle svg, .bb-group__chev { transition: none; }
+    .bb-progress__fill, .bb-node, .bb-sum__toggle svg, .bb-group__chev, .bb-group, .bb-group__head, .bb-group__body, .bb-sum__contents { transition: none; }
+    .bb-panel:not([hidden]) { animation: none; }
   }
 </style>
 
@@ -226,10 +238,10 @@
             </div>
           </div>
           <div class="bb-tabs__nav">
-            <button type="button" class="bb-tabs__arrow" data-bb-tabs-prev aria-label="Previous">
+            <button type="button" class="bb-tabs__arrow" data-action="step-prev" aria-label="Previous step">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
             </button>
-            <button type="button" class="bb-tabs__arrow" data-bb-tabs-next aria-label="Next">
+            <button type="button" class="bb-tabs__arrow" data-action="step-next" aria-label="Next step">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
             </button>
           </div>
@@ -323,7 +335,7 @@
           </div>
         </div>
 
-        <div class="bb-sum__contents" data-groups></div>
+        <div class="bb-sum__contents"><div class="bb-sum__contents-inner" data-groups></div></div>
 
         <div class="bb-sum__total">
           <span>{{ section.settings.text_total }}</span>
@@ -381,8 +393,11 @@
         this.sum = this.querySelector('[data-sum]');
         this.tabs = [...this.querySelectorAll('[data-action="tab"]')];
         this.panels = [...this.querySelectorAll('[data-panel]')];
+        this.current = 0;
 
         this.bind();
+        this.buildGroups();
+        this.updateArrows();
         this.render();
 
         loadSwiper(this.cfg.swiperUrl)
@@ -396,19 +411,15 @@
         if (!S || this.swipersReady) return;
         this.swipersReady = true;
 
-        // Tabs: swipe/drag + arrows. No freeMode, so the arrows move slide by slide.
+        // Tabs bar is draggable/swipeable. The arrows switch steps (tab + content), see setStep().
         this.tabsSwiper = new S(this.querySelector('[data-bb-tabs]'), {
           slidesPerView: 'auto',
           spaceBetween: 24,
-          slidesPerGroupAuto: true,
+          freeMode: true,
           watchOverflow: true,
           observer: true,
           observeParents: true,
           observeSlideChildren: true,
-          navigation: {
-            prevEl: this.querySelector('[data-bb-tabs-prev]'),
-            nextEl: this.querySelector('[data-bb-tabs-next]'),
-          },
         });
 
         // Recalculate widths once web fonts are loaded (tab widths change)
@@ -452,11 +463,21 @@
               this.removeOne(el.dataset.key);
               break;
             case 'group': {
+              // Toggle the class only (no re-render) so the CSS transition can run
               const id = el.dataset.id;
-              this.open.has(id) ? this.open.delete(id) : this.open.add(id);
-              this.render();
+              const isOpen = !this.open.has(id);
+              if (isOpen) this.open.add(id);
+              else this.open.delete(id);
+              el.closest('.bb-group').classList.toggle('is-open', isOpen);
+              el.setAttribute('aria-expanded', String(isOpen));
               break;
             }
+            case 'step-prev':
+              this.setStep(this.current - 1);
+              break;
+            case 'step-next':
+              this.setStep(this.current + 1);
+              break;
             case 'toggle': {
               const isOpen = this.sum.classList.toggle('is-open');
               el.setAttribute('aria-expanded', String(isOpen));
@@ -490,6 +511,9 @@
       }
 
       setStep(index) {
+        if (index < 0 || index >= this.tabs.length) return;
+        this.current = index;
+        this.updateArrows();
         this.tabs.forEach((t, i) => {
           t.classList.toggle('is-active', i === index);
           t.setAttribute('aria-selected', String(i === index));
@@ -500,6 +524,35 @@
         if (this.tabsSwiper) this.tabsSwiper.slideTo(index);
         requestAnimationFrame(() => this.sliders && this.sliders.forEach((s) => s.update()));
         this.render();
+      }
+
+      updateArrows() {
+        const prev = this.querySelector('[data-action="step-prev"]');
+        const next = this.querySelector('[data-action="step-next"]');
+        if (prev) prev.disabled = this.current <= 0;
+        if (next) next.disabled = this.current >= this.tabs.length - 1;
+      }
+
+      // Accordion structure is built once; render() only updates its content
+      buildGroups() {
+        this.querySelector('[data-groups]').innerHTML = this.cfg.steps
+          .map((s) => `
+            <div class="bb-group" data-group>
+              <button type="button" class="bb-group__head" data-action="group" data-id="${esc(s.id)}" aria-expanded="false">
+                <span class="bb-group__title">${esc(s.title)}</span>
+                <span class="bb-group__count" data-group-count></span>
+                <svg class="bb-group__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                <span class="bb-group__req">${esc(this.reqText(s))}</span>
+              </button>
+              <div class="bb-group__body">
+                <div class="bb-group__inner">
+                  <div class="bb-group__list" data-group-list></div>
+                </div>
+              </div>
+            </div>`)
+          .join('');
+        const els = [...this.querySelectorAll('[data-group]')];
+        this.groupEls = new Map(this.cfg.steps.map((s, i) => [s.id, els[i]]));
       }
 
       /* ---------- State ---------- */
@@ -587,7 +640,7 @@
             }
           }
         }
-        this.querySelector('[data-fill]').style.width = fill + '%';
+        this.querySelector('[data-fill]').style.transform = `scaleX(${Math.max(0, Math.min(100, fill)) / 100})`;
         this.querySelectorAll('[data-node]').forEach((node, i) => node.classList.toggle('is-reached', total >= tiers[i].qty));
 
         // message
@@ -596,41 +649,38 @@
           ? tpl(t.addMore, { count: next.qty - total, percent: next.percent })
           : t.unlocked;
 
-        // groups
-        this.querySelector('[data-groups]').innerHTML = this.cfg.steps
-          .map((s) => {
-            const rows = list.filter((i) => i.step === s.id);
-            const count = rows.reduce((a, i) => a + i.qty, 0);
-            const state = count < s.min ? 'is-warn' : count > 0 ? 'is-ok' : '';
-            const isOpen = this.open.has(s.id);
-            return `
-              <div class="bb-group${isOpen ? ' is-open' : ''}">
-                <button type="button" class="bb-group__head" data-action="group" data-id="${esc(s.id)}" aria-expanded="${isOpen}">
-                  <span class="bb-group__title">${esc(s.title)}</span>
-                  <span class="bb-group__count ${state}">${esc(tpl(t.added, { count }))}</span>
-                  <svg class="bb-group__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-                  <span class="bb-group__req">${esc(this.reqText(s))}</span>
-                </button>
-                <div class="bb-group__body">
-                  ${rows
-                    .map((i) => `
-                    <div class="bb-item">
-                      <div class="bb-item__media">
-                        <img src="${esc(i.image)}" alt="">
-                        <button type="button" class="bb-item__remove" data-action="remove" data-key="${esc(this.key(i.step, i.id))}" aria-label="Remove one ${esc(i.title)}">&minus;</button>
-                        <span class="bb-item__qty">${i.qty}</span>
-                      </div>
-                      <div class="bb-item__info">
-                        <p>${esc(i.title)}</p>
-                        ${i.variant ? `<p>${esc(i.variant)}</p>` : ''}
-                        <p class="bb-item__price">${this.money.format(i.price / 100)}</p>
-                      </div>
-                    </div>`)
-                    .join('')}
+        // groups (only the content is updated, so the accordion can animate)
+        this.cfg.steps.forEach((s) => {
+          const g = this.groupEls && this.groupEls.get(s.id);
+          if (!g) return;
+          const rows = list.filter((i) => i.step === s.id);
+          const count = rows.reduce((a, i) => a + i.qty, 0);
+          const state = count < s.min ? 'is-warn' : count > 0 ? 'is-ok' : '';
+          const isOpen = this.open.has(s.id);
+
+          g.classList.toggle('is-open', isOpen);
+          g.querySelector('[data-action="group"]').setAttribute('aria-expanded', String(isOpen));
+
+          const countEl = g.querySelector('[data-group-count]');
+          countEl.textContent = tpl(t.added, { count });
+          countEl.className = ('bb-group__count ' + state).trim();
+
+          g.querySelector('[data-group-list]').innerHTML = rows
+            .map((i) => `
+              <div class="bb-item">
+                <div class="bb-item__media">
+                  <img src="${esc(i.image)}" alt="">
+                  <button type="button" class="bb-item__remove" data-action="remove" data-key="${esc(this.key(i.step, i.id))}" aria-label="Remove one ${esc(i.title)}">&minus;</button>
+                  <span class="bb-item__qty">${i.qty}</span>
                 </div>
-              </div>`;
-          })
-          .join('');
+                <div class="bb-item__info">
+                  <p>${esc(i.title)}</p>
+                  ${i.variant ? `<p>${esc(i.variant)}</p>` : ''}
+                  <p class="bb-item__price">${this.money.format(i.price / 100)}</p>
+                </div>
+              </div>`)
+            .join('');
+        });
 
         // total
         const reached = tiers.filter((x) => total >= x.qty);
