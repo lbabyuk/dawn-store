@@ -370,7 +370,6 @@
       "blocks": {
         "testimonial_3MGeCD": {
           "type": "testimonial",
-          "disabled": true,
           "settings": {
             "avatar_image": "shopify://shop_images/model-in-gold-fashion.jpg",
             "author_name": "Sophie Laurent",
@@ -385,7 +384,6 @@
         },
         "testimonial_PDTqMa": {
           "type": "testimonial",
-          "disabled": true,
           "settings": {
             "avatar_image": "shopify://shop_images/model-in-gold-fashion.jpg",
             "author_name": "Sophie Laurent",
